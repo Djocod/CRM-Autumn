@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Sac Birkin 35",
+    "brand": "Hermès",
+    "category": "sacs",
+    "price": 12500,
+    "currency": "EUR",
+    "stock": 3,
+    "description": "Sac iconique en cuir Togo noir avec quincaillerie dorée.",
+    "image": "https://placehold.co/400x400?text=Hermes+Birkin",
+    "tags": ["sac", "cuir", "iconique"]
+  },
+  {
+    "id": 2,
+    "title": "Sneakers Triple S",
+    "brand": "Balenciaga",
+    "category": "chaussures",
+    "price": 850,
+    "currency": "EUR",
+    "stock": 15,
+    "description": "Sneakers oversized emblématiques en mesh et cuir.",
+    "image": "https://placehold.co/400x400?text=Balenciaga+Triple+S",
+    "tags": ["sneakers", "streetwear", "chunky"]
+  },
+  {
+    "id": 3,
+    "title": "Mocassins Horsebit 1953",
+    "brand": "Gucci",
+    "category": "chaussures",
+    "price": 750,
+    "currency": "EUR",
+    "stock": 8,
+    "description": "Mocassins en cuir lisse avec détail horsebit doré signature.",
+    "image": "https://placehold.co/400x400?text=Gucci+Horsebit",
+    "tags": ["mocassins", "cuir", "classique"]
+  },
+  {
+    "id": 4,
+    "title": "Ceinture MC Monogram",
+    "brand": "Louis Vuitton",
+    "category": "accessoires",
+    "price": 420,
+    "currency": "EUR",
+    "stock": 20,
+    "description": "Ceinture en toile monogram avec boucle LV dorée.",
+    "image": "https://placehold.co/400x400?text=LV+Belt",
+    "tags": ["ceinture", "monogram", "accessoire"]
+  },
+  {
+    "id": 5,
+    "title": "Lunettes de soleil Aviator",
+    "brand": "Tom Ford",
+    "category": "accessoires",
+    "price": 390,
+    "currency": "EUR",
+    "stock": 12,
+    "description": "Lunettes aviateur en métal doré avec verres gris dégradés.",
+    "image": "https://placehold.co/400x400?text=Tom+Ford+Aviator",
+    "tags": ["lunettes", "aviateur", "soleil"]
+  },
+  {
+    "id": 6,
+    "title": "Veste Tuxedo Slim",
+    "brand": "Saint Laurent",
+    "category": "vetements",
+    "price": 2900,
+    "currency": "EUR",
+    "stock": 5,
+    "description": "Veste tuxedo slim en laine noire avec revers satin.",
+    "image": "https://placehold.co/400x400?text=YSL+Tuxedo",
+    "tags": ["veste", "tuxedo", "soiree"]
+  },
+  {
+    "id": 7,
+    "title": "Sac Lady Dior Medium",
+    "brand": "Dior",
+    "category": "sacs",
+    "price": 5500,
+    "currency": "EUR",
+    "stock": 6,
+    "description": "Sac Lady Dior en cuir cannage noir avec breloques CD.",
+    "image": "https://placehold.co/400x400?text=Dior+Lady",
+    "tags": ["sac", "cannage", "iconique"]
+  },
+  {
+    "id": 8,
+    "title": "Bottines Chelsea",
+    "brand": "Bottega Veneta",
+    "category": "chaussures",
+    "price": 1150,
+    "currency": "EUR",
+    "stock": 9,
+    "description": "Bottines Chelsea en cuir intrecciato vert bouteille.",
+    "image": "https://placehold.co/400x400?text=Bottega+Chelsea",
+    "tags": ["bottines", "intrecciato", "cuir"]
+  },
+  {
+    "id": 9,
+    "title": "Écharpe Cachemire Classic",
+    "brand": "Burberry",
+    "category": "accessoires",
+    "price": 650,
+    "currency": "EUR",
+    "stock": 25,
+    "description": "Écharpe en cachemire pur avec motif check iconique.",
+    "image": "https://placehold.co/400x400?text=Burberry+Scarf",
+    "tags": ["echarpe", "cachemire", "check"]
+  },
+  {
+    "id": 10,
+    "title": "Manteau Camel Hair",
+    "brand": "Max Mara",
+    "category": "vetements",
+    "price": 3200,
+    "currency": "EUR",
+    "stock": 4,
+    "description": "Manteau oversize en poil de chameau, coupe droite intemporelle.",
+    "image": "https://placehold.co/400x400?text=MaxMara+Coat",
+    "tags": ["manteau", "camel", "oversize"]
+  }
+]
