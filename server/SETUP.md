@@ -507,7 +507,270 @@ async function addToUser(productId) {
 
 ---
 
+---
+
+## 25. Restructuration de l'architecture serveur
+
+Le projet a été réorganisé en abandonnant les sous-dossiers `src/products/` et `src/users/` au profit d'une architecture plate par type de fichier à la racine du dossier `server/` :
+
+```
+server/
+├── server.js
+├── seed.js
+├── .env
+├── package.json
+├── controller/
+│   ├── products.controller.js
+│   └── users.controller.js
+├── router/
+│   ├── products.route.js
+│   └── users.route.js
+├── service/
+│   ├── products.service.js
+│   └── users.service.js
+├── model/
+│   ├── schema.products.js
+│   └── schema.users.js
+├── utils/
+│   └── mongod.js
+└── jsonFile/
+    ├── users.json
+    └── products.json
+```
+
+> **Mise à jour de `package.json`** : le script `"start"` pointe désormais directement sur `server.js` (à la racine) et non plus `src/server.js`.
+
+```json
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+}
+```
+
+---
+
+## 26. Mise à jour du schéma users (format randomuser.me)
+
+Le schéma `model/schema.users.js` a été revu pour coller exactement au format de l'API **randomuser.me** (source des données JSON) :
+
+| Champ               | Type                       | Description                                                                 |
+| ------------------- | -------------------------- | --------------------------------------------------------------------------- |
+| `gender`            | String (enum)              | `"male"` / `"female"` / `"other"`                                           |
+| `name`              | sous-document              | `title`, `first`, `last`                                                    |
+| `location`          | sous-document              | `street`, `city`, `state`, `country`, `postcode`, `coordinates`, `timezone` |
+| `email`             | String unique              | email normalisé en lowercase                                                |
+| `login`             | sous-document              | `uuid`, `username`, `password`, `salt`, `md5`, `sha1`, `sha256`             |
+| `dob`               | sous-document              | `date` (Date), `age` (Number)                                               |
+| `registered`        | sous-document              | `date` (Date), `age` (Number)                                               |
+| `phone` / `cell`    | String                     | numéros de téléphone                                                        |
+| `picture`           | sous-document              | `large`, `medium`, `thumbnail` (URLs)                                       |
+| `nat`               | String                     | nationalité (ex : `"FR"`)                                                   |
+| `purchasedProducts` | `[ObjectId]` ref `Product` | produits achetés                                                            |
+| `viewedProducts`    | `[ObjectId]` ref `Product` | produits consultés                                                          |
+
+> Le champ `id` (numéro de sécurité sociale) est commenté car absent de certains documents.
+
+---
+
+## 27. Ajout de la route GET user par ID
+
+### `router/users.route.js`
+
+```
+GET /api/users/           → tous les users
+GET /api/users/search/:lastname  → user par nom de famille (populate)
+GET /api/users/:id        → user par _id MongoDB (populate)
+```
+
+### `service/users.service.js`
+
+Fonction ajoutée :
+
+```js
+export async function findUserById(_id) {
+  return User.findById(_id, champs)
+    .populate("purchasedProducts")
+    .populate("viewedProducts");
+}
+```
+
+### `controller/users.controller.js`
+
+Handler ajouté :
+
+```js
+export async function handleGetUserById(req, res) {
+  const { id } = req.params;
+  if (!id) return res.status(400).json({ message: "Missing user Id" });
+  const user = await findUserById(id);
+  if (!user) return res.status(404).json({ message: "User not found !" });
+  return res.status(200).json({ user });
+}
+```
+
+> **Important** : dans la route, `:id` doit être déclaré **après** `/search/:lastname` pour éviter qu'Express capture `"search"` comme un `id`.
+
+---
+
+## 28. Mise à jour de server.js (port 8000 + routes)
+
+```js
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import userRoutes from "./router/users.route.js";
+import productRoutes from "./router/products.route.js";
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use("/api/users", userRoutes);
+app.use("/api/product", productRoutes);
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB successfull"))
+  .catch((err) => console.error("Error connection :", err.message));
+
+const port = process.env.PORT || 8000;
+app.listen(port, () =>
+  console.log(`Server is running http://localhost:${port}`),
+);
+```
+
+> Le port a été changé de **3000** à **8000** pour éviter les conflits avec React (qui utilise `3000` par défaut).
+
+---
+
+## 29. Création du client React (Create React App)
+
+Dans le dossier racine du projet :
+
+```bash
+npx create-react-app client
+cd client
+```
+
+Installation des dépendances supplémentaires :
+
+```bash
+npm install axios react-router-dom
+```
+
+| Package            | Rôle                             |
+| ------------------ | -------------------------------- |
+| `axios`            | Requêtes HTTP vers l'API Express |
+| `react-router-dom` | Navigation entre les pages (SPA) |
+
+---
+
+## 30. Architecture du client React
+
+```
+client/src/
+├── App.js
+├── index.js
+├── App.css
+├── components/
+│   ├── Users.js
+│   ├── UsersCard.js
+│   ├── Products.js
+│   ├── ProductCard.js
+│   ├── ProfilUser.js
+│   └── ProfilProduct.js
+├── pages/
+│   ├── Home.js
+│   └── Book.js
+└── style/
+    ├── userscard.css
+    └── productcard.css
+```
+
+---
+
+## 31. Mise en place du routing React
+
+### `src/App.js`
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ProfilUser from "./components/ProfilUser";
+
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/users/:id" element={<ProfilUser />} />
+      <Route path="*" element={<Home />} />
+    </Routes>
+  </BrowserRouter>
+);
+```
+
+| Route        | Composant    | Description                      |
+| ------------ | ------------ | -------------------------------- |
+| `/`          | `Home`       | Page d'accueil → liste des users |
+| `/users/:id` | `ProfilUser` | Profil d'un user + ses produits  |
+| `*`          | `Home`       | Fallback sur la home             |
+
+---
+
+## 32. Composants React
+
+### `components/Users.js`
+
+Récupère tous les users via `axios.get("http://localhost:8000/api/users")`, les trie par `name.last`, et rend un `UsersCard` par user.
+
+### `components/UsersCard.js`
+
+Carte cliquable avec `<Link to={/users/${user._id}}>` (react-router-dom), affiche la photo et le nom complet.
+
+### `components/Products.js`
+
+Récupère tous les produits via `axios.get("http://localhost:8000/api/product")`, les trie par `brand`, et rend un `ProductCard` par produit.
+
+### `components/ProductCard.js`
+
+Affiche l'image, la marque, le titre et la description d'un produit. Vérifie que `product` est défini (guard clause `if (!product) return`).
+
+### `components/ProfilUser.js`
+
+- Lit le paramètre `id` via `useParams()` (react-router-dom)
+- Appelle `axios.get("http://localhost:8000/api/users/${id}")` dans un `useEffect` qui se relance quand `id` change
+- Affiche la photo et le prénom du user + la liste complète des produits
+
+---
+
+## 33. URLs disponibles (état actuel)
+
+| Méthode | URL                                                     | Description                      |
+| ------- | ------------------------------------------------------- | -------------------------------- |
+| GET     | `http://localhost:8000/api/product/`                    | Tous les produits                |
+| GET     | `http://localhost:8000/api/product/search?brand=Gucci`  | Produits par marque              |
+| PATCH   | `http://localhost:8000/api/product/:productId/purchase` | Acheter un produit               |
+| PATCH   | `http://localhost:8000/api/product/:productId/viewed`   | Marquer un produit comme vu      |
+| GET     | `http://localhost:8000/api/users/`                      | Tous les users                   |
+| GET     | `http://localhost:8000/api/users/search/:lastname`      | User par nom + produits peuplés  |
+| GET     | `http://localhost:8000/api/users/:id`                   | User par \_id + produits peuplés |
+
+---
+
+## Ordre de lancement à chaque session
+
+```
+1. net start MongoDB        ← démarrer la base de données
+2. npm run dev              ← démarrer le serveur Express (dossier server/)
+3. npm start                ← démarrer React (dossier client/) → http://localhost:3000
+```
+
+---
+
 ## Prochaines étapes
 
+- Afficher les `purchasedProducts` et `viewedProducts` dans le profil user
+- Ajouter un bouton "Acheter" sur chaque `ProductCard` (PATCH `/purchase`)
 - Sécuriser le `userId` via un token JWT (authentification)
-- Brancher le front React (Vite)
