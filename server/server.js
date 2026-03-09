@@ -5,12 +5,18 @@ import userRoutes from "./router/users.route.js";
 import productRoutes from "./router/products.route.js";
 import cors from "cors";
 // http://localhost:8000/api/users
+// http://localhost:8000/api/users/id
 // http://localhost:8000/api/users/search/Smith
+// http://localhost:8000/api/users/:productId/viewed
+// http://localhost:8000/api/users/:productId/purchase
 // http://localhost:8000/api/product
 // http://localhost:8000/api/product/search?brand=Gucci
-// http://localhost:8000/api/product/:productId/viewed
-// http://localhost:8000/api/product/:productId/purchase
 dotenv.config();
+// /:productId/viewed
+// 69acb04427ca7e0dc48574da / BOTTEGA
+// 69acb04427ca7e0dc48574e2 / GUCCI
+// 69ad8c8a65a8e18bb4d063c6 / Yarosvit
+// 69ad8c8a65a8e18bb4d063c5 /isabelle
 
 const app = express();
 app.use(cors());

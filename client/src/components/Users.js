@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UsersCard from "./UsersCard";
-
 const Users = () => {
   const [usersData, setUsersData] = useState([]);
 

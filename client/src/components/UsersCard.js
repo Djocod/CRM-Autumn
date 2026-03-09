@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/userscard.css";
 import { Link } from "react-router-dom";
 //déstructuration classique JS
 const UsersCard = ({ user }) => {

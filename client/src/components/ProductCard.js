@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/productcard.css";
 
 const ProductCard = ({ product }) => {
   if (!product) return;

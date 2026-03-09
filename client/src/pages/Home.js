@@ -1,9 +1,11 @@
 import React from "react";
 import Users from "../components/Users";
+import Products from "../components/Products";
 const Home = () => {
   return (
-    <div>
+    <div className="body">
       <Users />
+      <Products />
     </div>
   );
 };

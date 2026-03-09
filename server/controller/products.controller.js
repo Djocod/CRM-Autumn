@@ -1,8 +1,6 @@
 import {
   listProducts,
   getProductByBrand,
-  addPurchasedProduct,
-  addViewedProduct,
 } from "../service/products.service.js";
 
 export async function handleListProducts(req, res) {
@@ -32,43 +30,43 @@ export async function handleGetProductsByBrand(req, res) {
   }
 }
 
-export async function handlePatchBuyProducts(req, res) {
-  try {
-    const { productId } = req.params;
-    const { userId } = req.body;
+// export async function handlePatchBuyProducts(req, res) {
+//   try {
+//     const { productId } = req.params;
+//     const { userId } = req.body;
 
-    if (!userId) {
-      return res.status(400).json({ message: "Missing userId" });
-    }
+//     if (!userId) {
+//       return res.status(400).json({ message: "Missing userId" });
+//     }
 
-    const updated = await addPurchasedProduct(userId, productId);
+//     const updated = await addPurchasedProduct(userId, productId);
 
-    if (!updated) {
-      return res.status(404).json({ message: "User not found !" });
-    }
+//     if (!updated) {
+//       return res.status(404).json({ message: "User not found !" });
+//     }
 
-    return res.status(200).json({ purchased: updated.purchasedProducts });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-}
-export async function handlePatchViewProducts(req, res) {
-  try {
-    const { productId } = req.params;
-    const { userId } = req.body;
+//     return res.status(200).json({ purchased: updated.purchasedProducts });
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message });
+//   }
+// }
+// export async function handlePatchViewProducts(req, res) {
+//   try {
+//     const { productId } = req.params;
+//     const { userId } = req.body;
 
-    if (!userId) {
-      return res.status(400).json({ message: "Missing userId" });
-    }
+//     if (!userId) {
+//       return res.status(400).json({ message: "Missing userId" });
+//     }
 
-    const updated = await addViewedProduct(userId, productId);
+//     const updated = await addViewedProduct(userId, productId);
 
-    if (!updated) {
-      return res.status(404).json({ message: "User not found !" });
-    }
+//     if (!updated) {
+//       return res.status(404).json({ message: "User not found !" });
+//     }
 
-    return res.status(200).json({ viewed: updated.viewedProducts });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-}
+//     return res.status(200).json({ viewed: updated.viewedProducts });
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message });
+//   }
+// }

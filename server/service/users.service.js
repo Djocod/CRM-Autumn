@@ -1,4 +1,5 @@
 import User from "../model/schema.users.js";
+import Product from "../model/schema.products.js";
 
 const champs = {
   _id: true,
@@ -82,4 +83,22 @@ export async function findUserById(_id) {
   return User.findById(_id, champs)
     .populate("purchasedProducts")
     .populate("viewedProducts");
+}
+
+// ===========================================
+// Add product buy by users
+export async function addPurchasedProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    { $addToSet: { purchasedProducts: productId } },
+    { new: true },
+  );
+}
+// Add product view by users
+export async function addViewedProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    { $addToSet: { viewedProducts: productId } },
+    { new: true },
+  );
 }
