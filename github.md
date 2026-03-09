@@ -59,6 +59,28 @@ git push
 
 ---
 
+## 3.5 Tenir `main` à jour depuis `preprod`
+
+La logique : `preprod` est validée → tu pousses ses changements dans `main`.
+
+```bash
+# 1. Basculer sur main
+git checkout main
+
+# 2. Récupérer les dernières modifications du repo distant
+git fetch origin
+
+# 3. Fusionner preprod dans main
+git merge preprod
+
+# 4. Pousser
+git push
+```
+
+> **Conseil :** fais toujours ce merge depuis `preprod` → `main` uniquement quand `preprod` est stable et testée, jamais en cours de développement.
+
+---
+
 ## 4. Logique globale recommandée (flux)
 
 ```
