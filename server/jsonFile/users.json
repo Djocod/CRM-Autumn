@@ -53,7 +53,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/15.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/15.jpg"
     },
-    "nat": "GB"
+    "nat": "GB",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -109,7 +111,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/11.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/11.jpg"
     },
-    "nat": "UA"
+    "nat": "UA",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -165,7 +169,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/25.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/25.jpg"
     },
-    "nat": "NO"
+    "nat": "NO",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -221,7 +227,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/68.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/68.jpg"
     },
-    "nat": "UA"
+    "nat": "UA",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -233,10 +241,10 @@
     "location": {
       "street": {
         "number": 2981,
-        "name": "Østermarksvej"
+        "name": "Ã˜stermarksvej"
       },
       "city": "V.Skerninge",
-      "state": "Sjælland",
+      "state": "SjÃ¦lland",
       "country": "Denmark",
       "postcode": 44800,
       "coordinates": {
@@ -277,14 +285,16 @@
       "medium": "https://randomuser.me/api/portraits/med/men/48.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/48.jpg"
     },
-    "nat": "DK"
+    "nat": "DK",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
     "name": {
       "title": "Miss",
-      "first": "Ayşe",
-      "last": "Yazıcı"
+      "first": "AyÅŸe",
+      "last": "YazÄ±cÄ±"
     },
     "location": {
       "street": {
@@ -333,22 +343,24 @@
       "medium": "https://randomuser.me/api/portraits/med/women/9.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/9.jpg"
     },
-    "nat": "TR"
+    "nat": "TR",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
     "name": {
       "title": "Miss",
-      "first": "تارا",
-      "last": "گلشن"
+      "first": "ØªØ§Ø±Ø§",
+      "last": "Ú¯Ù„Ø´Ù†"
     },
     "location": {
       "street": {
         "number": 2079,
-        "name": "جلال آل احمد"
+        "name": "Ø¬Ù„Ø§Ù„ Ø¢Ù„ Ø§Ø­Ù…Ø¯"
       },
-      "city": "یزد",
-      "state": "مرکزی",
+      "city": "ÛŒØ²Ø¯",
+      "state": "Ù…Ø±Ú©Ø²ÛŒ",
       "country": "Iran",
       "postcode": 31205,
       "coordinates": {
@@ -389,7 +401,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/31.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/31.jpg"
     },
-    "nat": "IR"
+    "nat": "IR",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -445,7 +459,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/32.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/32.jpg"
     },
-    "nat": "CH"
+    "nat": "CH",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -457,10 +473,10 @@
     "location": {
       "street": {
         "number": 7454,
-        "name": "Tunalı Hilmi Cd"
+        "name": "TunalÄ± Hilmi Cd"
       },
-      "city": "İstanbul",
-      "state": "Çanakkale",
+      "city": "Ä°stanbul",
+      "state": "Ã‡anakkale",
       "country": "Turkey",
       "postcode": 11462,
       "coordinates": {
@@ -501,13 +517,15 @@
       "medium": "https://randomuser.me/api/portraits/med/men/54.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/54.jpg"
     },
-    "nat": "TR"
+    "nat": "TR",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
     "name": {
       "title": "Mr",
-      "first": "Adán",
+      "first": "AdÃ¡n",
       "last": "Alcaraz"
     },
     "location": {
@@ -515,7 +533,7 @@
         "number": 5184,
         "name": "Eje vial Sur Romero"
       },
-      "city": "Apatzingán",
+      "city": "ApatzingÃ¡n",
       "state": "Tabasco",
       "country": "Mexico",
       "postcode": 15198,
@@ -557,7 +575,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/67.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/67.jpg"
     },
-    "nat": "MX"
+    "nat": "MX",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -572,7 +592,7 @@
         "name": "Avenue Debourg"
       },
       "city": "Champigny-sur-Marne",
-      "state": "Finistère",
+      "state": "FinistÃ¨re",
       "country": "France",
       "postcode": 86609,
       "coordinates": {
@@ -613,13 +633,15 @@
       "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
     },
-    "nat": "FR"
+    "nat": "FR",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
     "name": {
       "title": "Mr",
-      "first": "Gerónimo",
+      "first": "GerÃ³nimo",
       "last": "Ocampo"
     },
     "location": {
@@ -669,7 +691,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/20.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/20.jpg"
     },
-    "nat": "MX"
+    "nat": "MX",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -683,7 +707,7 @@
         "number": 4997,
         "name": "Avenida de Salamanca"
       },
-      "city": "Torrejón de Ardoz",
+      "city": "TorrejÃ³n de Ardoz",
       "state": "Islas Baleares",
       "country": "Spain",
       "postcode": 49131,
@@ -725,7 +749,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/62.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/62.jpg"
     },
-    "nat": "ES"
+    "nat": "ES",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -781,7 +807,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/91.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/91.jpg"
     },
-    "nat": "NZ"
+    "nat": "NZ",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -837,7 +865,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/28.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/28.jpg"
     },
-    "nat": "GB"
+    "nat": "GB",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -849,7 +879,7 @@
     "location": {
       "street": {
         "number": 9212,
-        "name": "Tjørnevej"
+        "name": "TjÃ¸rnevej"
       },
       "city": "Noerre Alslev",
       "state": "Nordjylland",
@@ -893,7 +923,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/73.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/73.jpg"
     },
-    "nat": "DK"
+    "nat": "DK",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -908,7 +940,7 @@
         "name": "Regent Ave"
       },
       "city": "Delta",
-      "state": "Québec",
+      "state": "QuÃ©bec",
       "country": "Canada",
       "postcode": "V3E 8T6",
       "coordinates": {
@@ -949,7 +981,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/74.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/74.jpg"
     },
-    "nat": "CA"
+    "nat": "CA",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -1005,7 +1039,9 @@
       "medium": "https://randomuser.me/api/portraits/med/men/85.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/85.jpg"
     },
-    "nat": "CA"
+    "nat": "CA",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -1061,7 +1097,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/61.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/61.jpg"
     },
-    "nat": "NL"
+    "nat": "NL",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -1117,7 +1155,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/58.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/58.jpg"
     },
-    "nat": "FR"
+    "nat": "FR",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -1129,7 +1169,7 @@
     "location": {
       "street": {
         "number": 5214,
-        "name": "Mozartstraße"
+        "name": "MozartstraÃŸe"
       },
       "city": "Annweiler am Trifels",
       "state": "Brandenburg",
@@ -1173,7 +1213,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/87.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/87.jpg"
     },
-    "nat": "DE"
+    "nat": "DE",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -1229,7 +1271,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/53.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/53.jpg"
     },
-    "nat": "NZ"
+    "nat": "NZ",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "female",
@@ -1285,7 +1329,9 @@
       "medium": "https://randomuser.me/api/portraits/med/women/13.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/13.jpg"
     },
-    "nat": "GB"
+    "nat": "GB",
+    "purchaseSessions": [],
+    "viewSessions": []
   },
   {
     "gender": "male",
@@ -1341,6 +1387,8 @@
       "medium": "https://randomuser.me/api/portraits/med/men/64.jpg",
       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/64.jpg"
     },
-    "nat": "FR"
+    "nat": "FR",
+    "purchaseSessions": [],
+    "viewSessions": []
   }
 ]

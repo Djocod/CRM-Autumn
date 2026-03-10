@@ -1,11 +1,9 @@
 import React from "react";
-import Users from "../components/Users";
-import Products from "../components/Products";
+import Navigation from "../components/Navigation";
 const Home = () => {
   return (
     <div className="body">
-      <Users />
-      <Products />
+      <Navigation />
     </div>
   );
 };

@@ -65,14 +65,14 @@ const champs = {
     thumbnail: true,
   },
 
-  purchasedProducts: true,
-  viewedProducts: true,
+  purchaseSessions: true,
+  viewSessions: true,
 };
 
 export async function findUserByLastName(lastName) {
-  return User.find({ "name.last": lastName }, champs)
-    .populate("purchasedProducts")
-    .populate("viewedProducts");
+  return User.find({ "name.last": { $regex: lastName, $options: "i" } }, champs)
+    .populate("purchaseSessions.products.product")
+    .populate("viewSessions.products.product");
 }
 
 export async function findAllUser() {
@@ -81,24 +81,43 @@ export async function findAllUser() {
 
 export async function findUserById(_id) {
   return User.findById(_id, champs)
-    .populate("purchasedProducts")
-    .populate("viewedProducts");
+    .populate("purchaseSessions.products.product")
+    .populate("viewSessions.products.product");
 }
 
 // ===========================================
-// Add product buy by users
-export async function addPurchasedProduct(userId, productId) {
+// Add purchase session
+export async function addPurchasedProduct(
+  userId,
+  productId,
+  quantity = 1,
+  priceAtPurchase,
+) {
   return User.findByIdAndUpdate(
     userId,
-    { $addToSet: { purchasedProducts: productId } },
+    {
+      $push: {
+        purchaseSessions: {
+          date: new Date(),
+          products: [{ product: productId, quantity, priceAtPurchase }],
+        },
+      },
+    },
     { new: true },
   );
 }
-// Add product view by users
+// Add view session
 export async function addViewedProduct(userId, productId) {
   return User.findByIdAndUpdate(
     userId,
-    { $addToSet: { viewedProducts: productId } },
+    {
+      $push: {
+        viewSessions: {
+          date: new Date(),
+          products: [{ product: productId }],
+        },
+      },
+    },
     { new: true },
   );
 }

@@ -19,7 +19,7 @@ export async function handleGetUser(req, res) {
       return res.status(404).json({ message: "User not found !" });
     }
 
-    return res.status(200).json(user);
+    return res.status(200).json({ user });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -57,19 +57,24 @@ export async function handleGetUserById(req, res) {
 export async function handlePatchBuyProducts(req, res) {
   try {
     const { productId } = req.params;
-    const { userId } = req.body;
+    const { userId, quantity, priceAtPurchase } = req.body;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });
     }
 
-    const updated = await addPurchasedProduct(userId, productId);
+    const updated = await addPurchasedProduct(
+      userId,
+      productId,
+      quantity,
+      priceAtPurchase,
+    );
 
     if (!updated) {
-      return res.status(404).json({ message: "Product not found !" });
+      return res.status(404).json({ message: "User not found !" });
     }
 
-    return res.status(200).json({ purchased: updated.purchasedProducts });
+    return res.status(200).json({ purchaseSessions: updated.purchaseSessions });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -86,10 +91,10 @@ export async function handlePatchViewProducts(req, res) {
     const updated = await addViewedProduct(userId, productId);
 
     if (!updated) {
-      return res.status(404).json({ message: "Product not found !" });
+      return res.status(404).json({ message: "User not found !" });
     }
 
-    return res.status(200).json({ viewed: updated.viewedProducts });
+    return res.status(200).json({ viewSessions: updated.viewSessions });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

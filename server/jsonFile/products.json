@@ -8,8 +8,14 @@
     "currency": "EUR",
     "stock": 3,
     "description": "Sac iconique en cuir Togo noir avec quincaillerie dorée.",
-    "image": "https://placehold.co/400x400?text=Hermes+Birkin",
-    "tags": ["sac", "cuir", "iconique"]
+    "image": "https://images.vestiairecollective.com/cdn-cgi/image/q=75,f=auto,/produit/hermes-birkin-35-togo-noir-34789013-1_3.jpg",
+    "tags": ["sac", "cuir", "iconique"],
+    "ref": "HM-BK35",
+    "sizes": [],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Gold (quincaillerie)", "hex": "#C9A84C" }
+    ]
   },
   {
     "id": 2,
@@ -20,8 +26,15 @@
     "currency": "EUR",
     "stock": 15,
     "description": "Sneakers oversized emblématiques en mesh et cuir.",
-    "image": "https://placehold.co/400x400?text=Balenciaga+Triple+S",
-    "tags": ["sneakers", "streetwear", "chunky"]
+    "image": "https://cdn-images.farfetch-contents.com/14/38/51/85/14385185_21799232_1000.jpg",
+    "tags": ["sneakers", "streetwear", "chunky"],
+    "ref": "BAL-TS",
+    "sizes": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
+    "colors": [
+      { "name": "Blanc cassé", "hex": "#F5F0EB" },
+      { "name": "Gris clair", "hex": "#C8C4C0" },
+      { "name": "Rouge", "hex": "#C1001F" }
+    ]
   },
   {
     "id": 3,
@@ -32,8 +45,15 @@
     "currency": "EUR",
     "stock": 8,
     "description": "Mocassins en cuir lisse avec détail horsebit doré signature.",
-    "image": "https://placehold.co/400x400?text=Gucci+Horsebit",
-    "tags": ["mocassins", "cuir", "classique"]
+    "image": "https://media.gucci.com/style/White_Center_0_0_800x800/1697723114/307929_BLM00_1000_001_100_0000_Light-Horsebit-1953-loafer.jpg",
+    "tags": ["mocassins", "cuir", "classique"],
+    "ref": "GU-HB53",
+    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "colors": [
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Or (horsebit)", "hex": "#C9A84C" },
+      { "name": "Marron", "hex": "#6B3A2A" }
+    ]
   },
   {
     "id": 4,
@@ -44,8 +64,14 @@
     "currency": "EUR",
     "stock": 20,
     "description": "Ceinture en toile monogram avec boucle LV dorée.",
-    "image": "https://placehold.co/400x400?text=LV+Belt",
-    "tags": ["ceinture", "monogram", "accessoire"]
+    "image": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-initiales-40mm-reversible-belt-belts--M0354W_PM2_Front%20view.jpg",
+    "tags": ["ceinture", "monogram", "accessoire"],
+    "ref": "LV-CEIN",
+    "sizes": ["75cm", "80cm", "85cm", "90cm", "95cm", "100cm", "105cm"],
+    "colors": [
+      { "name": "Marron monogram", "hex": "#7B4B2A" },
+      { "name": "Or (boucle)", "hex": "#C9A84C" }
+    ]
   },
   {
     "id": 5,
@@ -56,8 +82,14 @@
     "currency": "EUR",
     "stock": 12,
     "description": "Lunettes aviateur en métal doré avec verres gris dégradés.",
-    "image": "https://placehold.co/400x400?text=Tom+Ford+Aviator",
-    "tags": ["lunettes", "aviateur", "soleil"]
+    "image": "https://www.tomford.com/dw/image/v2/BFBJ_PRD/on/demandware.static/-/Sites-tomford-master-catalog/default/dw2fc7e8cd/images/TF035_28B_OS_A.jpg",
+    "tags": ["lunettes", "aviateur", "soleil"],
+    "ref": "TF-AVI",
+    "sizes": [],
+    "colors": [
+      { "name": "Or (monture)", "hex": "#C9A84C" },
+      { "name": "Gris dégradé (verres)", "hex": "#707070" }
+    ]
   },
   {
     "id": 6,
@@ -68,8 +100,14 @@
     "currency": "EUR",
     "stock": 5,
     "description": "Veste tuxedo slim en laine noire avec revers satin.",
-    "image": "https://placehold.co/400x400?text=YSL+Tuxedo",
-    "tags": ["veste", "tuxedo", "soiree"]
+    "image": "https://media.ysl.com/is/image/saintlaurent/787876Y3D021000_A_F01.jpg",
+    "tags": ["veste", "tuxedo", "soiree"],
+    "ref": "YSL-TUX",
+    "sizes": ["44", "46", "48", "50", "52", "54"],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Noir satin (revers)", "hex": "#1A1A1A" }
+    ]
   },
   {
     "id": 7,
@@ -80,8 +118,16 @@
     "currency": "EUR",
     "stock": 6,
     "description": "Sac Lady Dior en cuir cannage noir avec breloques CD.",
-    "image": "https://placehold.co/400x400?text=Dior+Lady",
-    "tags": ["sac", "cannage", "iconique"]
+    "image": "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dwc9f94f06/Y0996_1AAAA.jpg",
+    "tags": ["sac", "cannage", "iconique"],
+    "ref": "DI-LADY",
+    "sizes": [],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Or (breloques)", "hex": "#C9A84C" },
+      { "name": "Rose poudré", "hex": "#E8B4B8" },
+      { "name": "Rouge", "hex": "#A0152B" }
+    ]
   },
   {
     "id": 8,
@@ -92,8 +138,15 @@
     "currency": "EUR",
     "stock": 9,
     "description": "Bottines Chelsea en cuir intrecciato vert bouteille.",
-    "image": "https://placehold.co/400x400?text=Bottega+Chelsea",
-    "tags": ["bottines", "intrecciato", "cuir"]
+    "image": "https://media.bottegaveneta.com/img/upload/bottega-veneta-product/B02/B02B4-08-D-P0-0003-R-3073/intrecciato-ankle-boots.jpg",
+    "tags": ["bottines", "intrecciato", "cuir"],
+    "ref": "BV-CHEL",
+    "sizes": ["36", "37", "38", "39", "40", "41"],
+    "colors": [
+      { "name": "Vert bouteille", "hex": "#2D4A3E" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Caramel", "hex": "#C68B59" }
+    ]
   },
   {
     "id": 9,
@@ -104,8 +157,16 @@
     "currency": "EUR",
     "stock": 25,
     "description": "Écharpe en cachemire pur avec motif check iconique.",
-    "image": "https://placehold.co/400x400?text=Burberry+Scarf",
-    "tags": ["echarpe", "cachemire", "check"]
+    "image": "https://assets.burberry.com/is/image/Burberryltd/bec1de5c-69d6-44b2-a10c-b1a0b3cbdd58.jpg",
+    "tags": ["echarpe", "cachemire", "check"],
+    "ref": "BB-ECHA",
+    "sizes": [],
+    "colors": [
+      { "name": "Camel", "hex": "#C19A6B" },
+      { "name": "Rouge bordeaux", "hex": "#722F37" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Beige", "hex": "#E8D5B5" }
+    ]
   },
   {
     "id": 10,
@@ -116,8 +177,15 @@
     "currency": "EUR",
     "stock": 4,
     "description": "Manteau oversize en poil de chameau, coupe droite intemporelle.",
-    "image": "https://placehold.co/400x400?text=MaxMara+Coat",
-    "tags": ["manteau", "camel", "oversize"]
+    "image": "https://images.maxmara.com/i/maxmara/2422016106600_A?$pd-main-image$",
+    "tags": ["manteau", "camel", "oversize"],
+    "ref": "MM-CAME",
+    "sizes": ["34", "36", "38", "40", "42", "44", "46"],
+    "colors": [
+      { "name": "Camel", "hex": "#C19A6B" },
+      { "name": "Ivoire", "hex": "#F5F0E8" },
+      { "name": "Noir", "hex": "#1A1A1A" }
+    ]
   },
   {
     "id": 11,
@@ -128,8 +196,16 @@
     "currency": "EUR",
     "stock": 2,
     "description": "Sac Kelly 28 en cuir Epsom fauve avec quincaillerie palladium.",
-    "image": "https://placehold.co/400x400?text=Hermes+Kelly",
-    "tags": ["sac", "cuir", "iconique"]
+    "image": "https://images.vestiairecollective.com/cdn-cgi/image/q=75,f=auto,/produit/hermes-kelly-28-epsom-fauve-32154432-1_3.jpg",
+    "tags": ["sac", "cuir", "iconique"],
+    "ref": "HM-KL28",
+    "sizes": [],
+    "colors": [
+      { "name": "Fauve", "hex": "#B5651D" },
+      { "name": "Palladium (quincaillerie)", "hex": "#C0C0C0" },
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Rouge H", "hex": "#8B0000" }
+    ]
   },
   {
     "id": 12,
@@ -140,20 +216,35 @@
     "currency": "EUR",
     "stock": 4,
     "description": "Sac à rabat en cuir matelassé noir avec chaîne dorée entrelacée.",
-    "image": "https://placehold.co/400x400?text=Chanel+2.55",
-    "tags": ["sac", "matelasse", "iconique"]
+    "image": "https://www.chanel.com/images//t_one//q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1024/classic-handbag-black-lambskin-gold-tone-metal-lambskin-gold-tone-metal-packshot-default-a01112b00588c3545-8830979047454.jpg",
+    "tags": ["sac", "matelasse", "iconique"],
+    "ref": "CH-255",
+    "sizes": [],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Or (chaîne)", "hex": "#C9A84C" },
+      { "name": "Beige", "hex": "#D4B896" },
+      { "name": "Rouge", "hex": "#A0152B" }
+    ]
   },
   {
     "id": 13,
-    "title": "Portefeuille Neverfull MM",
+    "title": "Tote Neverfull MM",
     "brand": "Louis Vuitton",
     "category": "sacs",
     "price": 1650,
     "currency": "EUR",
     "stock": 10,
     "description": "Tote bag en toile Monogram avec intérieur rayé bordeaux.",
-    "image": "https://placehold.co/400x400?text=LV+Neverfull",
-    "tags": ["tote", "monogram", "pratique"]
+    "image": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-totes--M41177_PM2_Front%20view.jpg",
+    "tags": ["tote", "monogram", "pratique"],
+    "ref": "LV-NEVR",
+    "sizes": [],
+    "colors": [
+      { "name": "Marron monogram", "hex": "#7B4B2A" },
+      { "name": "Bordeaux (intérieur)", "hex": "#722F37" },
+      { "name": "Rose (intérieur)", "hex": "#E8B4B8" }
+    ]
   },
   {
     "id": 14,
@@ -164,8 +255,15 @@
     "currency": "EUR",
     "stock": 5,
     "description": "Sac Saddle en cuir de veau oblique bleu avec broderie CD.",
-    "image": "https://placehold.co/400x400?text=Dior+Saddle",
-    "tags": ["sac", "oblique", "iconique"]
+    "image": "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw5a1e9e59/M0446CBAA_M900.jpg",
+    "tags": ["sac", "oblique", "iconique"],
+    "ref": "DI-SADL",
+    "sizes": [],
+    "colors": [
+      { "name": "Bleu oblique", "hex": "#2C3E7A" },
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Blanc", "hex": "#F5F5F5" }
+    ]
   },
   {
     "id": 15,
@@ -176,8 +274,16 @@
     "currency": "EUR",
     "stock": 7,
     "description": "Mini sac en cuir intrecciato caramel avec bandoulière réglable.",
-    "image": "https://placehold.co/400x400?text=Bottega+Cassette",
-    "tags": ["sac", "intrecciato", "mini"]
+    "image": "https://media.bottegaveneta.com/img/upload/bottega-veneta-product/B03/B03W4-08-D-P0-0003-R-3073/cassette-bag.jpg",
+    "tags": ["sac", "intrecciato", "mini"],
+    "ref": "BV-CASS",
+    "sizes": [],
+    "colors": [
+      { "name": "Caramel", "hex": "#C68B59" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Vert bouteille", "hex": "#2D4A3E" },
+      { "name": "Blanc cassé", "hex": "#F5F0EB" }
+    ]
   },
   {
     "id": 16,
@@ -188,8 +294,15 @@
     "currency": "EUR",
     "stock": 6,
     "description": "Sac hobo en toile GG Supreme avec fermeture tête de tigre.",
-    "image": "https://placehold.co/400x400?text=Gucci+Dionysus",
-    "tags": ["sac", "gg", "hobo"]
+    "image": "https://media.gucci.com/style/White_Center_0_0_800x800/1604576462/400249_KHNKG_9769_001_100_0000_Light-Dionysus-GG-Supreme-hobo-bag.jpg",
+    "tags": ["sac", "gg", "hobo"],
+    "ref": "GU-DION",
+    "sizes": [],
+    "colors": [
+      { "name": "Beige GG", "hex": "#C8A96E" },
+      { "name": "Marron", "hex": "#6B3A2A" },
+      { "name": "Noir", "hex": "#1A1A1A" }
+    ]
   },
   {
     "id": 17,
@@ -200,8 +313,31 @@
     "currency": "EUR",
     "stock": 11,
     "description": "Escarpins nude en cuir verni avec semelle rouge signature et talon aiguille 120 mm.",
-    "image": "https://placehold.co/400x400?text=Louboutin+So+Kate",
-    "tags": ["escarpins", "talon", "rouge"]
+    "image": "https://www.christianlouboutin.com/on/demandware.static/-/Sites-christianlouboutin-master-catalog/default/dw/3140699_BK01_1_1200x1200.jpg",
+    "tags": ["escarpins", "talon", "rouge"],
+    "ref": "CL-KATE",
+    "sizes": [
+      "34",
+      "34.5",
+      "35",
+      "35.5",
+      "36",
+      "36.5",
+      "37",
+      "37.5",
+      "38",
+      "38.5",
+      "39",
+      "39.5",
+      "40",
+      "40.5",
+      "41"
+    ],
+    "colors": [
+      { "name": "Nude", "hex": "#E3C4A8" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Rouge (semelle)", "hex": "#BF0020" }
+    ]
   },
   {
     "id": 18,
@@ -212,8 +348,15 @@
     "currency": "EUR",
     "stock": 6,
     "description": "Derbies en cuir box calf marron cerise, semelle cuir cousue Goodyear.",
-    "image": "https://placehold.co/400x400?text=John+Lobb+Derby",
-    "tags": ["derbies", "cuir", "classique"]
+    "image": "https://johnlobb.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/c/wcity_i_che_ch_01.jpg",
+    "tags": ["derbies", "cuir", "classique"],
+    "ref": "JL-BALM",
+    "sizes": ["39", "40", "41", "42", "43", "44", "45", "46"],
+    "colors": [
+      { "name": "Marron cerise", "hex": "#722B3A" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Tan", "hex": "#C4874F" }
+    ]
   },
   {
     "id": 19,
@@ -224,8 +367,15 @@
     "currency": "EUR",
     "stock": 30,
     "description": "Sneakers made in USA en daim gris avec semelle ENCAP pour un amorti optimal.",
-    "image": "https://placehold.co/400x400?text=NB+990v6",
-    "tags": ["sneakers", "running", "daim"]
+    "image": "https://nb.scene7.com/is/image/NB/m990gl6_nb_02_i?$pdpflexf2$&qlt=70&fmt=webp&wid=880&hei=880",
+    "tags": ["sneakers", "running", "daim"],
+    "ref": "NB-990",
+    "sizes": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
+    "colors": [
+      { "name": "Gris", "hex": "#8A8A8A" },
+      { "name": "Blanc", "hex": "#F5F5F5" },
+      { "name": "Marine", "hex": "#1B2A4A" }
+    ]
   },
   {
     "id": 20,
@@ -236,8 +386,15 @@
     "currency": "EUR",
     "stock": 9,
     "description": "Mules en fourrure synthétique beige avec logo Gucci brodé.",
-    "image": "https://placehold.co/400x400?text=Gucci+Fur+Slide",
-    "tags": ["mules", "fourrure", "logo"]
+    "image": "https://media.gucci.com/style/White_Center_0_0_800x800/1605202474/575191_KQWM0_9761_001_100_0000_Light-GG-wool-slide-sandal.jpg",
+    "tags": ["mules", "fourrure", "logo"],
+    "ref": "GU-FURS",
+    "sizes": ["35", "36", "37", "38", "39", "40", "41"],
+    "colors": [
+      { "name": "Beige", "hex": "#D4C5A9" },
+      { "name": "Ivoire", "hex": "#F5F0E8" },
+      { "name": "Noir", "hex": "#1A1A1A" }
+    ]
   },
   {
     "id": 21,
@@ -248,8 +405,14 @@
     "currency": "EUR",
     "stock": 3,
     "description": "Bottes cavalières en cuir noir avec zip intérieur discret et talon bloc.",
-    "image": "https://placehold.co/400x400?text=Hermes+Boots",
-    "tags": ["bottes", "cuir", "cavalier"]
+    "image": "https://assets.hermes.com/is/image/hermesagency/H231045ZE04-worn-1-0-0-800-800-q100.jpg",
+    "tags": ["bottes", "cuir", "cavalier"],
+    "ref": "HM-BOOT",
+    "sizes": ["36", "37", "38", "39", "40", "41"],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Marron", "hex": "#6B3A2A" }
+    ]
   },
   {
     "id": 22,
@@ -260,8 +423,15 @@
     "currency": "EUR",
     "stock": 8,
     "description": "Blazer oversize en laine vierge noire avec épaules structurées.",
-    "image": "https://placehold.co/400x400?text=Balenciaga+Blazer",
-    "tags": ["blazer", "oversize", "laine"]
+    "image": "https://cdn-images.farfetch-contents.com/16/73/83/01/16738301_34086427_1000.jpg",
+    "tags": ["blazer", "oversize", "laine"],
+    "ref": "BAL-BLZ",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Gris anthracite", "hex": "#3A3A3A" },
+      { "name": "Blanc", "hex": "#F5F5F5" }
+    ]
   },
   {
     "id": 23,
@@ -272,8 +442,15 @@
     "currency": "EUR",
     "stock": 7,
     "description": "Trench-coat classique en coton gabardine beige avec doublure check.",
-    "image": "https://placehold.co/400x400?text=Burberry+Trench",
-    "tags": ["trench", "gabardine", "classique"]
+    "image": "https://assets.burberry.com/is/image/Burberryltd/7c19e14e-3e5c-4b1b-8e4f-0df8f7f30e4b.jpg",
+    "tags": ["trench", "gabardine", "classique"],
+    "ref": "BB-TREN",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Beige honey", "hex": "#C19A6B" },
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Kaki", "hex": "#6B7355" }
+    ]
   },
   {
     "id": 24,
@@ -284,8 +461,15 @@
     "currency": "EUR",
     "stock": 4,
     "description": "Robe bustier en crêpe ivoire avec détails dorés et coupe sculptée.",
-    "image": "https://placehold.co/400x400?text=Versace+Bustier",
-    "tags": ["robe", "bustier", "soiree"]
+    "image": "https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw2e9cfeae/images/A85891/1A10218/A85891_1A10218_1V82V_10_MED.jpg",
+    "tags": ["robe", "bustier", "soiree"],
+    "ref": "VER-BUST",
+    "sizes": ["34", "36", "38", "40", "42", "44"],
+    "colors": [
+      { "name": "Ivoire", "hex": "#F5F0E8" },
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Or (détails)", "hex": "#C9A84C" }
+    ]
   },
   {
     "id": 25,
@@ -296,8 +480,17 @@
     "currency": "EUR",
     "stock": 14,
     "description": "Pull col roulé en cachemire extra-fin couleur camel, douceur incomparable.",
-    "image": "https://placehold.co/400x400?text=Loro+Piana+Cashmere",
-    "tags": ["pull", "cachemire", "col-roule"]
+    "image": "https://images.loropiana.com/is/image/LoroPiana/F24-FAM0018_V5UH_F?$PDPHero$",
+    "tags": ["pull", "cachemire", "col-roule"],
+    "ref": "LP-PULL",
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "colors": [
+      { "name": "Camel", "hex": "#C19A6B" },
+      { "name": "Ivory", "hex": "#F5F0E8" },
+      { "name": "Navy", "hex": "#1B2A4A" },
+      { "name": "Bordeaux", "hex": "#722F37" },
+      { "name": "Gris chiné", "hex": "#9B9B9B" }
+    ]
   },
   {
     "id": 26,
@@ -308,8 +501,15 @@
     "currency": "EUR",
     "stock": 22,
     "description": "Jean slim taille haute en denim indigo selvedge, coupe ajustée sur la cheville.",
-    "image": "https://placehold.co/400x400?text=Frame+Jeans",
-    "tags": ["jean", "slim", "denim"]
+    "image": "https://www.frame-store.com/cdn/shop/files/WLH823S-INNS_1.jpg?v=1694615072&width=1000",
+    "tags": ["jean", "slim", "denim"],
+    "ref": "FR-JEAN",
+    "sizes": ["24", "25", "26", "27", "28", "29", "30", "31", "32"],
+    "colors": [
+      { "name": "Indigo", "hex": "#2B3A67" },
+      { "name": "Noir", "hex": "#1A1A1A" },
+      { "name": "Blanc", "hex": "#F5F5F5" }
+    ]
   },
   {
     "id": 27,
@@ -320,8 +520,16 @@
     "currency": "EUR",
     "stock": 18,
     "description": "Chemise en oxford de coton bleu ciel avec col semi-spread, confectionnée Place Vendôme.",
-    "image": "https://placehold.co/400x400?text=Charvet+Shirt",
-    "tags": ["chemise", "oxford", "classique"]
+    "image": "https://images.vestiairecollective.com/cdn-cgi/image/q=75,f=auto,/produit/charvet-chemise-oxford-bleu-ciel-38654221-1_1.jpg",
+    "tags": ["chemise", "oxford", "classique"],
+    "ref": "CH-OXFO",
+    "sizes": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
+    "colors": [
+      { "name": "Bleu ciel", "hex": "#87CEEB" },
+      { "name": "Blanc", "hex": "#F5F5F5" },
+      { "name": "Bleu marine", "hex": "#1B2A4A" },
+      { "name": "Rose poudré", "hex": "#E8B4B8" }
+    ]
   },
   {
     "id": 28,
@@ -332,8 +540,14 @@
     "currency": "EUR",
     "stock": 1,
     "description": "Montre sportive chic en acier avec cadran bleu et bracelet intégré, mouvement automatique.",
-    "image": "https://placehold.co/400x400?text=Patek+Nautilus",
-    "tags": ["montre", "acier", "automatique"]
+    "image": "https://www.patek.com/contents/default/en/img/5711-1A-010F.jpg",
+    "tags": ["montre", "acier", "automatique"],
+    "ref": "PP-5711",
+    "sizes": ["40mm"],
+    "colors": [
+      { "name": "Bleu ardoise (cadran)", "hex": "#4A6895" },
+      { "name": "Acier (boîtier)", "hex": "#C0C0C0" }
+    ]
   },
   {
     "id": 29,
@@ -344,8 +558,15 @@
     "currency": "EUR",
     "stock": 2,
     "description": "Montre iconique en acier avec cadran 'Grande Tapisserie', lunette octogonale à vis.",
-    "image": "https://placehold.co/400x400?text=AP+Royal+Oak",
-    "tags": ["montre", "acier", "iconique"]
+    "image": "https://www.audemarspiguet.com/content/dam/ap/com/products/watches/royal-oak/SS/15500ST.OO.1220ST.01/15500ST.OO.1220ST.01-front.png",
+    "tags": ["montre", "acier", "iconique"],
+    "ref": "AP-1550",
+    "sizes": ["41mm"],
+    "colors": [
+      { "name": "Bleu (cadran)", "hex": "#2A4A8A" },
+      { "name": "Gris (cadran)", "hex": "#6E7E8C" },
+      { "name": "Acier (boîtier)", "hex": "#C0C0C0" }
+    ]
   },
   {
     "id": 30,
@@ -356,8 +577,15 @@
     "currency": "EUR",
     "stock": 3,
     "description": "Montre plongée en Oystersteel avec lunette céramique noire et bracelet Oyster.",
-    "image": "https://placehold.co/400x400?text=Rolex+Submariner",
-    "tags": ["montre", "plongee", "acier"]
+    "image": "https://www.rolex.com/content/dam/rolex/en/watches/submariner/m126610ln/M126610LN-0002.jpg",
+    "tags": ["montre", "plongee", "acier"],
+    "ref": "RX-SUBM",
+    "sizes": ["41mm"],
+    "colors": [
+      { "name": "Noir (lunette)", "hex": "#1A1A1A" },
+      { "name": "Acier (boîtier)", "hex": "#C0C0C0" },
+      { "name": "Noir (cadran)", "hex": "#0D0D0D" }
+    ]
   },
   {
     "id": 31,
@@ -368,8 +596,15 @@
     "currency": "EUR",
     "stock": 5,
     "description": "Bracelet Love en or jaune 18 carats avec motif vis signature, fourni avec tournevis.",
-    "image": "https://placehold.co/400x400?text=Cartier+Love",
-    "tags": ["bracelet", "or", "iconique"]
+    "image": "https://www.cartier.com/content/dam/cartier/en_us/categories/jewelry/bracelets/love-cartier-bracelet-yellow-gold-B6035517.png",
+    "tags": ["bracelet", "or", "iconique"],
+    "ref": "CA-LOVE",
+    "sizes": ["15", "16", "17", "18", "19", "20", "21"],
+    "colors": [
+      { "name": "Or jaune 18k", "hex": "#C9A84C" },
+      { "name": "Or rose 18k", "hex": "#E8A090" },
+      { "name": "Or blanc 18k", "hex": "#E8E8E8" }
+    ]
   },
   {
     "id": 32,
@@ -380,8 +615,15 @@
     "currency": "EUR",
     "stock": 4,
     "description": "Collier serpent en or rose 18 carats avec tête ornée de diamants et yeux rubis.",
-    "image": "https://placehold.co/400x400?text=Bulgari+Serpenti",
-    "tags": ["collier", "or", "serpent"]
+    "image": "https://www.bulgari.com/on/demandware.static/-/Sites-BUL-MasterCatalog/default/dw7d4e3d6a/images/hi-res/354084_FRONT.jpg",
+    "tags": ["collier", "or", "serpent"],
+    "ref": "BV-SERP",
+    "sizes": [],
+    "colors": [
+      { "name": "Or rose 18k", "hex": "#E8A090" },
+      { "name": "Diamants", "hex": "#F0F8FF" },
+      { "name": "Rubis (yeux)", "hex": "#9B1C1C" }
+    ]
   },
   {
     "id": 33,
@@ -392,8 +634,14 @@
     "currency": "EUR",
     "stock": 3,
     "description": "Bague solitaire en platine avec diamant rond brillant 1 carat, serti six griffes.",
-    "image": "https://placehold.co/400x400?text=Tiffany+Solitaire",
-    "tags": ["bague", "diamant", "platine"]
+    "image": "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/the-tiffany-setting-engagement-ring-10282854_1009657_ED.jpg",
+    "tags": ["bague", "diamant", "platine"],
+    "ref": "TIF-SOL",
+    "sizes": ["48", "50", "52", "54", "56", "58", "60"],
+    "colors": [
+      { "name": "Platine", "hex": "#E5E4E2" },
+      { "name": "Diamant blanc", "hex": "#F0F8FF" }
+    ]
   },
   {
     "id": 34,
@@ -404,8 +652,14 @@
     "currency": "EUR",
     "stock": 16,
     "description": "Chevalière en argent sterling 925 avec pierre onyx noir, finition polie.",
-    "image": "https://placehold.co/400x400?text=Tom+Wood+Signet",
-    "tags": ["chevaliere", "argent", "onyx"]
+    "image": "https://tomwood.eu/cdn/shop/products/TomWood_Cushion_Ring_Onyx_Silver_8_R93OHMSIL925_2-2.jpg",
+    "tags": ["chevaliere", "argent", "onyx"],
+    "ref": "TW-SIGN",
+    "sizes": ["48", "50", "52", "54", "56", "58", "60", "62", "64"],
+    "colors": [
+      { "name": "Argent 925", "hex": "#C0C0C0" },
+      { "name": "Onyx noir", "hex": "#0D0D0D" }
+    ]
   },
   {
     "id": 35,
@@ -416,8 +670,16 @@
     "currency": "EUR",
     "stock": 15,
     "description": "Carré en soie twill 90x90 cm avec motif équestre imprimé à la main.",
-    "image": "https://placehold.co/400x400?text=Hermes+Carre",
-    "tags": ["foulard", "soie", "carre"]
+    "image": "https://assets.hermes.com/is/image/hermesagency/H003541S-worn-1-0-0-800-800-q100.jpg",
+    "tags": ["foulard", "soie", "carre"],
+    "ref": "HM-CARR",
+    "sizes": ["90x90cm"],
+    "colors": [
+      { "name": "Orange Hermès", "hex": "#E8650A" },
+      { "name": "Bleu canard", "hex": "#2A7D8C" },
+      { "name": "Rouge", "hex": "#A0152B" },
+      { "name": "Ivoire", "hex": "#F5F0E8" }
+    ]
   },
   {
     "id": 36,
@@ -428,8 +690,16 @@
     "currency": "EUR",
     "stock": 20,
     "description": "Cravate en grenadine de soie bordeaux, tissage gaufrée artisanal 7 plis.",
-    "image": "https://placehold.co/400x400?text=Charvet+Cravate",
-    "tags": ["cravate", "soie", "grenadine"]
+    "image": "https://images.vestiairecollective.com/cdn-cgi/image/q=75,f=auto,/produit/charvet-cravate-grenadine-bordeaux-38654221-1_1.jpg",
+    "tags": ["cravate", "soie", "grenadine"],
+    "ref": "CH-GREN",
+    "sizes": [],
+    "colors": [
+      { "name": "Bordeaux", "hex": "#722F37" },
+      { "name": "Marine", "hex": "#1B2A4A" },
+      { "name": "Vert bouteille", "hex": "#2D4A3E" },
+      { "name": "Gris perle", "hex": "#C5C5C5" }
+    ]
   },
   {
     "id": 37,
@@ -440,8 +710,14 @@
     "currency": "EUR",
     "stock": 8,
     "description": "Chapeau Panama tressé à la main en paille de toquilla, bandeau marine.",
-    "image": "https://placehold.co/400x400?text=Borsalino+Panama",
-    "tags": ["chapeau", "panama", "paille"]
+    "image": "https://www.borsalino.com/cdn/shop/products/H4013_PANAMA_NATURAL_01.jpg",
+    "tags": ["chapeau", "panama", "paille"],
+    "ref": "BOR-PAN",
+    "sizes": ["56", "57", "58", "59", "60", "61", "62"],
+    "colors": [
+      { "name": "Paille naturelle", "hex": "#E8D5A3" },
+      { "name": "Marine (bandeau)", "hex": "#1B2A4A" }
+    ]
   },
   {
     "id": 38,
@@ -452,8 +728,15 @@
     "currency": "EUR",
     "stock": 10,
     "description": "Gants en agneau nappa fauve doublés cachemire avec coutures apparentes.",
-    "image": "https://placehold.co/400x400?text=Hermes+Gloves",
-    "tags": ["gants", "agneau", "cachemire"]
+    "image": "https://assets.hermes.com/is/image/hermesagency/H078026N-worn-1-0-0-800-800-q100.jpg",
+    "tags": ["gants", "agneau", "cachemire"],
+    "ref": "HM-GANT",
+    "sizes": ["6.5", "7", "7.5", "8", "8.5", "9"],
+    "colors": [
+      { "name": "Fauve", "hex": "#B5651D" },
+      { "name": "Noir", "hex": "#0D0D0D" },
+      { "name": "Marron", "hex": "#6B3A2A" }
+    ]
   },
   {
     "id": 39,
@@ -464,8 +747,15 @@
     "currency": "EUR",
     "stock": 25,
     "description": "Porte-cartes compact en toile Monogram avec zip dorée, 6 emplacements carte.",
-    "image": "https://placehold.co/400x400?text=LV+Card+Holder",
-    "tags": ["porte-cartes", "monogram", "compact"]
+    "image": "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-zippy-coin-purse-small-leather-goods--M69354_PM2_Front%20view.jpg",
+    "tags": ["porte-cartes", "monogram", "compact"],
+    "ref": "LV-PCRD",
+    "sizes": [],
+    "colors": [
+      { "name": "Marron monogram", "hex": "#7B4B2A" },
+      { "name": "Damier ébène", "hex": "#5C3317" },
+      { "name": "Or (zip)", "hex": "#C9A84C" }
+    ]
   },
   {
     "id": 40,
@@ -476,7 +766,13 @@
     "currency": "EUR",
     "stock": 30,
     "description": "Flacon 100 ml du parfum le plus célèbre du monde, notes florales aldéhydées intemporelles.",
-    "image": "https://placehold.co/400x400?text=Chanel+N5",
-    "tags": ["parfum", "floral", "iconique"]
+    "image": "https://www.chanel.com/images//t_one//q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1024/n5-eau-de-parfum-spray-3-4fl-oz--packshot-default-107376-8828735594526.jpg",
+    "tags": ["parfum", "floral", "iconique"],
+    "ref": "CH-N5",
+    "sizes": ["35ml", "50ml", "100ml", "200ml"],
+    "colors": [
+      { "name": "Or clair (flacon)", "hex": "#F5E6C8" },
+      { "name": "Transparent", "hex": "#F5F5F5" }
+    ]
   }
 ]

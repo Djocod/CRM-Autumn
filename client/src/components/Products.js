@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard";
 
 const Products = () => {
   const [productsData, setProdctsData] = useState([]);
+  console.log(productsData);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/product`)
