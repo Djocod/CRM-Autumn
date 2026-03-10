@@ -87,13 +87,21 @@ const userSchema = new Schema(
         products: [
           {
             product: { type: Schema.Types.ObjectId, ref: "Product" },
-            quantity: { type: Number, default: 1 },
-            priceAtPurchase: { type: Number },
           },
         ],
       },
     ],
     viewSessions: [
+      {
+        date: { type: Date, default: Date.now },
+        products: [
+          {
+            product: { type: Schema.Types.ObjectId, ref: "Product" },
+          },
+        ],
+      },
+    ],
+    refundSessions: [
       {
         date: { type: Date, default: Date.now },
         products: [
