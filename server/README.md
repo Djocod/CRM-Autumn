@@ -1,33 +1,34 @@
-# CRM Autumn
+﻿# CRM Autumn
 
-Projet scolaire — CRM léger orienté historique client, construit sur la stack **MERN** (MongoDB, Express, React, Node.js).
+Projet scolaire â€” CRM lÃ©ger orientÃ© historique client, construit sur la stack **MERN** (MongoDB, Express, React, Node.js).
+
+> Permet de gÃ©rer des clients, un catalogue produits, et d'enregistrer des sessions d'achat, de consultation et de remboursement par client.
 
 ---
 
-## Présentation
+## FonctionnalitÃ©s
 
-Application web fullstack permettant de :
-
-- Consulter la liste complète des clients (triée par nom)
-- Accéder à la fiche détaillée d'un client (photo, infos personnelles, produits achetés, produits consultés)
+- Consulter la liste complÃ¨te des clients (triÃ©e par nom, recherche dynamique)
+- AccÃ©der au profil dÃ©taillÃ© d'un client (photo, infos personnelles, sessions d'achat / vue / remboursement)
 - Naviguer dans un catalogue de produits (mode, chaussures, accessoires)
-- Enregistrer un achat ou une consultation de produit pour un client donné
+- Ajouter ou supprimer une session d'achat, de vue ou de remboursement sur le profil d'un client
 
-Les données clients proviennent de l'API publique **randomuser.me** (208 utilisateurs fictifs) et les produits sont des données personnalisées stockées en JSON.
+Les donnÃ©es clients proviennent de l'API publique **randomuser.me** (208 utilisateurs fictifs).  
+Les produits sont des donnÃ©es personnalisÃ©es stockÃ©es en JSON et importÃ©es via un script de seed.
 
 ---
 
 ## Stack technique
 
-| Côté                      | Technologie              | Version            |
+| CÃ´tÃ©                      | Technologie              | Version            |
 | ------------------------- | ------------------------ | ------------------ |
 | Runtime                   | Node.js                  | LTS                |
 | Serveur HTTP              | Express                  | 5.x                |
 | ODM                       | Mongoose                 | 9.x                |
-| Base de données           | MongoDB Community Server | local (port 27017) |
+| Base de donnÃ©es           | MongoDB Community Server | local (port 27017) |
 | Frontend                  | React                    | 19.x               |
 | Routing client            | React Router DOM         | 7.x                |
-| Requêtes HTTP client      | Axios                    | 1.x                |
+| RequÃªtes HTTP client      | Axios                    | 1.x                |
 | Hot reload serveur        | Nodemon                  | 3.x                |
 | Variables d'environnement | dotenv                   | 17.x               |
 | Politique CORS            | cors                     | 2.x                |
@@ -38,59 +39,68 @@ Les données clients proviennent de l'API publique **randomuser.me** (208 utilis
 
 ```
 CRM-Autumn/
-├── server/                     # Backend Express
-│   ├── server.js               # Point d'entrée — Express, CORS, routes, MongoDB
-│   ├── seed.js                 # Script de réinitialisation et import des produits
-│   ├── .env                    # Variables d'environnement (non versionné)
-│   ├── package.json
-│   ├── controller/
-│   │   ├── products.controller.js   # Handlers HTTP produits
-│   │   └── users.controller.js      # Handlers HTTP users
-│   ├── router/
-│   │   ├── products.route.js        # Routes /api/product
-│   │   └── users.route.js           # Routes /api/users
-│   ├── service/
-│   │   ├── products.service.js      # Requêtes Mongoose produits
-│   │   └── users.service.js         # Requêtes Mongoose users
-│   ├── model/
-│   │   ├── schema.products.js       # Schéma Mongoose Product
-│   │   └── schema.users.js          # Schéma Mongoose User
-│   ├── jsonFile/
-│   │   ├── products.json            # Catalogue produits (source seed)
-│   │   └── users.json               # Utilisateurs fictifs (randomuser.me)
-│   └── utils/
-│       └── mongod.js
-│
-└── client/                     # Frontend React (Create React App)
-    ├── package.json
-    └── src/
-        ├── App.js               # BrowserRouter + Routes
-        ├── index.js
-        ├── components/
-        │   ├── Users.js         # Liste tous les users (fetch + tri)
-        │   ├── UsersCard.js     # Carte cliquable d'un user (Link)
-        │   ├── Products.js      # Liste tous les produits (fetch + tri)
-        │   ├── ProductCard.js   # Carte d'un produit (image, marque, desc)
-        │   ├── ProfilUser.js    # Page profil user (useParams + populate)
-        │   └── ProfilProduct.js
-        ├── pages/
-        │   ├── Home.js          # Page d'accueil → <Users />
-        │   └── Book.js
-        └── style/
-            ├── userscard.css
-            └── productcard.css
+â”œâ”€â”€ server/                          # Backend Express
+â”‚   â”œâ”€â”€ server.js                    # Point d'entrÃ©e â€” Express, CORS, routes, MongoDB
+â”‚   â”œâ”€â”€ seed.js                      # Import des produits JSON â†’ MongoDB (upsert)
+â”‚   â”œâ”€â”€ .env                         # Variables d'environnement (non versionnÃ©)
+â”‚   â”œâ”€â”€ package.json
+â”‚   â”œâ”€â”€ controller/
+â”‚   â”‚   â”œâ”€â”€ users.controller.js      # Handlers HTTP users (GET / PATCH / DELETE)
+â”‚   â”‚   â””â”€â”€ products.controller.js   # Handlers HTTP produits (GET)
+â”‚   â”œâ”€â”€ router/
+â”‚   â”‚   â”œâ”€â”€ users.route.js           # Routes /api/users
+â”‚   â”‚   â””â”€â”€ products.route.js        # Routes /api/product
+â”‚   â”œâ”€â”€ service/
+â”‚   â”‚   â”œâ”€â”€ users.service.js         # RequÃªtes Mongoose users
+â”‚   â”‚   â””â”€â”€ products.service.js      # RequÃªtes Mongoose produits
+â”‚   â”œâ”€â”€ model/
+â”‚   â”‚   â”œâ”€â”€ schema.users.js          # SchÃ©ma Mongoose User (format randomuser.me)
+â”‚   â”‚   â””â”€â”€ schema.products.js       # SchÃ©ma Mongoose Product
+â”‚   â”œâ”€â”€ jsonFile/
+â”‚   â”‚   â”œâ”€â”€ products.json            # Catalogue produits (source seed)
+â”‚   â”‚   â””â”€â”€ users.json               # Utilisateurs fictifs (randomuser.me)
+â”‚   â””â”€â”€ utils/
+â”‚       â””â”€â”€ mongod.js
+â”‚
+â””â”€â”€ client/                          # Frontend React (Create React App)
+    â”œâ”€â”€ package.json
+    â””â”€â”€ src/
+        â”œâ”€â”€ App.js                   # BrowserRouter + Routes
+        â”œâ”€â”€ index.js
+        â”œâ”€â”€ components/
+        â”‚   â”œâ”€â”€ Navigation.js        # Barre de navigation (NavLink)
+        â”‚   â”œâ”€â”€ Users.js             # Liste des users + recherche dynamique
+        â”‚   â”œâ”€â”€ UsersCard.js         # Carte cliquable d'un user
+        â”‚   â”œâ”€â”€ Products.js          # Liste des produits
+        â”‚   â”œâ”€â”€ ProductCard.js       # Carte d'un produit
+        â”‚   â””â”€â”€ ProfilUser.js        # Profil complet d'un user + gestion des sessions
+        â”œâ”€â”€ pages/
+        â”‚   â”œâ”€â”€ Home.js              # Page d'accueil
+        â”‚   â”œâ”€â”€ Profil.js            # Page liste des users
+        â”‚   â””â”€â”€ Book.js              # Page catalogue produits
+        â””â”€â”€ style/
+            â”œâ”€â”€ _settings.scss
+            â”œâ”€â”€ index.scss
+            â”œâ”€â”€ components/
+            â”‚   â”œâ”€â”€ _navigation.scss
+            â”‚   â”œâ”€â”€ _profilUser.scss
+            â”‚   â”œâ”€â”€ _users.scss
+            â”‚   â””â”€â”€ _products.scss
+            â””â”€â”€ pages/
+                â”œâ”€â”€ _home.scss
+                â””â”€â”€ _profil.scss
 ```
 
 ---
 
 ## Installation et lancement
 
-### Prérequis
+### PrÃ©requis
 
-| Outil                    | Rôle                            |
+| Outil                    | RÃ´le                            |
 | ------------------------ | ------------------------------- |
 | Node.js LTS              | Runtime JavaScript + npm        |
-| MongoDB Community Server | Base de données locale          |
+| MongoDB Community Server | Base de donnÃ©es locale          |
 | MongoDB Compass          | Interface graphique (optionnel) |
 | Git                      | Versionning                     |
 
@@ -108,26 +118,27 @@ cd server
 npm install
 ```
 
-Créer le fichier `.env` à la racine du dossier `server/` :
+CrÃ©er le fichier `.env` Ã  la racine du dossier `server/` :
 
 ```env
 PORT=8000
-MONGO_URI=mongodb://localhost:27017/crm-autumn
+MONGO_URI=mongodb://localhost:27017/crm
 ```
 
-Importer les données en base :
+Importer les produits en base (Ã  faire une fois, ou pour rÃ©initialiser) :
 
 ```bash
 node seed.js
 ```
 
-Lancer le serveur en mode développement :
+Lancer le serveur :
 
 ```bash
-npm run dev
+npm run dev    # dÃ©veloppement â€” rechargement automatique (nodemon)
+npm start      # production â€” lancement simple (node)
 ```
 
-> Le serveur écoute sur `http://localhost:8000`
+> Le serveur Ã©coute sur `http://localhost:8000`
 
 ### 3. Frontend
 
@@ -139,73 +150,91 @@ npm start
 
 > L'application React est accessible sur `http://localhost:3000`
 
-### 4. Démarrer MongoDB
+### 4. DÃ©marrer MongoDB (Windows)
 
 ```bash
 net start MongoDB
 ```
 
-> Si MongoDB n'est pas démarré, la connexion échoue avec `ECONNREFUSED 127.0.0.1:27017`.
+> Si MongoDB n'est pas dÃ©marrÃ©, la connexion Ã©choue avec `ECONNREFUSED 127.0.0.1:27017`.
+
+### Ordre de lancement Ã  chaque session
+
+```
+1. net start MongoDB        â† dÃ©marrer la base de donnÃ©es
+2. cd server && npm run dev â† dÃ©marrer le serveur Express  â†’ http://localhost:8000
+3. cd client && npm start   â† dÃ©marrer React               â†’ http://localhost:3000
+```
 
 ---
 
-## API — Endpoints
+## API â€” Endpoints
 
-### Users — `/api/users`
+### Users â€” `/api/users`
 
-| Méthode | Route                         | Description                | Réponse                           |
-| ------- | ----------------------------- | -------------------------- | --------------------------------- |
-| GET     | `/api/users`                  | Tous les users             | `{ user: [...] }`                 |
-| GET     | `/api/users/search/:lastname` | User(s) par nom de famille | `[...]` avec `populate`           |
-| GET     | `/api/users/:id`              | User par `_id` MongoDB     | `{ user: {...} }` avec `populate` |
+| MÃ©thode  | Route                            | Body JSON    | Description                               |
+| -------- | -------------------------------- | ------------ | ----------------------------------------- |
+| `GET`    | `/api/users`                     | â€”            | Liste tous les utilisateurs               |
+| `GET`    | `/api/users/search/:lastname`    | â€”            | Recherche par nom de famille (regex)      |
+| `GET`    | `/api/users/:id`                 | â€”            | Utilisateur par `_id` + sessions peuplÃ©es |
+| `PATCH`  | `/api/users/:productId/purchase` | `{ userId }` | Ajoute une session d'achat                |
+| `PATCH`  | `/api/users/:productId/viewed`   | `{ userId }` | Ajoute une session de vue                 |
+| `PATCH`  | `/api/users/:productId/refund`   | `{ userId }` | Ajoute une session de remboursement       |
+| `DELETE` | `/api/users/:productId/purchase` | `{ userId }` | Supprime une session d'achat              |
+| `DELETE` | `/api/users/:productId/viewed`   | `{ userId }` | Supprime une session de vue               |
+| `DELETE` | `/api/users/:productId/refund`   | `{ userId }` | Supprime une session de remboursement     |
 
-> Les routes `/search/:lastname` et `/:id` retournent les champs `purchasedProducts` et `viewedProducts` peuplés (`.populate()`) avec les documents `Product` complets.
+> Les routes GET `/:id` et `/search/:lastname` retournent les sessions avec les documents `Product` peuplÃ©s via `.populate()`.
 
-### Products — `/api/product`
+> Pour les requÃªtes `DELETE` avec Axios, le body doit Ãªtre passÃ© dans `{ data: { userId } }`.
 
-| Méthode | Route                              | Description                                  | Body requis             |
-| ------- | ---------------------------------- | -------------------------------------------- | ----------------------- |
-| GET     | `/api/product`                     | Tous les produits                            | —                       |
-| GET     | `/api/product/search?brand=Gucci`  | Produits par marque (query string)           | —                       |
-| PATCH   | `/api/product/:productId/purchase` | Ajoute un produit aux achats d'un user       | `{ "userId": "<_id>" }` |
-| PATCH   | `/api/product/:productId/viewed`   | Ajoute un produit aux produits vus d'un user | `{ "userId": "<_id>" }` |
+### Products â€” `/api/product`
 
-> `$addToSet` est utilisé pour éviter les doublons : un produit déjà présent dans le tableau ne sera pas ajouté une deuxième fois.
+| MÃ©thode | Route                             | Description                                |
+| ------- | --------------------------------- | ------------------------------------------ |
+| `GET`   | `/api/product`                    | Liste tous les produits                    |
+| `GET`   | `/api/product/search?brand=Gucci` | Produits filtrÃ©s par marque (query string) |
 
 ---
 
-## Modèles de données
+## ModÃ¨les de donnÃ©es
 
 ### Product
 
-| Champ         | Type     | Requis | Description                      |
-| ------------- | -------- | ------ | -------------------------------- |
-| `title`       | String   | Oui    | Nom du produit                   |
-| `brand`       | String   | Oui    | Marque                           |
-| `category`    | String   | Oui    | Catégorie                        |
-| `price`       | Number   | Oui    | Prix                             |
-| `currency`    | String   | Non    | Devise (défaut : `"EUR"`)        |
-| `stock`       | Number   | Non    | Quantité en stock (défaut : `0`) |
-| `description` | String   | Non    | Description courte               |
-| `image`       | String   | Non    | URL de l'image                   |
-| `tags`        | [String] | Non    | Tags associés                    |
+| Champ         | Type       | Requis | Description                      |
+| ------------- | ---------- | ------ | -------------------------------- |
+| `title`       | String     | Oui    | Nom du produit                   |
+| `brand`       | String     | Oui    | Marque                           |
+| `category`    | String     | Oui    | CatÃ©gorie                        |
+| `price`       | Number     | Oui    | Prix                             |
+| `currency`    | String     | Non    | Devise (dÃ©faut : `"EUR"`)        |
+| `stock`       | Number     | Non    | QuantitÃ© en stock (dÃ©faut : `0`) |
+| `description` | String     | Non    | Description courte               |
+| `image`       | String     | Non    | URL de l'image                   |
+| `tags`        | `[String]` | Non    | Tags associÃ©s                    |
+| `ref`         | String     | Non    | RÃ©fÃ©rence unique                 |
+| `sizes`       | `[String]` | Non    | Tailles disponibles              |
+| `colors`      | `[Object]` | Non    | Couleurs `{ name, hex }`         |
 
 ### User
 
-| Champ               | Type                              | Description                                              |
-| ------------------- | --------------------------------- | -------------------------------------------------------- |
-| `gender`            | String (enum)                     | `"male"` / `"female"` / `"other"`                        |
-| `name`              | `{ title, first, last }`          | Nom complet                                              |
-| `location`          | sous-document                     | Adresse complète (ville, pays, coordonnées GPS…)         |
-| `email`             | String unique                     | Email normalisé en lowercase                             |
-| `login`             | `{ uuid, username, password, … }` | Identifiants (mot de passe non hashé — données fictives) |
-| `dob`               | `{ date, age }`                   | Date et âge de naissance                                 |
-| `registered`        | `{ date, age }`                   | Date et ancienneté d'inscription                         |
-| `phone` / `cell`    | String                            | Numéros de téléphone                                     |
-| `picture`           | `{ large, medium, thumbnail }`    | URLs des photos                                          |
-| `nat`               | String                            | Nationalité (ex : `"FR"`)                                |
-| `purchasedProducts` | `[ObjectId → Product]`            | Produits achetés (référence)                             |
-| `viewedProducts`    | `[ObjectId → Product]`            | Produits consultés (référence)                           |
+| Champ              | Type                           | Description                                         |
+| ------------------ | ------------------------------ | --------------------------------------------------- |
+| `gender`           | String (enum)                  | `"male"` / `"female"` / `"other"`                   |
+| `name`             | `{ title, first, last }`       | Nom complet                                         |
+| `location`         | sous-document                  | Adresse (ville, pays, coordonnÃ©es GPSâ€¦)             |
+| `email`            | String unique                  | Email normalisÃ© en lowercase                        |
+| `login`            | `{ uuid, username, passwordâ€¦}` | Identifiants (donnÃ©es fictives)                     |
+| `dob`              | `{ date, age }`                | Date et Ã¢ge de naissance                            |
+| `registered`       | `{ date, age }`                | Date et anciennetÃ© d'inscription                    |
+| `phone` / `cell`   | String                         | NumÃ©ros de tÃ©lÃ©phone                                |
+| `picture`          | `{ large, medium, thumbnail }` | URLs des photos                                     |
+| `nat`              | String                         | NationalitÃ© (ex : `"FR"`)                           |
+| `purchaseSessions` | `[{ date, products[] }]`       | Sessions d'achat (chaque session = date + produits) |
+| `viewSessions`     | `[{ date, products[] }]`       | Sessions de vue                                     |
+| `refundSessions`   | `[{ date, products[] }]`       | Sessions de remboursement                           |
+
+> Chaque session contient une `date` et un tableau `products` avec des `ObjectId` rÃ©fÃ©renÃ§ant la collection `Product`.
 
 ---
 
@@ -213,62 +242,16 @@ net start MongoDB
 
 ### Serveur (`server/`)
 
-```bash
-npm run dev      # Démarre le serveur avec nodemon (rechargement automatique)
-npm start        # Démarre le serveur sans nodemon (production)
-node seed.js     # Vide la collection products et réimporte depuis jsonFile/products.json
-```
+| Commande       | Description                                          |
+| -------------- | ---------------------------------------------------- |
+| `npm run dev`  | DÃ©marre le serveur avec nodemon (rechargement auto)  |
+| `npm start`    | DÃ©marre le serveur sans nodemon                      |
+| `node seed.js` | Importe les produits depuis `jsonFile/products.json` |
 
 ### Client (`client/`)
 
-```bash
-npm start        # Lance React en mode développement sur http://localhost:3000
-npm run build    # Compile l'application pour la production
-```
+| Commande        | Description                                   |
+| --------------- | --------------------------------------------- |
+| `npm start`     | Lance React en mode dÃ©veloppement (port 3000) |
+| `npm run build` | Compile l'application pour la production      |
 
----
-
-## Ordre de lancement à chaque session
-
-```
-1. net start MongoDB        ← démarrer la base de données (service Windows)
-2. cd server && npm run dev ← démarrer le serveur Express  → http://localhost:8000
-3. cd client && npm start   ← démarrer React               → http://localhost:3000
-```
-
----
-
-## Dernières modifications
-
-### Restructuration de l'architecture serveur
-
-Le projet a migré d'une structure `src/products/` + `src/users/` vers une organisation plate par **type de fichier** (`controller/`, `router/`, `service/`, `model/`), standard dans les projets Express.
-
-### Ajout de la route GET `/api/users/:id`
-
-Retourne un user complet par son `_id` MongoDB avec ses `purchasedProducts` et `viewedProducts` peuplés via `.populate()`. Utilisé par le composant `ProfilUser` côté React.
-
-### Passage des routes POST → PATCH
-
-Les routes d'achat et de consultation produit utilisent désormais `PATCH` (modification partielle d'une ressource existante) au lieu de `POST`, ce qui est plus sémantiquement correct selon REST.
-
-### Création du client React (Create React App)
-
-- **`App.js`** — routing avec `BrowserRouter`, routes `/` (Home) et `/users/:id` (ProfilUser)
-- **`Users.js`** — récupère et affiche tous les users triés par nom
-- **`UsersCard.js`** — carte cliquable avec `<Link>` vers le profil du user
-- **`Products.js`** — récupère et affiche tous les produits triés par marque
-- **`ProductCard.js`** — affiche image, marque, titre et description d'un produit
-- **`ProfilUser.js`** — profil complet d'un user via `useParams()` + `useEffect()`
-
-### Port serveur 8000
-
-Le port a été changé de `3000` à `8000` pour éviter les conflits avec React qui utilise `3000` par défaut.
-
----
-
-## Prochaines étapes
-
-- Afficher `purchasedProducts` et `viewedProducts` dans la page `ProfilUser`
-- Ajouter un bouton "Acheter" sur chaque `ProductCard` (appel PATCH `/purchase`)
-- Authentification via JWT (sécuriser le `userId` dans les requêtes PATCH)

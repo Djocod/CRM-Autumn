@@ -16,7 +16,7 @@ const Products = () => {
     <div className="card-product-container">
       {productsData.length > 0 &&
         productsData
-          .sort((a, b) => a.brand.localeCompare(b.brand))
+          // .sort((a, b) => a.brand.localeCompare(b.brand))
           .map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}

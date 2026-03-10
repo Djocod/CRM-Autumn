@@ -4,7 +4,7 @@ import Products from "../components/Products";
 
 const Book = () => {
   return (
-    <div>
+    <div className="body-book">
       <Navigation />
       <Products />
     </div>

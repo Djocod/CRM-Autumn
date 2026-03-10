@@ -1,0 +1,30 @@
+.body-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: aliceblue;
+  .profil-container {
+    background: white;
+  }
+  .histo-container {
+    display: flex;
+    justify-content: space-between;
+    .view-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .buy-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .refund-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .container-book {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

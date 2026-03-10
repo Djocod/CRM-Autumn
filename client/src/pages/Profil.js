@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 
 const Profil = () => {
   return (
-    <div>
+    <div className="body-profil">
       <Navigation />
       <Users />
     </div>
