@@ -6,10 +6,8 @@
 }
 
 body {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -32,12 +30,100 @@ p {
   font-size: 0.8rem;
 }
 
-section {
-  background: whitesmoke;
+.img-product {
+  width: 50px;
+  height: 50px;
 }
 
-div {
-  background: wheat;
+.body-home {
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.body-profil {
+  background: red;
+  display: grid;
+  place-content: center;
+}
+
+.nav-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 100%;
+}
+.nav-bar .nav-item {
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.body-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background: aliceblue;
+}
+.body-user .profil-container {
+  background: white;
+}
+.body-user .histo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.body-user .histo-container .view-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.body-user .histo-container .buy-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.body-user .histo-container .refund-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.body-user .histo-container .container-book {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .users-container {
@@ -68,7 +154,6 @@ div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: whitesmoke;
   width: 100%;
   margin-bottom: 10px;
   -webkit-transition: all 0.3s ease;
@@ -114,7 +199,6 @@ div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: beige;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
