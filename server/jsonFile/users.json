@@ -55,7 +55,8 @@
     },
     "nat": "GB",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -113,7 +114,8 @@
     },
     "nat": "UA",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -171,7 +173,8 @@
     },
     "nat": "NO",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -229,7 +232,8 @@
     },
     "nat": "UA",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -287,7 +291,8 @@
     },
     "nat": "DK",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -345,7 +350,8 @@
     },
     "nat": "TR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -403,7 +409,8 @@
     },
     "nat": "IR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -461,7 +468,8 @@
     },
     "nat": "CH",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -519,7 +527,8 @@
     },
     "nat": "TR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -577,7 +586,8 @@
     },
     "nat": "MX",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -635,7 +645,8 @@
     },
     "nat": "FR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -693,7 +704,8 @@
     },
     "nat": "MX",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -751,7 +763,8 @@
     },
     "nat": "ES",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -809,7 +822,8 @@
     },
     "nat": "NZ",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -867,7 +881,8 @@
     },
     "nat": "GB",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -925,7 +940,8 @@
     },
     "nat": "DK",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -983,7 +999,8 @@
     },
     "nat": "CA",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -1041,7 +1058,8 @@
     },
     "nat": "CA",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -1099,7 +1117,8 @@
     },
     "nat": "NL",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -1157,7 +1176,8 @@
     },
     "nat": "FR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -1215,7 +1235,8 @@
     },
     "nat": "DE",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -1273,7 +1294,8 @@
     },
     "nat": "NZ",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "female",
@@ -1331,7 +1353,8 @@
     },
     "nat": "GB",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   },
   {
     "gender": "male",
@@ -1389,6 +1412,7 @@
     },
     "nat": "FR",
     "purchaseSessions": [],
-    "viewSessions": []
+    "viewSessions": [],
+    "refundSessions": []
   }
 ]

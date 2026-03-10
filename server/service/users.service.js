@@ -1,5 +1,4 @@
 import User from "../model/schema.users.js";
-import Product from "../model/schema.products.js";
 
 const champs = {
   _id: true,
@@ -67,12 +66,14 @@ const champs = {
 
   purchaseSessions: true,
   viewSessions: true,
+  refundSessions: true,
 };
 
 export async function findUserByLastName(lastName) {
   return User.find({ "name.last": { $regex: lastName, $options: "i" } }, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product");
+    .populate("viewSessions.products.product")
+    .populate("refundSessions.products.product");
 }
 
 export async function findAllUser() {
@@ -82,28 +83,24 @@ export async function findAllUser() {
 export async function findUserById(_id) {
   return User.findById(_id, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product");
+    .populate("viewSessions.products.product")
+    .populate("refundSessions.products.product");
 }
 
 // ===========================================
 // Add purchase session
-export async function addPurchasedProduct(
-  userId,
-  productId,
-  quantity = 1,
-  priceAtPurchase,
-) {
+export async function addPurchasedProduct(userId, productId) {
   return User.findByIdAndUpdate(
     userId,
     {
       $push: {
         purchaseSessions: {
           date: new Date(),
-          products: [{ product: productId, quantity, priceAtPurchase }],
+          products: [{ product: productId }],
         },
       },
     },
-    { new: true },
+    { returnDocument: "after" },
   );
 }
 // Add view session
@@ -118,6 +115,56 @@ export async function addViewedProduct(userId, productId) {
         },
       },
     },
-    { new: true },
+    { returnDocument: "after" },
+  );
+}
+// Add refund session
+export async function addRefundProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    {
+      $push: {
+        refundSessions: {
+          date: new Date(),
+          products: [{ product: productId }],
+        },
+      },
+    },
+    { returnDocument: "after" },
+  );
+}
+
+// delete
+export async function deletePurchasedProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    {
+      $pull: {
+        purchaseSessions: { "products.product": productId },
+      },
+    },
+    { returnDocument: "after" },
+  );
+}
+export async function deleteViewedProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    {
+      $pull: {
+        viewSessions: { "products.product": productId },
+      },
+    },
+    { returnDocument: "after" },
+  );
+}
+export async function deleteRefundProduct(userId, productId) {
+  return User.findByIdAndUpdate(
+    userId,
+    {
+      $pull: {
+        refundSessions: { "products.product": productId },
+      },
+    },
+    { returnDocument: "after" },
   );
 }

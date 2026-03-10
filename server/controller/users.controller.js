@@ -4,6 +4,10 @@ import {
   findUserById,
   addPurchasedProduct,
   addViewedProduct,
+  addRefundProduct,
+  deleteRefundProduct,
+  deletePurchasedProduct,
+  deleteViewedProduct,
 } from "../service/users.service.js";
 
 export async function handleGetUser(req, res) {
@@ -57,18 +61,13 @@ export async function handleGetUserById(req, res) {
 export async function handlePatchBuyProducts(req, res) {
   try {
     const { productId } = req.params;
-    const { userId, quantity, priceAtPurchase } = req.body;
+    const { userId } = req.body;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });
     }
 
-    const updated = await addPurchasedProduct(
-      userId,
-      productId,
-      quantity,
-      priceAtPurchase,
-    );
+    const updated = await addPurchasedProduct(userId, productId);
 
     if (!updated) {
       return res.status(404).json({ message: "User not found !" });
@@ -95,6 +94,91 @@ export async function handlePatchViewProducts(req, res) {
     }
 
     return res.status(200).json({ viewSessions: updated.viewSessions });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+export async function handlePatchRefundProducts(req, res) {
+  try {
+    const { productId } = req.params;
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "Missing userId" });
+    }
+
+    const updated = await addRefundProduct(userId, productId);
+
+    if (!updated) {
+      return res.status(404).json({ message: "User not found !" });
+    }
+
+    return res.status(200).json({ refundSessions: updated.refundSessions });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+// delete
+export async function handleDeletePurchaseProducts(req, res) {
+  try {
+    const { productId } = req.params;
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "Missing userId" });
+    }
+
+    const updated = await deletePurchasedProduct(userId, productId);
+
+    if (!updated) {
+      return res.status(404).json({ message: "User not found !" });
+    }
+
+    return res.status(200).json({ purchaseSessions: updated.purchaseSessions });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+export async function handleDeleteViewProducts(req, res) {
+  try {
+    const { productId } = req.params;
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "Missing userId" });
+    }
+
+    const updated = await deleteViewedProduct(userId, productId);
+
+    if (!updated) {
+      return res.status(404).json({ message: "User not found !" });
+    }
+
+    return res.status(200).json({ viewSessions: updated.viewSessions });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+export async function handleDeleteRefundProducts(req, res) {
+  try {
+    const { productId } = req.params;
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "Missing userId" });
+    }
+
+    const updated = await deleteRefundProduct(userId, productId);
+
+    if (!updated) {
+      return res.status(404).json({ message: "User not found !" });
+    }
+
+    return res.status(200).json({ refundSessions: updated.refundSessions });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
