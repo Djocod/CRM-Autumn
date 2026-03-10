@@ -53,6 +53,26 @@ const productSchema = new Schema(
         trim: true,
       },
     ],
+
+    ref: {
+      type: String,
+      trim: true,
+      unique: true,
+    },
+
+    sizes: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    colors: [
+      {
+        name: { type: String, trim: true },
+        hex: { type: String, trim: true },
+      },
+    ],
   },
   {
     timestamps: true,

@@ -81,11 +81,27 @@ const userSchema = new Schema(
       uppercase: true,
       trim: true,
     },
-    purchasedProducts: [
-      { type: Schema.Types.ObjectId, ref: "Product", default: [] },
+    purchaseSessions: [
+      {
+        date: { type: Date, default: Date.now },
+        products: [
+          {
+            product: { type: Schema.Types.ObjectId, ref: "Product" },
+            quantity: { type: Number, default: 1 },
+            priceAtPurchase: { type: Number },
+          },
+        ],
+      },
     ],
-    viewedProducts: [
-      { type: Schema.Types.ObjectId, ref: "Product", default: [] },
+    viewSessions: [
+      {
+        date: { type: Date, default: Date.now },
+        products: [
+          {
+            product: { type: Schema.Types.ObjectId, ref: "Product" },
+          },
+        ],
+      },
     ],
   },
   {

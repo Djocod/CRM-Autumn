@@ -11,6 +11,9 @@ const champs = {
   description: true,
   image: true,
   tags: true,
+  ref: true,
+  sizes: true,
+  colors: true,
 };
 
 // list all Product
