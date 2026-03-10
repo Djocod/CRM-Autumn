@@ -1,14 +1,14 @@
 import React from "react";
+import Users from "../components/Users";
 import Navigation from "../components/Navigation";
-import Products from "../components/Products";
 
-const Book = () => {
+const Profil = () => {
   return (
     <div>
       <Navigation />
-      <Products />
+      <Users />
     </div>
   );
 };
 
-export default Book;
+export default Profil;
