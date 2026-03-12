@@ -33,13 +33,13 @@ const ProfilUser = () => {
       .then((res) => setProductsData(res.data.products));
 
     axios.get(`http://localhost:8000/api/users/${id}`).then((res) => {
+      const date = new Date(res.data.user.registered.date);
+      const born = new Date(res.data.user.dob.date);
       setUserData(res.data.user);
       setUserId(res.data.user._id);
       setViewData(res.data.user.viewSessions);
       setPurchaseData(res.data.user.purchaseSessions);
-      const date = new Date(res.data.user.registered.date);
       setUserRegistered(date);
-      const born = new Date(res.data.user.dob.date);
       setUserBorn(born);
     });
   }, [id]); //DÉPENDANCES : "surveille id, et relance le callback si id change"
@@ -146,32 +146,60 @@ const ProfilUser = () => {
       </div>
       <div className="histo-container">
         <h2>HISTORIQUE</h2>
-        <div className="buy-container same-style-container">
-          <h3>TOUS LES ACHATS</h3>
-          {purchaseData.map((session) => (
-            <div key={session._id}>
-              <span>{session.type}</span>
-              {session.products.map((item) =>
+        <div className="product-interaction-container">
+          <div className="buy-container same-style-container">
+            <h3>TOUS LES ACHATS</h3>
+            {userData && (
+              <div key={userData._id}>
+                <h3>
+                  {/* {userData.purchaseSessions[0].date
+                    ? userData.purchaseSessions[0].date
+                    : ""} */}
+                </h3>
+                <p>
+                  {/* {userData.purchaseSessions[0].type} */}
+                  <span>Automne - Paris</span>
+                </p>
+                <p>
+                  {/* {userData.purchaseSessions[0].type === "buyShop"
+                    ? userData.purchaseSessions.length
+                    : ""}{" "} */}
+                  articles
+                </p>
+                <p>produits achetés - nb</p>
+              </div>
+            )}
+            {purchaseData.map((session) => {
+              session.products.map((item) =>
                 item.product ? (
                   <div
                     key={item.product._id}
                     className="product-card-user-container"
                   >
-                    <img
-                      src={item.product.image}
-                      alt=""
-                      className="img-product"
-                    />
+                    <div className="img-container">
+                      <img
+                        src={item.product.image}
+                        alt=""
+                        className="img-product"
+                      />
+                    </div>
                     <div className="description-container">
-                      <p className="product-name">{item.product.title}</p>
-                      <span>{item.product.brand}</span>
-                      <span>{item.product.ref}</span>
-                      <p className="product-params">
-                        Couleur : {item.product.colors[0].name} - Taille :
-                        {item.product.sizes[2]
-                          ? item.product.sizes[2]
-                          : " N/A "}
-                      </p>
+                      <div className="description-left">
+                        <p className="product-name">{item.product.title}</p>
+                        <span className="product-brand">
+                          {item.product.brand}
+                        </span>
+                        <span>{item.product.ref}</span>
+                        <p className="product-params">
+                          Couleur : {item.product.colors[0].name} - Taille :
+                          {item.product.sizes[2]
+                            ? item.product.sizes[2]
+                            : " N/A "}
+                        </p>
+                      </div>
+                      <div className="price-product">
+                        <p>{item.product.price} €</p>
+                      </div>
                     </div>
                     <div className="set-btn">
                       <label htmlFor={`buyShop-del-${item.product._id}`}>
@@ -220,40 +248,54 @@ const ProfilUser = () => {
                     </div>
                   </div>
                 ) : null,
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="view-container">
-          <h3>SÉLECTIONS</h3>
-          {viewData.map((session) =>
-            session.products.map((item) =>
-              item.product ? (
-                <div key={item.product._id}>
-                  <img
-                    src={item.product.image}
-                    alt=""
-                    className="img-product"
-                  />
-                  <div className="description-container">
-                    <p className="product-name">{item.product.title}</p>
-                    <span>{item.product.brand}</span>
-                    <span>{item.product.ref}</span>
-                    <p className="product-params">
-                      Couleur : {item.product.colors[0].name} - Taille :
-                      {item.product.sizes[2] ? item.product.sizes[2] : " N/A "}
-                    </p>
-                  </div>
-                  <button
-                    id=""
-                    onClick={() => deleteView(item.product._id, userId)}
+              );
+            })}
+          </div>
+          <div className="view-container same-style-container">
+            <h3>SÉLECTIONS</h3>
+            {viewData.map((session) =>
+              session.products.map((item) =>
+                item.product ? (
+                  <div
+                    key={item.product._id}
+                    className="product-card-user-container"
                   >
-                    Deleteview
-                  </button>
-                </div>
-              ) : null,
-            ),
-          )}
+                    <div className="img-container">
+                      <img
+                        src={item.product.image}
+                        alt=""
+                        className="img-product"
+                      />
+                    </div>
+                    <div className="description-container">
+                      <div className="description-left">
+                        <p className="product-name">{item.product.title}</p>
+                        <span className="product-brand">
+                          {item.product.brand}
+                        </span>
+                        <span>{item.product.ref}</span>
+                        <p className="product-params">
+                          Couleur : {item.product.colors[0].name} - Taille :
+                          {item.product.sizes[2]
+                            ? item.product.sizes[2]
+                            : " N/A "}
+                        </p>
+                      </div>
+                      <div className="price-product">
+                        <p>{item.product.price} €</p>
+                      </div>
+                    </div>
+                    <button
+                      id=""
+                      onClick={() => deleteView(item.product._id, userId)}
+                    >
+                      Deleteview
+                    </button>
+                  </div>
+                ) : null,
+              ),
+            )}
+          </div>
         </div>
         <ul className="container-book">
           {productsData.length > 0 &&
@@ -263,17 +305,24 @@ const ProfilUser = () => {
                 <div
                   key={product._id}
                   product={product}
-                  className="container-book"
+                  className="product-card-user-container"
                 >
-                  <img src={product.image} alt="" className="img-product" />
+                  <div className="img-container">
+                    <img src={product.image} alt="" className="img-product" />
+                  </div>
                   <div className="description-container">
-                    <p className="product-name">{product.title}</p>
-                    <span>{product.brand}</span>
-                    <span>{product.ref}</span>
-                    <p className="product-params">
-                      Couleur : {product.colors[0].name} - Taille :
-                      {product.sizes[2] ? product.sizes[2] : " N/A "}
-                    </p>
+                    <div className="description-left">
+                      <p className="product-name">{product.title}</p>
+                      <span className="product-brand">{product.brand}</span>
+                      <span>{product.ref}</span>
+                      <p className="product-params">
+                        Couleur : {product.colors[0].name} - Taille :
+                        {product.sizes[2] ? product.sizes[2] : " N/A "}
+                      </p>
+                    </div>
+                    <div className="price-product">
+                      <p>{product.price} €</p>
+                    </div>
                   </div>
                   <div className="set-btn">
                     <label htmlFor={`buyShop-${product._id}`}>buyShop</label>

@@ -46,26 +46,80 @@
     }
   }
   .main-container {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
   .histo-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    .view-container {
-      display: flex;
-      flex-direction: column;
-    }
-    .buy-container {
-      display: flex;
-      flex-direction: column;
-    }
-    .refund-container {
-      display: flex;
-      flex-direction: column;
+    margin: 10px 24px;
+    .product-interaction-container {
+      border: 1px solid red;
+      .same-style-container {
+        border: 1px solid rgb(0, 68, 255);
+        .product-card-user-container {
+          display: flex;
+          gap: 16px;
+          margin: 8px 0px;
+          .img-container {
+            width: auto;
+            .img-product {
+              width: 80px;
+              height: 80px;
+            }
+          }
+          .description-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .description-left {
+              display: flex;
+              flex-direction: column;
+              .product-name {
+                text-overflow: ellipsis;
+              }
+              span {
+                padding: 2px 0px;
+              }
+              .product-brand {
+                font-weight: 600;
+              }
+
+              .product-params {
+                color: #25272c;
+                font-size: 11px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+              }
+            }
+            .price-product {
+              color: #25272c;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .view-container {
+        display: flex;
+        flex-direction: column;
+      }
+      .buy-container {
+        display: flex;
+        flex-direction: column;
+      }
     }
     .container-book {
       display: flex;
       flex-direction: column;
     }
   }
+}
+.set-btn {
+  display: none;
+}
+button {
+  display: none;
 }
