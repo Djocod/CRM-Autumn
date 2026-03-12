@@ -206,7 +206,46 @@ git diff --staged
 
 ---
 
-## 6. Commandes utiles au quotidien
+## 6. Cas d'erreur fréquents
+
+### Branche distante existante sans tracking local
+
+**Situation :** une branche `<branch>` existe sur le remote (poussée par un collègue ou créée sur GitHub). Tu la crées manuellement en local avec `git checkout -b <branch>`, mais ta branche locale n'est pas liée à `origin/<branch>`. Du coup `git pull` échoue ou ne récupère pas les bons commits.
+
+**Symptôme :** `git branch -vv` montre ta branche sans `[origin/<branch>]` à côté.
+
+```bash
+# Vérifier le tracking
+git branch -vv
+# Si pas de [origin/<branch>], la branche n'est pas liée
+```
+
+**Correction :**
+
+```bash
+# Lier la branche locale à la distante, puis récupérer les commits
+git branch --set-upstream-to=origin/<branch> <branch>
+git pull
+```
+
+**La bonne pratique — ne pas créer la branche manuellement :**
+
+```bash
+# Récupérer les infos distantes
+git fetch origin
+
+# Créer la branche locale ET lier automatiquement le tracking
+git checkout -b nom-branche origin/nom-branche
+
+# OU plus court : si le nom correspond, git fait le lien tout seul
+git checkout nom-branche
+```
+
+> **Règle :** si la branche existe déjà sur le remote, utilise `git checkout <branch>` — git crée la branche locale et lie le tracking automatiquement. Ne jamais utiliser `git checkout -b <branch>` dans ce cas.
+
+---
+
+## 7. Commandes utiles au quotidien
 
 | Action                              | Commande                       |
 | ----------------------------------- | ------------------------------ |

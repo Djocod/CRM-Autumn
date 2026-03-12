@@ -83,25 +83,14 @@ const userSchema = new Schema(
     },
     purchaseSessions: [
       {
+        type: { type: String, enum: ["buyShop", "buyNet", "refund"] },
         date: { type: Date, default: Date.now },
         products: [
-          {
-            product: { type: Schema.Types.ObjectId, ref: "Product" },
-          },
+          { product: { type: Schema.Types.ObjectId, ref: "Product" } },
         ],
       },
     ],
     viewSessions: [
-      {
-        date: { type: Date, default: Date.now },
-        products: [
-          {
-            product: { type: Schema.Types.ObjectId, ref: "Product" },
-          },
-        ],
-      },
-    ],
-    refundSessions: [
       {
         date: { type: Date, default: Date.now },
         products: [

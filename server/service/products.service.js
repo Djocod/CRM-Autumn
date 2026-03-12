@@ -21,9 +21,9 @@ export async function listProducts() {
   return Products.find({}, champs);
 }
 
-// Product by id
+// Product by brand (case-insensitive)
 export async function getProductByBrand(brand) {
-  return Products.find({ brand: brand }, champs);
+  return Products.find({ brand: { $regex: brand, $options: "i" } }, champs);
 }
 
 // // Add product buy by users
