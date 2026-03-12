@@ -35,7 +35,7 @@ h3 {
 
 h4 {
   color: #000;
-  font-size: 15px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 590;
   line-height: normal;
@@ -52,7 +52,6 @@ span {
   overflow: hidden;
   color: #717680;
   text-overflow: ellipsis;
-  font-family: Inter;
   font-size: 11px;
   font-style: normal;
   font-weight: 600;
@@ -213,10 +212,26 @@ span {
       -ms-flex-pack: center;
           justify-content: center;
   background: rgb(235, 235, 235);
-  border: 1px solid red;
-  padding: 16px;
+  padding: 32px 24px;
+  background: #25272c;
+  color: white;
 }
-.body-user .profil-container .ref-container {
+.body-user .profil-container .profil-card-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  text-align: center;
+  gap: 8px;
+}
+.body-user .profil-container .profil-card-name img {
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+}
+.body-user .profil-container .profil-card-name .profil-name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -224,44 +239,28 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  gap: 4px;
 }
-.body-user .profil-container img {
-  width: 80px;
-  height: 80px;
-  border-radius: 100px;
-  margin: 0 auto;
+.body-user .profil-container .profil-card-name .profil-name h3 {
+  color: #f7f8f8;
 }
-.body-user .profil-container h3 {
-  margin: 8px auto 0;
-}
-.body-user .profil-container .vip {
-  margin: 0 auto;
-}
-.body-user .profil-container .vip .fa-shield {
-  font-size: 0.6rem;
-  margin: 0 8px;
-}
-.body-user .profil-container .icon-container {
+.body-user .profil-container .list-engage {
+  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
-}
-.body-user .profil-container .icon-container .fa-solid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 0.8rem;
-  padding: 9px 16px;
-  margin: 8px;
-  border-radius: 100px;
-  border: 1px solid red;
+  gap: 4px;
+}
+.body-user .profil-container .list-engage .item-engage {
+  padding: 16px;
 }
 .body-user .main-container {
   display: -webkit-box;
@@ -271,6 +270,84 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  gap: 24px;
+}
+.body-user .main-container .main-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-right: 1px solid #25272c;
+  border-bottom: 1px solid #25272c;
+}
+.body-user .main-container .main-title .btn-container {
+  padding: 14px;
+  width: 100%;
+}
+.body-user .main-container .main-title .btn-container .btn-h4 {
+  cursor: pointer;
+  border-bottom: 1px solid #25272c;
+  margin: 0 auto;
+}
+.body-user .main-container .main-title .btn-container:hover {
+  background: rgb(104, 104, 104);
+  color: white;
+}
+.body-user .main-container .class-event-useref .card-user-main {
+  padding: 0px 24px;
+}
+.body-user .main-container .class-event-useref .card-user-main h3 {
+  margin-bottom: 8px;
+}
+.body-user .main-container .class-event-useref .card-user-main .list-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 12px;
+}
+.body-user .main-container .class-event-useref .card-user-main .list-main .item-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.body-user .main-container .class-event-useref .like-container {
+  padding: 0px 24px;
+}
+.body-user .main-container .class-event-useref .like-container .like-component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 34px;
+}
+.body-user .main-container .class-event-useref .like-container .like-component .like-left img {
+  border-radius: 100%;
+  height: 144px;
+}
+.body-user .main-container .class-event-useref .like-container .like-component .like-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .body-user .histo-container {
   display: -webkit-box;
@@ -283,29 +360,42 @@ span {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 10px 24px;
+  margin: 0px 24px;
 }
 .body-user .histo-container .product-interaction-container {
-  border: 1px solid red;
-}
-.body-user .histo-container .product-interaction-container .same-style-container {
-  border: 1px solid rgb(0, 68, 255);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 8px 0px;
+}
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 16px;
   margin: 8px 0px;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .img-container {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .img-container {
   width: auto;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .img-container .img-product {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .img-container .img-product {
   width: 80px;
   height: 80px;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -317,7 +407,7 @@ span {
           align-items: center;
   width: 100%;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .description-left {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -326,34 +416,25 @@ span {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .description-left .product-name {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left .product-name {
   text-overflow: ellipsis;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .description-left span {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left span {
   padding: 2px 0px;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .description-left .product-brand {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left .product-brand {
   font-weight: 600;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .description-left .product-params {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left .product-params {
   color: #25272c;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .description-container .price-product {
+.body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .price-product {
   color: #25272c;
   font-weight: 600;
-}
-.body-user .histo-container .product-interaction-container .view-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 .body-user .histo-container .product-interaction-container .buy-container {
   display: -webkit-box;
@@ -364,10 +445,17 @@ span {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.body-user .histo-container .container-book {
+.body-user .histo-container .product-interaction-container .view-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.body-user .histo-container .container-book {
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
