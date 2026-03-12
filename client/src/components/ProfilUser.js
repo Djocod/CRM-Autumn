@@ -2,164 +2,253 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navigation from "./Navigation";
+import {
+  addPurchase,
+  deletePurchase,
+  addview,
+  deleteView,
+} from "./settingsBtn.js";
 
 const ProfilUser = () => {
   const { id } = useParams();
+  const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState(null);
+  const [userRegistered, setUserRegistered] = useState(null);
+  const [userBorn, setUserBorn] = useState(null);
   const [viewData, setViewData] = useState([]);
   const [purchaseData, setPurchaseData] = useState([]);
-  const [refundData, setRefundData] = useState([]);
-  const [userId, setUserId] = useState("");
-  const [productsData, setProdctsData] = useState([]);
+  const [productsData, setProductsData] = useState([]);
+  const [valueType, setValueType] = useState("");
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  console.log(userData);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/product`)
-      .then((res) => setProdctsData(res.data.products));
-  }, []);
-
-  function addPurchase(addId) {
-    axios
-      .patch(`http://localhost:8000/api/users/${addId}/purchase`, {
-        userId: userId,
-      })
-      .then((res) => console.log(res.data));
-  }
-
-  function addview(addId) {
-    axios
-      .patch(`http://localhost:8000/api/users/${addId}/viewed`, {
-        userId: userId,
-      })
-      .then((res) => console.log(res.data));
-  }
-
-  function addRefund(addId) {
-    axios
-      .patch(`http://localhost:8000/api/users/${addId}/refund`, {
-        userId: userId,
-      })
-      .then((res) => console.log(res.data));
-  }
-  // ==========================================
-  function deletePurchase(productId) {
-    axios
-      .delete(`http://localhost:8000/api/users/${productId}/purchase`, {
-        data: { userId: userId },
-      })
-      .then((res) => console.log(res.data));
-  }
-
-  function deleteView(productId) {
-    axios
-      .delete(`http://localhost:8000/api/users/${productId}/viewed`, {
-        data: { userId: userId },
-      })
-      .then((res) => console.log(res.data));
-  }
-  function deleteRefund(productId) {
-    axios
-      .delete(`http://localhost:8000/api/users/${productId}/refund`, {
-        data: { userId: userId },
-      })
-      .then((res) => console.log(res.data));
-  }
   useEffect(() => {
     //CALLBACK : le code à exécuter
+    axios
+      .get(`http://localhost:8000/api/product`)
+      .then((res) => setProductsData(res.data.products));
 
     axios.get(`http://localhost:8000/api/users/${id}`).then((res) => {
       setUserData(res.data.user);
       setUserId(res.data.user._id);
       setViewData(res.data.user.viewSessions);
       setPurchaseData(res.data.user.purchaseSessions);
-      setRefundData(res.data.user.refundSessions);
+      const date = new Date(res.data.user.registered.date);
+      setUserRegistered(date);
+      const born = new Date(res.data.user.dob.date);
+      setUserBorn(born);
     });
   }, [id]); //DÉPENDANCES : "surveille id, et relance le callback si id change"
 
   return (
     <div className="body-user">
       <Navigation />
-      <div className="profil-container">
+      {userData && (
+        <div key={userData._id} className="profil-container">
+          <div className="ref-container"></div>
+          <img src={userData.picture.medium} alt={userData.name.last} />
+          <h3>
+            {userData.name.title} {userData.name.last} {userData.name.first}
+          </h3>
+          <span className="vip">
+            <i className="fa-solid fa-shield"></i>Client Vip
+          </span>
+          <div className="icon-container">
+            <i className="fa-solid fa-arrow-up-from-bracket"></i>
+            <i className="fa-solid fa-message"></i>
+            <i className="fa-solid fa-pencil"></i>
+          </div>
+        </div>
+      )}
+      <div className="main-container">
+        <h2>GÉNÉRAL</h2>
         {userData && (
-          <div key={userData._id}>
-            <img src={userData.picture.medium} alt="" />
-            <h1>{userData.name.first}</h1>
-            <p>{userData._id}</p>
+          <div key={userData._id} className="card-user-main">
+            <h3>Informations générales</h3>
+            <ul className="list-main">
+              <li className="item-main">
+                {" "}
+                <p>Client(e) depuis le</p>
+                <p>
+                  {userRegistered &&
+                    userRegistered.toLocaleDateString("fr-FR", options)}
+                </p>
+              </li>
+              <li className="item-main">
+                <p>N de téléphone</p>
+                <p>{userData.phone}</p>
+              </li>
+              <li className="item-main">
+                <p>Email</p>
+                <p>{userData.email}</p>
+              </li>
+              <li className="item-main">
+                <p>Date de naissance</p>
+                <p>
+                  {userBorn && userBorn.toLocaleDateString("fr-FR", options)}
+                </p>
+              </li>
+              <li className="item-main">
+                <p>Nationalité</p>
+                <p>{userData.location.country}</p>
+              </li>
+              <li className="item-main">
+                <p>Magasin principal</p>
+                <p>Automne PARIS</p>
+              </li>
+              <li className="item-main">
+                <p>PS référent</p>
+                <p>Ahmed Hakimi</p>
+              </li>
+              <li className="item-main">
+                <p>ID client</p>
+                <p>{userData.login.salt}</p>
+              </li>
+            </ul>
           </div>
         )}
+        <div className="engage-container">
+          <h3>Engagement</h3>
+          <ul className="list-engage">
+            <li className="item-engage">
+              <p>12 832€</p>
+              <span>CA 3 mois</span>
+            </li>
+            <li className="item-engage">
+              <p>27 961€</p>
+              <span>CA 12 mois</span>
+            </li>
+            <li className="item-engage">
+              <p>120 832€</p>
+              <span>CA TOTAL</span>
+            </li>
+          </ul>
+        </div>
+        <div className="like-container">
+          <div className="like-left"></div>
+          <div className="like-right">
+            <h4>Marques</h4>
+            <p>
+              <span></span>Chaumet (64%)
+            </p>
+            <p>
+              <span></span>Dior (27%)
+            </p>
+            <p>
+              <span></span>Moncier (9%)
+            </p>
+          </div>
+        </div>
       </div>
       <div className="histo-container">
+        <h2>HISTORIQUE</h2>
+        <div className="buy-container same-style-container">
+          <h3>TOUS LES ACHATS</h3>
+          {purchaseData.map((session) => (
+            <div key={session._id}>
+              <span>{session.type}</span>
+              {session.products.map((item) =>
+                item.product ? (
+                  <div
+                    key={item.product._id}
+                    className="product-card-user-container"
+                  >
+                    <img
+                      src={item.product.image}
+                      alt=""
+                      className="img-product"
+                    />
+                    <div className="description-container">
+                      <p className="product-name">{item.product.title}</p>
+                      <span>{item.product.brand}</span>
+                      <span>{item.product.ref}</span>
+                      <p className="product-params">
+                        Couleur : {item.product.colors[0].name} - Taille :
+                        {item.product.sizes[2]
+                          ? item.product.sizes[2]
+                          : " N/A "}
+                      </p>
+                    </div>
+                    <div className="set-btn">
+                      <label htmlFor={`buyShop-del-${item.product._id}`}>
+                        buyShop
+                      </label>
+                      <input
+                        type="radio"
+                        name={`delete-${item.product._id}`}
+                        id={`buyShop-del-${item.product._id}`}
+                        value="buyShop"
+                        checked={valueType === "buyShop"}
+                        onChange={() => setValueType("buyShop")}
+                      />
+
+                      <label htmlFor={`buyNet-del-${item.product._id}`}>
+                        buyNet
+                      </label>
+                      <input
+                        type="radio"
+                        name={`delete-${item.product._id}`}
+                        id={`buyNet-del-${item.product._id}`}
+                        value="buyNet"
+                        checked={valueType === "buyNet"}
+                        onChange={() => setValueType("buyNet")}
+                      />
+
+                      <label htmlFor={`refund-del-${item.product._id}`}>
+                        refund
+                      </label>
+                      <input
+                        type="radio"
+                        name={`delete-${item.product._id}`}
+                        id={`refund-del-${item.product._id}`}
+                        value="refund"
+                        checked={valueType === "refund"}
+                        onChange={() => setValueType("refund")}
+                      />
+                      <button
+                        id=""
+                        onClick={() =>
+                          deletePurchase(item.product._id, userId, valueType)
+                        }
+                      >
+                        deletePurchase
+                      </button>
+                    </div>
+                  </div>
+                ) : null,
+              )}
+            </div>
+          ))}
+        </div>
         <div className="view-container">
-          <h2>view</h2>
+          <h3>SÉLECTIONS</h3>
           {viewData.map((session) =>
             session.products.map((item) =>
               item.product ? (
                 <div key={item.product._id}>
-                  <span>{item.product._id}</span>
-                  <img src={item.image} alt="" className="img-product" />
-                  <div className="description-container">
-                    <h3>
-                      {item.product.brand} | {item.product.title}
-                    </h3>
-                    <p className="description">{item.product.description}</p>
-                  </div>
-                  <button id="" onClick={() => deleteView(item.product._id)}>
-                    Deleteview
-                  </button>
-                </div>
-              ) : null,
-            ),
-          )}
-        </div>
-        <div className="buy-container">
-          <h2>achat</h2>
-          {purchaseData.map((session) =>
-            session.products.map((item) =>
-              item.product ? (
-                <div key={item.product._id}>
-                  <span>{item.product._id}</span>
                   <img
                     src={item.product.image}
                     alt=""
                     className="img-product"
                   />
                   <div className="description-container">
-                    <h3>
-                      {item.product.brand} | {item.product.title}
-                    </h3>
-                    <p className="description">{item.product.description}</p>
+                    <p className="product-name">{item.product.title}</p>
+                    <span>{item.product.brand}</span>
+                    <span>{item.product.ref}</span>
+                    <p className="product-params">
+                      Couleur : {item.product.colors[0].name} - Taille :
+                      {item.product.sizes[2] ? item.product.sizes[2] : " N/A "}
+                    </p>
                   </div>
                   <button
                     id=""
-                    onClick={() => deletePurchase(item.product._id)}
+                    onClick={() => deleteView(item.product._id, userId)}
                   >
-                    deletePurchase
-                  </button>
-                </div>
-              ) : null,
-            ),
-          )}
-        </div>
-        <div className="refund-container">
-          <h2>remboursement</h2>
-          {refundData.map((session) =>
-            session.products.map((item) =>
-              item.product ? (
-                <div key={item.product._id}>
-                  <span>{item.product._id}</span>
-                  <img
-                    src={item.product.image}
-                    alt=""
-                    className="img-product"
-                  />
-                  <div className="description-container">
-                    <h3>
-                      {item.product.brand} | {item.product.title}
-                    </h3>
-                    <p className="description">{item.product.description}</p>
-                  </div>
-                  <button id="" onClick={() => deleteRefund(item.product._id)}>
-                    deleterefund
+                    Deleteview
                   </button>
                 </div>
               ) : null,
@@ -177,16 +266,57 @@ const ProfilUser = () => {
                   className="container-book"
                 >
                   <img src={product.image} alt="" className="img-product" />
-                  <p>{product._id}</p>
-                  <button id="" onClick={() => addPurchase(product._id)}>
-                    purchase
-                  </button>
-                  <button id="" onClick={() => addview(product._id)}>
-                    view
-                  </button>
-                  <button id="" onClick={() => addRefund(product._id)}>
-                    refund
-                  </button>
+                  <div className="description-container">
+                    <p className="product-name">{product.title}</p>
+                    <span>{product.brand}</span>
+                    <span>{product.ref}</span>
+                    <p className="product-params">
+                      Couleur : {product.colors[0].name} - Taille :
+                      {product.sizes[2] ? product.sizes[2] : " N/A "}
+                    </p>
+                  </div>
+                  <div className="set-btn">
+                    <label htmlFor={`buyShop-${product._id}`}>buyShop</label>
+                    <input
+                      type="radio"
+                      name={`type-${product._id}`}
+                      id={`buyShop-${product._id}`}
+                      value="buyShop"
+                      checked={valueType === "buyShop"}
+                      onChange={() => setValueType("buyShop")}
+                    />
+
+                    <label htmlFor={`buyNet-${product._id}`}>buyNet</label>
+                    <input
+                      type="radio"
+                      name={`type-${product._id}`}
+                      id={`buyNet-${product._id}`}
+                      value="buyNet"
+                      checked={valueType === "buyNet"}
+                      onChange={() => setValueType("buyNet")}
+                    />
+
+                    <label htmlFor={`refund-${product._id}`}>refund</label>
+                    <input
+                      type="radio"
+                      name={`type-${product._id}`}
+                      id={`refund-${product._id}`}
+                      value="refund"
+                      checked={valueType === "refund"}
+                      onChange={() => setValueType("refund")}
+                    />
+                    <button
+                      id=""
+                      onClick={() =>
+                        addPurchase(product._id, userId, valueType)
+                      }
+                    >
+                      purchase
+                    </button>
+                    <button id="" onClick={() => addview(product._id, userId)}>
+                      view
+                    </button>
+                  </div>
                 </div>
               ))}
         </ul>

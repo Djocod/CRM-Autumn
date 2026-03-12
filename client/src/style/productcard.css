@@ -1,9 +1,8 @@
 .card-product-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: start;
-  width: 350px;
 }
 .card-product {
   display: flex;

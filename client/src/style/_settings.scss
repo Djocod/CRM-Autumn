@@ -10,25 +10,47 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  font-size: 18px;
 }
 body {
   max-width: 1300px;
   margin: 0 auto;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 44px;
 }
 h2 {
-  font-size: 1.6rem;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 8px;
 }
 h3 {
-  font-size: 1.2rem;
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 h4 {
-  font-size: 1rem;
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 590;
+  line-height: normal;
 }
 p {
-  font-size: 0.8rem;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 590;
+  line-height: normal;
+}
+span {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .img-product {
   width: 50px;

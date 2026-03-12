@@ -66,14 +66,12 @@ const champs = {
 
   purchaseSessions: true,
   viewSessions: true,
-  refundSessions: true,
 };
 
 export async function findUserByLastName(lastName) {
   return User.find({ "name.last": { $regex: lastName, $options: "i" } }, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product")
-    .populate("refundSessions.products.product");
+    .populate("viewSessions.products.product");
 }
 
 export async function findAllUser() {
@@ -83,18 +81,18 @@ export async function findAllUser() {
 export async function findUserById(_id) {
   return User.findById(_id, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product")
-    .populate("refundSessions.products.product");
+    .populate("viewSessions.products.product");
 }
 
 // ===========================================
 // Add purchase session
-export async function addPurchasedProduct(userId, productId) {
+export async function addPurchasedProduct(userId, productId, sessionType) {
   return User.findByIdAndUpdate(
     userId,
     {
       $push: {
         purchaseSessions: {
+          type: sessionType,
           date: new Date(),
           products: [{ product: productId }],
         },
@@ -118,29 +116,14 @@ export async function addViewedProduct(userId, productId) {
     { returnDocument: "after" },
   );
 }
-// Add refund session
-export async function addRefundProduct(userId, productId) {
-  return User.findByIdAndUpdate(
-    userId,
-    {
-      $push: {
-        refundSessions: {
-          date: new Date(),
-          products: [{ product: productId }],
-        },
-      },
-    },
-    { returnDocument: "after" },
-  );
-}
 
 // delete
-export async function deletePurchasedProduct(userId, productId) {
+export async function deletePurchasedProduct(userId, productId, sessionType) {
   return User.findByIdAndUpdate(
     userId,
     {
       $pull: {
-        purchaseSessions: { "products.product": productId },
+        purchaseSessions: { type: sessionType, "products.product": productId },
       },
     },
     { returnDocument: "after" },
@@ -152,17 +135,6 @@ export async function deleteViewedProduct(userId, productId) {
     {
       $pull: {
         viewSessions: { "products.product": productId },
-      },
-    },
-    { returnDocument: "after" },
-  );
-}
-export async function deleteRefundProduct(userId, productId) {
-  return User.findByIdAndUpdate(
-    userId,
-    {
-      $pull: {
-        refundSessions: { "products.product": productId },
       },
     },
     { returnDocument: "after" },
