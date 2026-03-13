@@ -5,8 +5,8 @@ import Products from "../components/Products";
 const Book = () => {
   return (
     <div className="body-book">
-      <Navigation />
       <Products />
+      <Navigation />
     </div>
   );
 };

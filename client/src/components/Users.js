@@ -4,7 +4,6 @@ import UsersCard from "./UsersCard";
 const Users = () => {
   const [usersData, setUsersData] = useState([]);
   const [userName, setUserName] = useState("");
-
   useEffect(() => {
     if (userName.length > 0) {
       axios

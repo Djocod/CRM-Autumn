@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-  font-size: 44px;
+  font-size: 30px;
 }
 
 h2 {
@@ -64,7 +64,141 @@ span {
 }
 
 .body-home {
-  background: #25272c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 24px;
+  padding-top: 10px;
+  padding-bottom: 80px;
+}
+.body-home .welcome-ps {
+  padding: 0px 24px;
+}
+.body-home .welcome-ps h2 {
+  padding: 0px;
+}
+.body-home .welcome-ps p {
+  color: #6b7280;
+}
+.body-home .actu-day {
+  padding: 0px 24px;
+}
+.body-home .actu-day h3 {
+  padding-bottom: 8px;
+}
+.body-home .actu-day .work-day .rdv-work,
+.body-home .actu-day .work-day .selection-check,
+.body-home .actu-day .work-day .actu-month,
+.body-home .actu-day .work-month .rdv-work,
+.body-home .actu-day .work-month .selection-check,
+.body-home .actu-day .work-month .actu-month {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px;
+}
+.body-home .actu-day .work-day .rdv-work .icon,
+.body-home .actu-day .work-day .selection-check .icon,
+.body-home .actu-day .work-day .actu-month .icon,
+.body-home .actu-day .work-month .rdv-work .icon,
+.body-home .actu-day .work-month .selection-check .icon,
+.body-home .actu-day .work-month .actu-month .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px;
+  width: 25%;
+}
+.body-home .actu-day .work-day .rdv-work .info-rdv-work,
+.body-home .actu-day .work-day .rdv-work .info-selection-check,
+.body-home .actu-day .work-day .rdv-work .info-actu-month,
+.body-home .actu-day .work-day .selection-check .info-rdv-work,
+.body-home .actu-day .work-day .selection-check .info-selection-check,
+.body-home .actu-day .work-day .selection-check .info-actu-month,
+.body-home .actu-day .work-day .actu-month .info-rdv-work,
+.body-home .actu-day .work-day .actu-month .info-selection-check,
+.body-home .actu-day .work-day .actu-month .info-actu-month,
+.body-home .actu-day .work-month .rdv-work .info-rdv-work,
+.body-home .actu-day .work-month .rdv-work .info-selection-check,
+.body-home .actu-day .work-month .rdv-work .info-actu-month,
+.body-home .actu-day .work-month .selection-check .info-rdv-work,
+.body-home .actu-day .work-month .selection-check .info-selection-check,
+.body-home .actu-day .work-month .selection-check .info-actu-month,
+.body-home .actu-day .work-month .actu-month .info-rdv-work,
+.body-home .actu-day .work-month .actu-month .info-selection-check,
+.body-home .actu-day .work-month .actu-month .info-actu-month {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 4px;
+}
+.body-home .actu-day .work-day .rdv-work .info-rdv-work p span,
+.body-home .actu-day .work-day .rdv-work .info-selection-check p span,
+.body-home .actu-day .work-day .rdv-work .info-actu-month p span,
+.body-home .actu-day .work-day .selection-check .info-rdv-work p span,
+.body-home .actu-day .work-day .selection-check .info-selection-check p span,
+.body-home .actu-day .work-day .selection-check .info-actu-month p span,
+.body-home .actu-day .work-day .actu-month .info-rdv-work p span,
+.body-home .actu-day .work-day .actu-month .info-selection-check p span,
+.body-home .actu-day .work-day .actu-month .info-actu-month p span,
+.body-home .actu-day .work-month .rdv-work .info-rdv-work p span,
+.body-home .actu-day .work-month .rdv-work .info-selection-check p span,
+.body-home .actu-day .work-month .rdv-work .info-actu-month p span,
+.body-home .actu-day .work-month .selection-check .info-rdv-work p span,
+.body-home .actu-day .work-month .selection-check .info-selection-check p span,
+.body-home .actu-day .work-month .selection-check .info-actu-month p span,
+.body-home .actu-day .work-month .actu-month .info-rdv-work p span,
+.body-home .actu-day .work-month .actu-month .info-selection-check p span,
+.body-home .actu-day .work-month .actu-month .info-actu-month p span {
+  font-size: 14px;
+  font-weight: normal;
+}
+.body-home .actu-past {
+  padding: 0px 24px;
+}
+.body-home .actu-past .user-actu-past {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.body-home .actu-past .user-actu-past .initial {
+  font-size: 12px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 100px;
+  background: #d9d9d9;
+  text-overflow: initial;
+}
+.body-home .actu-past .user-actu-past p span {
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .body-profil {
@@ -72,7 +206,7 @@ span {
   gap: 16px;
 }
 .body-profil .all-client {
-  padding: 4px 24px 80px;
+  padding: 4px 24px 120px;
 }
 .body-profil .all-client .count-users {
   text-align: center;
@@ -99,7 +233,7 @@ span {
 .body-profil .all-client .users-container .input-container {
   position: fixed;
   left: 0;
-  bottom: 16px;
+  bottom: 70px;
   left: 24px;
   right: 24px;
   padding: 0px 8px;
@@ -179,6 +313,9 @@ span {
 }
 
 .nav-bar {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -191,19 +328,62 @@ span {
   list-style: none;
   width: 100%;
   text-decoration: none;
-  background: #25272c;
+  background: #ffffff;
+  border-top: 2px solid #717680;
 }
 .nav-bar .nav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2px;
   padding: 10px 20px;
+  font-size: 0.5rem;
+  color: #717680;
 }
 .nav-bar .nav-item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.5rem;
   text-decoration: none;
-  color: white;
+  color: #717680;
+}
+.nav-bar .nav-item a svg {
+  fill: #717680;
+}
+.nav-bar .nav-item:focus, .nav-bar .nav-item:hover {
+  color: #25272c;
+}
+.nav-bar .nav-item:focus a, .nav-bar .nav-item:hover a {
+  color: #25272c;
+}
+.nav-bar .nav-item:focus a svg, .nav-bar .nav-item:hover a svg {
+  fill: #25272c;
 }
 
 .body-user {
   margin: 0 auto;
-  padding: 0px 0px 80px;
+  padding: 0px 0px 120px;
   gap: 16px;
   width: 100%;
 }
@@ -342,23 +522,55 @@ span {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.body-user .main-container .class-event-useref .card-user-main .list-main .item-main p:nth-child(2) {
+  font-size: 14px;
+  font-weight: normal;
+  color: #4a4e5a;
+}
+.body-user .main-container .class-event-useref .card-user-main .list-main .item-main:nth-child(6) p:nth-child(2) {
+  text-transform: uppercase;
+}
 .body-user .main-container .class-event-useref .like-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding: 0px 24px;
 }
 .body-user .main-container .class-event-useref .like-container h3 {
   margin-bottom: 12px;
 }
-.body-user .main-container .class-event-useref .like-container .like-component {
+.body-user .main-container .class-event-useref .like-container .like-position {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 34px;
 }
-.body-user .main-container .class-event-useref .like-container .like-component .like-left img {
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-left img {
   border-radius: 100%;
   height: 144px;
 }
-.body-user .main-container .class-event-useref .like-container .like-component .like-right {
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,6 +584,31 @@ span {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4px;
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right p span {
+  display: block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+  background: rgb(173, 173, 173);
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right:nth-child(3) p:nth-child(1) span {
+  background: #bce4ac;
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right:nth-child(3) p:nth-child(2) span {
+  background: #abcbe3;
+}
+.body-user .main-container .class-event-useref .like-container .like-position .like-component .like-right:nth-child(3) p:nth-child(3) span {
+  background: #e8cdb5;
 }
 .body-user .histo-container {
   display: -webkit-box;
@@ -534,7 +771,7 @@ button {
 
 .body-book {
   margin: 0 auto;
-  padding: 0px 0px 80px;
+  padding: 0px 0px 120px;
   gap: 16px;
   width: 100%;
 }
@@ -544,7 +781,7 @@ button {
 .body-book .card-product-container .input-container {
   position: fixed;
   left: 0;
-  bottom: 16px;
+  bottom: 70px;
   left: 24px;
   right: 24px;
   padding: 0px 8px;

@@ -12,12 +12,12 @@ const Profil = () => {
   }, []);
   return (
     <div className="body-profil">
-      <Navigation />
       <div className="all-client">
         <h2>Vos clients</h2>
         <Users />
         <p className="count-users">{usersCount.length} contacts</p>
       </div>
+      <Navigation />
     </div>
   );
 };

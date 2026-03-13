@@ -26,6 +26,7 @@ const ProfilUser = () => {
     month: "long",
     day: "numeric",
   };
+  console.log(userData);
 
   useEffect(() => {
     //CALLBACK : le code à exécuter
@@ -129,12 +130,16 @@ const ProfilUser = () => {
                     <p>{userData.location.country}</p>
                   </li>
                   <li className="item-main">
+                    <p>Passeport</p>
+                    <p>{userData.login.md5}</p>
+                  </li>
+                  <li className="item-main">
                     <p>Magasin principal</p>
                     <p>Automne PARIS</p>
                   </li>
                   <li className="item-main">
                     <p>PS référent</p>
-                    <p>Ahmed Hakimi</p>
+                    <p>Maïa Leblanc</p>
                   </li>
                   <li className="item-main">
                     <p>ID client</p>
@@ -145,21 +150,40 @@ const ProfilUser = () => {
             )}
             <div className="like-container">
               <h3>Préférences</h3>
-              <div className="like-component">
-                <div className="like-left">
-                  <img src="/assets/Figpie.webp" alt="" />
-                </div>
-                <div className="like-right">
+              <div className="like-position">
+                <div className="like-component">
                   <h4>Marques</h4>
-                  <p>
-                    <span></span>Chaumet (64%)
-                  </p>
-                  <p>
-                    <span></span>Dior (27%)
-                  </p>
-                  <p>
-                    <span></span>Moncier (9%)
-                  </p>
+                  <div className="like-left">
+                    <img src="/assets/Figpie.webp" alt="" />
+                  </div>
+                  <div className="like-right">
+                    <p>
+                      <span></span>Chaumet (64%)
+                    </p>
+                    <p>
+                      <span></span>Dior (27%)
+                    </p>
+                    <p>
+                      <span></span>Moncier (9%)
+                    </p>
+                  </div>
+                </div>
+                <div className="like-component">
+                  <h4>Marché</h4>
+                  <div className="like-left">
+                    <img src="/assets/Figpie.webp" alt="" />
+                  </div>
+                  <div className="like-right">
+                    <p>
+                      <span></span>Joaillerie (64%)
+                    </p>
+                    <p>
+                      <span></span>Vêtement (27%)
+                    </p>
+                    <p>
+                      <span></span>Maroquinerie (9%)
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -192,7 +216,7 @@ const ProfilUser = () => {
               {/* =========================================== */}
 
               <div className="info-buy-container">
-                <h4>3 mars 2026</h4>
+                <h4>9 mars 2026</h4>
                 <p>
                   <span>Automne - Paris</span>
                 </p>
