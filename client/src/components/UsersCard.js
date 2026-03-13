@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 //déstructuration classique JS
 const UsersCard = ({ user, showLetter }) => {
   const firstLetter = user.name.last[0].toUpperCase();
-  console.log(user);
 
   return (
     <div className="link-container">

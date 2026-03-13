@@ -1,6 +1,6 @@
 .body-user {
   margin: 0 auto;
-  padding: 35px 0px 80px;
+  padding: 0px 0px 80px;
   gap: 16px;
   width: 100%;
   .profil-container {
@@ -55,18 +55,26 @@
       .btn-container {
         padding: 14px;
         width: 100%;
+        border: 1px solid transparent;
         .btn-h4 {
           cursor: pointer;
-          border-bottom: 1px solid #25272c;
+          text-decoration: underline;
           margin: 0 auto;
         }
         &:hover {
-          background: rgb(104, 104, 104);
-          color: white;
+          border: 1px solid white;
+          background: #25272c;
+          .btn-h4 {
+            color: white;
+          }
         }
       }
     }
     .class-event-useref {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
       .card-user-main {
         padding: 0px 24px;
         h3 {
@@ -85,6 +93,9 @@
       }
       .like-container {
         padding: 0px 24px;
+        h3 {
+          margin-bottom: 12px;
+        }
         .like-component {
           display: flex;
           gap: 34px;
@@ -108,19 +119,29 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0px 24px;
+    padding: 16px 24px;
 
     .product-interaction-container {
       display: flex;
       flex-direction: column;
       .same-style-container {
+        h3 {
+          display: flex;
+          justify-content: space-between;
+        }
+        .info-buy-container {
+          h4 {
+            padding: 4px 0px;
+          }
+          p ~ p {
+            padding: 4px 0px;
+          }
+        }
         .product-card-user-container {
           display: flex;
           flex-direction: column;
           margin: 8px 0px;
-          // gap: 16px;
-          // .info-buy-container {
-          // }
+          gap: 16px;
           .product-card-user {
             display: flex;
             gap: 16px;
@@ -150,7 +171,27 @@
                 .product-brand {
                   font-weight: 600;
                 }
-
+                .span-snr {
+                  display: flex;
+                  .shop {
+                    color: #318510;
+                    border: 1px solid #bce4ac;
+                    background: #f8fdf7;
+                    padding: 0px 4px;
+                  }
+                  .net {
+                    color: #0075ca;
+                    border: 1px solid #abcbe3;
+                    background: #f5fbff;
+                    padding: 0px 4px;
+                  }
+                  .refund {
+                    color: #b46017;
+                    border: 1px solid #e8cdb5;
+                    background: #fdf7f2;
+                    padding: 0px 4px;
+                  }
+                }
                 .product-params {
                   color: #25272c;
                   font-size: 11px;
@@ -170,14 +211,10 @@
       .buy-container {
         display: flex;
         flex-direction: column;
-        // .info-buy-container {
-        //   background: blue;
-        // }
       }
       .view-container {
         display: flex;
         flex-direction: column;
-        // background: grey;
       }
     }
     .container-book {

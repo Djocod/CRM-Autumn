@@ -13,9 +13,11 @@ const Profil = () => {
   return (
     <div className="body-profil">
       <Navigation />
-      <h2>Vos clients</h2>
-      <Users />
-      <p className="count-users">{usersCount.length} contacts</p>
+      <div className="all-client">
+        <h2>Vos clients</h2>
+        <Users />
+        <p className="count-users">{usersCount.length} contacts</p>
+      </div>
     </div>
   );
 };

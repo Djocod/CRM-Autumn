@@ -1,74 +1,76 @@
 .body-profil {
   margin: 0 auto;
-  padding: 35px 24px 80px;
   gap: 16px;
-  .count-users {
-    text-align: center;
-    margin: 20px;
-  }
-  .users-container {
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    width: 100%;
-    gap: 16px;
-    .input-container {
-      position: fixed;
-      left: 0;
-      bottom: 16px;
-      left: 24px;
-      right: 24px;
-      padding: 0px 8px;
+  .all-client {
+    padding: 4px 24px 80px;
+    .count-users {
+      text-align: center;
+      margin: 20px;
+    }
+    .users-container {
       display: flex;
-      justify-content: center;
-      border-radius: 3px;
-      border: 1px solid rgb(182, 182, 182);
-      box-shadow: inset 1px 1px 10px 0px rgba(104, 104, 104, 0.1);
-      background: rgb(255, 255, 255);
-      .fa-sistrix {
-        font-size: 1rem;
-        margin: auto 0px auto 20px;
-        color: black;
-        opacity: 0.7;
-      }
-      .input-search {
-        padding: 11px;
-        align-items: center;
-        width: 100%;
-        border: none;
-        background: transparent;
-        outline: none;
-        &::placeholder {
+      flex-shrink: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      width: 100%;
+      gap: 16px;
+      .input-container {
+        position: fixed;
+        left: 0;
+        bottom: 16px;
+        left: 24px;
+        right: 24px;
+        padding: 0px 8px;
+        display: flex;
+        justify-content: center;
+        border-radius: 3px;
+        border: 1px solid rgb(182, 182, 182);
+        box-shadow: inset 1px 1px 10px 0px rgba(104, 104, 104, 0.1);
+        background: rgb(255, 255, 255);
+        .fa-sistrix {
+          font-size: 1rem;
+          margin: auto 0px auto 20px;
           color: black;
           opacity: 0.7;
         }
-      }
-    }
-    .link-container {
-      p {
-        padding-top: 8px;
-        margin-top: 8px;
-      }
-      .card-user-container {
-        display: flex;
-        height: 40px;
-        // flex-direction: column;
-        // justify-content: center;
-        // align-items: flex-start;
-        align-items: center;
-        gap: 8px;
-        align-self: stretch;
-        text-decoration: none;
-        .card-user-container:hover {
-          background: rgba(255, 0, 0, 0.238);
+        .input-search {
+          padding: 11px;
+          align-items: center;
+          width: 100%;
+          border: none;
+          background: transparent;
+          outline: none;
+          &::placeholder {
+            color: black;
+            opacity: 0.7;
+          }
         }
-        img {
-          width: 32px;
-          height: 32px;
-          aspect-ratio: 1/1;
-          border-radius: 100%;
+      }
+      .link-container {
+        p {
+          padding-top: 8px;
+          margin-top: 8px;
+        }
+        .card-user-container {
+          display: flex;
+          height: 40px;
+          // flex-direction: column;
+          // justify-content: center;
+          // align-items: flex-start;
+          align-items: center;
+          gap: 8px;
+          align-self: stretch;
+          text-decoration: none;
+          .card-user-container:hover {
+            background: rgba(255, 0, 0, 0.238);
+          }
+          img {
+            width: 32px;
+            height: 32px;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+          }
         }
       }
     }

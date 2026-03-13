@@ -31,10 +31,9 @@ const Users = () => {
               <UsersCard key={user._id} user={user} showLetter={showLetter} />
             );
           })}
-
       {/* Props: user={user} c'est ça qui devient "user" dans le composant  */}
       <div className="input-container">
-        <i class="fa-brands fa-sistrix"></i>
+        <i className="fa-brands fa-sistrix"></i>
         <input
           type="text"
           placeholder="Recherche"
