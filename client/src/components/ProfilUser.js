@@ -26,7 +26,7 @@ const ProfilUser = () => {
     month: "long",
     day: "numeric",
   };
-  console.log(userData, purchaseData);
+  console.log(userData);
 
   useEffect(() => {
     //CALLBACK : le code à exécuter
@@ -130,12 +130,16 @@ const ProfilUser = () => {
                     <p>{userData.location.country}</p>
                   </li>
                   <li className="item-main">
+                    <p>Passeport</p>
+                    <p>{userData.login.md5}</p>
+                  </li>
+                  <li className="item-main">
                     <p>Magasin principal</p>
                     <p>Automne PARIS</p>
                   </li>
                   <li className="item-main">
                     <p>PS référent</p>
-                    <p>Ahmed Hakimi</p>
+                    <p>Maïa Leblanc</p>
                   </li>
                   <li className="item-main">
                     <p>ID client</p>
@@ -146,21 +150,40 @@ const ProfilUser = () => {
             )}
             <div className="like-container">
               <h3>Préférences</h3>
-              <div className="like-component">
-                <div className="like-left">
-                  <img src="/assets/Figpie.webp" alt="" />
-                </div>
-                <div className="like-right">
+              <div className="like-position">
+                <div className="like-component">
                   <h4>Marques</h4>
-                  <p>
-                    <span></span>Chaumet (64%)
-                  </p>
-                  <p>
-                    <span></span>Dior (27%)
-                  </p>
-                  <p>
-                    <span></span>Moncier (9%)
-                  </p>
+                  <div className="like-left">
+                    <img src="/assets/Figpie.webp" alt="" />
+                  </div>
+                  <div className="like-right">
+                    <p>
+                      <span></span>Chaumet (64%)
+                    </p>
+                    <p>
+                      <span></span>Dior (27%)
+                    </p>
+                    <p>
+                      <span></span>Moncier (9%)
+                    </p>
+                  </div>
+                </div>
+                <div className="like-component">
+                  <h4>Marché</h4>
+                  <div className="like-left">
+                    <img src="/assets/Figpie.webp" alt="" />
+                  </div>
+                  <div className="like-right">
+                    <p>
+                      <span></span>Joaillerie (64%)
+                    </p>
+                    <p>
+                      <span></span>Vêtement (27%)
+                    </p>
+                    <p>
+                      <span></span>Maroquinerie (9%)
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -172,7 +195,33 @@ const ProfilUser = () => {
         <div className="histo-container">
           <div className="product-interaction-container">
             <div className="buy-container same-style-container">
-              <h3>Tous les achats</h3>
+              <h3>
+                Tous les achats{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="23"
+                  height="16"
+                  viewBox="0 0 23 16"
+                  fill="none"
+                >
+                  <path
+                    d="M1.25 1.25H21.25M4.58333 7.75H17.9167M8.58333 14.25H13.9167"
+                    stroke="#25272C"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </h3>
+              {/* =========================================== */}
+
+              <div className="info-buy-container">
+                <h4>9 mars 2026</h4>
+                <p>
+                  <span>Automne - Paris</span>
+                </p>
+                <p>articles {purchaseData.length}</p>
+              </div>
 
               {purchaseData
                 .filter((session) => session.type === "buyShop")
@@ -199,7 +248,10 @@ const ProfilUser = () => {
                               <span className="product-brand">
                                 {item.product.brand}
                               </span>
-                              <span>{item.product.ref}</span>
+                              <div className="span-snr">
+                                <span>{item.product.ref} |</span>{" "}
+                                <span className="shop"> En magasin</span>
+                              </div>
                               <p className="product-params">
                                 Couleur : {item.product.colors[0].name} - Taille
                                 :
@@ -266,21 +318,10 @@ const ProfilUser = () => {
                     ) : null,
                   );
                 })}
+
               {purchaseData
                 .filter((session) => session.type === "buyNet")
                 .map((session) => {
-                  // session.map((session) => (
-                  //   <div className="info-buy-container">
-                  //     <h3>
-                  //       3 mars 2026<span>en ligne</span>
-                  //     </h3>
-                  //     <p>
-                  //       <span>Automne - Paris</span>
-                  //     </p>
-                  //     <p>articles</p>
-                  //     <p>produits achetés -{session.length}</p>
-                  //   </div>
-                  // ));
                   return session.products.map((item) =>
                     item.product ? (
                       <div
@@ -303,7 +344,10 @@ const ProfilUser = () => {
                               <span className="product-brand">
                                 {item.product.brand}
                               </span>
-                              <span>{item.product.ref}</span>
+                              <div className="span-snr">
+                                <span>{item.product.ref} |</span>{" "}
+                                <span className="net"> En ligne</span>
+                              </div>
                               <p className="product-params">
                                 Couleur : {item.product.colors[0].name} - Taille
                                 :
@@ -370,6 +414,7 @@ const ProfilUser = () => {
                     ) : null,
                   );
                 })}
+
               {purchaseData
                 .filter((session) => session.type === "refund")
                 .map((session) => {
@@ -379,17 +424,6 @@ const ProfilUser = () => {
                         key={item.product._id}
                         className="product-card-user-container"
                       >
-                        {" "}
-                        <div className="info-buy-container">
-                          <h3>
-                            3 mars 2026<span>Remboursement</span>
-                          </h3>
-                          <p>
-                            <span>Automne - Paris</span>
-                          </p>
-                          <p>articles</p>
-                          <p>produits remboursé - {item.length}</p>
-                        </div>
                         <div className="product-card-user">
                           <div className="img-container">
                             <img
@@ -406,7 +440,10 @@ const ProfilUser = () => {
                               <span className="product-brand">
                                 {item.product.brand}
                               </span>
-                              <span>{item.product.ref}</span>
+                              <div className="span-snr">
+                                <span>{item.product.ref} |</span>{" "}
+                                <span className="refund"> Remboursement</span>
+                              </div>
                               <p className="product-params">
                                 Couleur : {item.product.colors[0].name} - Taille
                                 :
@@ -473,9 +510,18 @@ const ProfilUser = () => {
                     ) : null,
                   );
                 })}
+
+              {/* =========================================== */}
             </div>
             <div className="view-container same-style-container">
-              <h4>SÉLECTIONS</h4>
+              <h3>SÉLECTIONS</h3>
+              <div className="info-buy-container">
+                <h4>3 mars 2026</h4>
+                <p>
+                  <span>Automne - Paris</span>
+                </p>
+                <p>articles {viewData.length}</p>
+              </div>
               {viewData.map((session) =>
                 session.products.map((item) =>
                   item.product ? (
@@ -483,17 +529,6 @@ const ProfilUser = () => {
                       key={item.product._id}
                       className="product-card-user-container"
                     >
-                      {" "}
-                      <div className="info-buy-container">
-                        <h3>
-                          3 mars 2026<span>Remboursement</span>
-                        </h3>
-                        <p>
-                          <span>Automne - Paris</span>
-                        </p>
-                        <p>articles</p>
-                        <p>produits remboursé - {item.length}</p>
-                      </div>
                       <div className="product-card-user">
                         <div className="img-container">
                           <img

@@ -1,3 +1,75 @@
 .body-home {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 10px;
+  padding-bottom: 80px;
+  .welcome-ps {
+    padding: 0px 24px;
+    h2 {
+      padding: 0px;
+    }
+    p {
+      color: #6b7280;
+    }
+  }
+  .actu-day {
+    padding: 0px 24px;
+    h3 {
+      padding-bottom: 8px;
+    }
+    .work-day,
+    .work-month {
+      .rdv-work,
+      .selection-check,
+      .actu-month {
+        display: flex;
+        gap: 16px;
+        .icon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 16px;
+          width: 25%;
+        }
+        .info-rdv-work,
+        .info-selection-check,
+        .info-actu-month {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 4px;
+          p {
+            span {
+              font-size: 14px;
+              font-weight: normal;
+            }
+          }
+        }
+      }
+    }
+  }
+  .actu-past {
+    padding: 0px 24px;
+    .user-actu-past {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .initial {
+        font-size: 12px;
+        padding: 8px;
+        margin: 8px;
+        border-radius: 100px;
+        background: #d9d9d9;
+        text-overflow: initial;
+      }
+      p {
+        span {
+          font-size: 14px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
 }

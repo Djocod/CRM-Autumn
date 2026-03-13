@@ -5,7 +5,6 @@ import ProductCard from "./ProductCard";
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
   const [brandName, setBrandName] = useState("");
-  console.log(productsData, brandName);
 
   useEffect(() => {
     if (brandName) {
@@ -21,12 +20,16 @@ const Products = () => {
 
   return (
     <div className="card-product-container">
-      <input
-        type="text"
-        placeholder="Recherche"
-        id="search-product"
-        onChange={(e) => setBrandName(e.target.value.toLowerCase())}
-      />
+      <div className="input-container">
+        <i class="fa-brands fa-sistrix"></i>
+        <input
+          type="text"
+          placeholder="Recherche"
+          id="search-brand"
+          className="input-search"
+          onChange={(e) => setBrandName(e.target.value.toLowerCase())}
+        />
+      </div>
       {productsData &&
         productsData
           .sort((a, b) => a.brand.localeCompare(b.brand))

@@ -1,32 +1,109 @@
-// .card-product-container {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: start;
-//   width: 350px;
-// }
-// .card-product {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 8px;
-//   padding: 10px;
-//   margin-bottom: 10px;
-//   width: 300px;
-//   height: 70px;
-// }
-// .img-product {
-//   height: 100%;
-// }
-// .description-container {
-//   padding: 0px 10px;
-// }
-// h3 {
-//   font-size: 0.9rem;
-// }
-// .description {
-//   font-size: 0.8rem;
-// }
-// button {
-//   padding: 5px 10px;
-// }
+.body-book {
+  margin: 0 auto;
+  padding: 0px 0px 120px;
+  gap: 16px;
+  width: 100%;
+  .card-product-container {
+    padding: 0px 34px;
+    .input-container {
+      position: fixed;
+      left: 0;
+      bottom: 70px;
+      left: 24px;
+      right: 24px;
+      padding: 0px 8px;
+      display: flex;
+      justify-content: center;
+      border-radius: 3px;
+      border: 1px solid rgb(182, 182, 182);
+      box-shadow: inset 1px 1px 10px 0px rgba(104, 104, 104, 0.1);
+      background: rgb(255, 255, 255);
+      .fa-sistrix {
+        font-size: 1rem;
+        margin: auto 0px auto 20px;
+        color: black;
+        opacity: 0.7;
+      }
+      .input-search {
+        padding: 11px;
+        align-items: center;
+        width: 100%;
+        border: none;
+        background: transparent;
+        outline: none;
+        &::placeholder {
+          color: black;
+          opacity: 0.7;
+        }
+      }
+    }
+    .card-product {
+      display: flex;
+      flex-direction: column;
+      margin: 8px 0px;
+      gap: 16px;
+      .product-card-book {
+        display: flex;
+        gap: 16px;
+        margin: 8px 0px;
+        .img-container {
+          width: auto;
+          .img-product {
+            height: 100%;
+          }
+        }
+        .description-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          .description-left {
+            display: flex;
+            flex-direction: column;
+            .product-name {
+              text-overflow: ellipsis;
+            }
+            span {
+              padding: 2px 0px;
+            }
+            .product-brand {
+              font-weight: 600;
+            }
+            .span-snr {
+              display: flex;
+              .shop {
+                color: #318510;
+                border: 1px solid #bce4ac;
+                background: #f8fdf7;
+                padding: 0px 4px;
+              }
+              .net {
+                color: #0075ca;
+                border: 1px solid #abcbe3;
+                background: #f5fbff;
+                padding: 0px 4px;
+              }
+              .refund {
+                color: #b46017;
+                border: 1px solid #e8cdb5;
+                background: #fdf7f2;
+                padding: 0px 4px;
+              }
+            }
+            .product-params {
+              color: #25272c;
+              font-size: 11px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+          }
+          .price-product {
+            color: #25272c;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
