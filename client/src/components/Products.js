@@ -21,7 +21,7 @@ const Products = () => {
   return (
     <div className="card-product-container">
       <div className="input-container">
-        <i class="fa-brands fa-sistrix"></i>
+        <i className="fa-brands fa-sistrix"></i>
         <input
           type="text"
           placeholder="Recherche"

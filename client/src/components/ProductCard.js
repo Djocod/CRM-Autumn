@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onSelect }) => {
+  const [productId, setProductId] = useState("");
+  const styleBtn = useRef(null);
+  // console.log(product);
+  const handleIdWihslist = () => {
+    onSelect?.(product._id);
+  };
+  useEffect(() => {}, []);
+
   return (
-    <div key={product._id} className="card-product">
+    <div key={product._id} className="card-product" id={product._Id}>
       <div className="product-card-book">
         <div className="img-container">
           <img src={product.image} alt="" className="img-product" />
+
+          <button className="add-wishlist">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
+                fill="#F7F8F8"
+                onClick={handleIdWihslist}
+                ref={styleBtn}
+                id={product._id}
+              />
+            </svg>
+          </button>
         </div>
         <div className="description-container">
           <div className="description-left">
             <p className="product-name">{product.title}</p>
             <span>{product.brand}</span>
             <span>{product.ref}</span>
-            <p className="product-params">
-              Couleur : {product.colors[0].name} - Taille :
-              {product.sizes[2] ? product.sizes[2] : " N/A "}
-            </p>
-          </div>
-          <div className="price-product">
-            <p>{product.price} €</p>
+            <span className="price">{product.price} €</span>
           </div>
         </div>
       </div>
