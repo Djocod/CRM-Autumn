@@ -60,7 +60,7 @@ export async function handlePatchBuyProducts(req, res) {
   try {
     const { sessionType } = req.params;
     const { productId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });
@@ -80,7 +80,7 @@ export async function handlePatchBuyProducts(req, res) {
 export async function handlePatchViewProducts(req, res) {
   try {
     const { productId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });
@@ -104,7 +104,7 @@ export async function handleDeletePurchaseProducts(req, res) {
   try {
     const { sessionType } = req.params;
     const { productId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });
@@ -129,7 +129,7 @@ export async function handleDeletePurchaseProducts(req, res) {
 export async function handleDeleteViewProducts(req, res) {
   try {
     const { productId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     if (!userId) {
       return res.status(400).json({ message: "Missing userId" });

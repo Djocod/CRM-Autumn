@@ -7,7 +7,6 @@ const champs = {
   phone: true,
   cell: true,
   nat: true,
-
   name: {
     title: true,
     first: true,
@@ -52,11 +51,6 @@ const champs = {
     date: true,
     age: true,
   },
-
-  // id: {
-  //   name: true,
-  //   value: true,
-  // },
 
   picture: {
     large: true,
