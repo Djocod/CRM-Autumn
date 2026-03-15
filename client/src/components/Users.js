@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import UsersCard from "./UsersCard";
+import UsersCard from "./Folder.Users/UsersCard";
 const Users = () => {
   const [usersData, setUsersData] = useState([]);
   const [userName, setUserName] = useState("");

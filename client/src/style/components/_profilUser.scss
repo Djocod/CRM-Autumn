@@ -47,26 +47,37 @@
     flex-direction: column;
     gap: 24px;
     .main-title {
-      display: flex;
       width: 100%;
+      display: flex;
       text-align: center;
-      border-right: 1px solid #25272c;
-      border-bottom: 1px solid #25272c;
+      gap: 1px;
+      border: 1px solid #25272c;
+      background: #25272c;
       .btn-container {
-        padding: 14px;
         width: 100%;
         border: 1px solid transparent;
+        background: #25272c;
+
         .btn-h4 {
           cursor: pointer;
+          padding: 14px;
           text-decoration: underline;
-          margin: 0 auto;
+          width: 100%;
+          color: white;
         }
-        &:hover {
-          border: 1px solid white;
-          background: #25272c;
-          .btn-h4 {
-            color: white;
-          }
+      }
+      .active-general {
+        border: 1px solid #25272c;
+        background: white;
+        .btn-h4 {
+          color: #25272c;
+        }
+      }
+      .active-histo {
+        border: 1px solid #25272c;
+        background: white;
+        .btn-h4 {
+          color: #25272c;
         }
       }
     }
@@ -174,16 +185,33 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 16px 24px;
+    padding: 0px 24px;
 
     .product-interaction-container {
       display: flex;
       flex-direction: column;
-      .same-style-container {
-        h3 {
-          display: flex;
-          justify-content: space-between;
+      .shop-view-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        .shop-view-cotnainer {
+          border-bottom: 1px solid transparent;
+          h4 {
+            cursor: pointer;
+            padding: 8px 0px 8px;
+            width: 100%;
+          }
         }
+        .active-shop {
+          border-bottom: 1px solid #25272c;
+        }
+        .active-view {
+          border-bottom: 1px solid #25272c;
+        }
+      }
+
+      .same-style-container {
         .info-buy-container {
           h4 {
             padding: 4px 0px;
@@ -228,6 +256,7 @@
                 }
                 .span-snr {
                   display: flex;
+                  text-align: center;
                   .shop {
                     color: #318510;
                     border: 1px solid #bce4ac;
@@ -277,6 +306,9 @@
       flex-direction: column;
     }
   }
+}
+.delete-view {
+  display: none;
 }
 .set-btn {
   display: none;

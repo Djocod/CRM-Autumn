@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Navigation from "./Navigation";
-import {
-  addPurchase,
-  deletePurchase,
-  addview,
-  deleteView,
-} from "./settingsBtn.js";
+import Navigation from "./Navigation.js";
+import { deleteView } from "./Folder.Btn/settingsBtn.js";
+import ViewBtnBook from "./Folder.Btn/ViewBtnBook.js";
+import UsersProductCardShop from "./Folder.Users/UsersProductCardShop.js";
 
 const ProfilUser = () => {
   const { id } = useParams();
@@ -15,18 +12,16 @@ const ProfilUser = () => {
   const [userData, setUserData] = useState(null);
   const [userRegistered, setUserRegistered] = useState(null);
   const [userBorn, setUserBorn] = useState(null);
-  // const [datePurchase, setDatePurchase] = useState(null);
   const [viewData, setViewData] = useState([]);
   const [purchaseData, setPurchaseData] = useState([]);
   const [productsData, setProductsData] = useState([]);
-  const [valueType, setValueType] = useState("");
   const [activeSection, setActiveSection] = useState("general");
+  const [activeSectionShop, setActiveSectionShop] = useState("shop");
   const options = {
     year: "numeric",
     month: "long",
     day: "numeric",
   };
-  console.log(userData);
 
   useEffect(() => {
     //CALLBACK : le code à exécuter
@@ -79,7 +74,9 @@ const ProfilUser = () => {
       )}
       <div className="main-container">
         <div className="main-title">
-          <div className="btn-container">
+          <div
+            className={`btn-container ${activeSection === "general" ? "active-general" : ""}`}
+          >
             <h4
               className="btn-general btn-h4"
               onClick={() => setActiveSection("general")}
@@ -87,7 +84,9 @@ const ProfilUser = () => {
               GÉNÉRAL
             </h4>
           </div>
-          <div className="btn-container">
+          <div
+            className={`btn-container ${activeSection === "histo" ? "active-histo" : ""}`}
+          >
             <h4
               className="btn-histo btn-h4"
               onClick={() => setActiveSection("histo")}
@@ -194,384 +193,143 @@ const ProfilUser = () => {
       {activeSection === "histo" && (
         <div className="histo-container">
           <div className="product-interaction-container">
-            <div className="buy-container same-style-container">
-              <h3>
-                Tous les achats{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23"
-                  height="16"
-                  viewBox="0 0 23 16"
-                  fill="none"
-                >
-                  <path
-                    d="M1.25 1.25H21.25M4.58333 7.75H17.9167M8.58333 14.25H13.9167"
-                    stroke="#25272C"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </h3>
-              {/* =========================================== */}
-
-              <div className="info-buy-container">
-                <h4>9 mars 2026</h4>
-                <p>
-                  <span>Automne - Paris</span>
-                </p>
-                <p>articles {purchaseData.length}</p>
+            <div className="shop-view-title-container">
+              <div
+                className={`shop-view-cotnainer ${activeSectionShop === "shop" ? "active-shop" : ""}`}
+              >
+                <h4 onClick={() => setActiveSectionShop("shop")}>
+                  Tous les achats
+                </h4>
               </div>
-
-              {purchaseData
-                .filter((session) => session.type === "buyShop")
-                .map((session) => {
-                  return session.products.map((item) =>
-                    item.product ? (
-                      <div
-                        key={item.product._id}
-                        className="product-card-user-container"
-                      >
-                        <div className="product-card-user">
-                          <div className="img-container">
-                            <img
-                              src={item.product.image}
-                              alt=""
-                              className="img-product"
-                            />
-                          </div>
-                          <div className="description-container">
-                            <div className="description-left">
-                              <p className="product-name">
-                                {item.product.title}
-                              </p>
-                              <span className="product-brand">
-                                {item.product.brand}
-                              </span>
-                              <div className="span-snr">
-                                <span>{item.product.ref} |</span>{" "}
-                                <span className="shop"> En magasin</span>
-                              </div>
-                              <p className="product-params">
-                                Couleur : {item.product.colors[0].name} - Taille
-                                :
-                                {item.product.sizes[2]
-                                  ? item.product.sizes[2]
-                                  : " N/A "}
-                              </p>
-                            </div>
-                            <div className="price-product">
-                              <p>{item.product.price} €</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="set-btn">
-                          <label htmlFor={`buyShop-del-${item.product._id}`}>
-                            buyShop
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyShop-del-${item.product._id}`}
-                            value="buyShop"
-                            checked={valueType === "buyShop"}
-                            onChange={() => setValueType("buyShop")}
-                          />
-
-                          <label htmlFor={`buyNet-del-${item.product._id}`}>
-                            buyNet
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyNet-del-${item.product._id}`}
-                            value="buyNet"
-                            checked={valueType === "buyNet"}
-                            onChange={() => setValueType("buyNet")}
-                          />
-
-                          <label htmlFor={`refund-del-${item.product._id}`}>
-                            refund
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`refund-del-${item.product._id}`}
-                            value="refund"
-                            checked={valueType === "refund"}
-                            onChange={() => setValueType("refund")}
-                          />
-                          <button
-                            id=""
-                            onClick={() =>
-                              deletePurchase(
-                                item.product._id,
-                                userId,
-                                valueType,
-                              )
-                            }
-                          >
-                            deletePurchase
-                          </button>
-                        </div>
-                      </div>
-                    ) : null,
-                  );
-                })}
-
-              {purchaseData
-                .filter((session) => session.type === "buyNet")
-                .map((session) => {
-                  return session.products.map((item) =>
-                    item.product ? (
-                      <div
-                        key={item.product._id}
-                        className="product-card-user-container"
-                      >
-                        <div className="product-card-user">
-                          <div className="img-container">
-                            <img
-                              src={item.product.image}
-                              alt=""
-                              className="img-product"
-                            />
-                          </div>
-                          <div className="description-container">
-                            <div className="description-left">
-                              <p className="product-name">
-                                {item.product.title}
-                              </p>
-                              <span className="product-brand">
-                                {item.product.brand}
-                              </span>
-                              <div className="span-snr">
-                                <span>{item.product.ref} |</span>{" "}
-                                <span className="net"> En ligne</span>
-                              </div>
-                              <p className="product-params">
-                                Couleur : {item.product.colors[0].name} - Taille
-                                :
-                                {item.product.sizes[2]
-                                  ? item.product.sizes[2]
-                                  : " N/A "}
-                              </p>
-                            </div>
-                            <div className="price-product">
-                              <p>{item.product.price} €</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="set-btn">
-                          <label htmlFor={`buyShop-del-${item.product._id}`}>
-                            buyShop
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyShop-del-${item.product._id}`}
-                            value="buyShop"
-                            checked={valueType === "buyShop"}
-                            onChange={() => setValueType("buyShop")}
-                          />
-
-                          <label htmlFor={`buyNet-del-${item.product._id}`}>
-                            buyNet
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyNet-del-${item.product._id}`}
-                            value="buyNet"
-                            checked={valueType === "buyNet"}
-                            onChange={() => setValueType("buyNet")}
-                          />
-
-                          <label htmlFor={`refund-del-${item.product._id}`}>
-                            refund
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`refund-del-${item.product._id}`}
-                            value="refund"
-                            checked={valueType === "refund"}
-                            onChange={() => setValueType("refund")}
-                          />
-                          <button
-                            id=""
-                            onClick={() =>
-                              deletePurchase(
-                                item.product._id,
-                                userId,
-                                valueType,
-                              )
-                            }
-                          >
-                            deletePurchase
-                          </button>
-                        </div>
-                      </div>
-                    ) : null,
-                  );
-                })}
-
-              {purchaseData
-                .filter((session) => session.type === "refund")
-                .map((session) => {
-                  return session.products.map((item) =>
-                    item.product ? (
-                      <div
-                        key={item.product._id}
-                        className="product-card-user-container"
-                      >
-                        <div className="product-card-user">
-                          <div className="img-container">
-                            <img
-                              src={item.product.image}
-                              alt=""
-                              className="img-product"
-                            />
-                          </div>
-                          <div className="description-container">
-                            <div className="description-left">
-                              <p className="product-name">
-                                {item.product.title}
-                              </p>
-                              <span className="product-brand">
-                                {item.product.brand}
-                              </span>
-                              <div className="span-snr">
-                                <span>{item.product.ref} |</span>{" "}
-                                <span className="refund"> Remboursement</span>
-                              </div>
-                              <p className="product-params">
-                                Couleur : {item.product.colors[0].name} - Taille
-                                :
-                                {item.product.sizes[2]
-                                  ? item.product.sizes[2]
-                                  : " N/A "}
-                              </p>
-                            </div>
-                            <div className="price-product">
-                              <p>{item.product.price} €</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="set-btn">
-                          <label htmlFor={`buyShop-del-${item.product._id}`}>
-                            buyShop
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyShop-del-${item.product._id}`}
-                            value="buyShop"
-                            checked={valueType === "buyShop"}
-                            onChange={() => setValueType("buyShop")}
-                          />
-
-                          <label htmlFor={`buyNet-del-${item.product._id}`}>
-                            buyNet
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`buyNet-del-${item.product._id}`}
-                            value="buyNet"
-                            checked={valueType === "buyNet"}
-                            onChange={() => setValueType("buyNet")}
-                          />
-
-                          <label htmlFor={`refund-del-${item.product._id}`}>
-                            refund
-                          </label>
-                          <input
-                            type="radio"
-                            name={`delete-${item.product._id}`}
-                            id={`refund-del-${item.product._id}`}
-                            value="refund"
-                            checked={valueType === "refund"}
-                            onChange={() => setValueType("refund")}
-                          />
-                          <button
-                            id=""
-                            onClick={() =>
-                              deletePurchase(
-                                item.product._id,
-                                userId,
-                                valueType,
-                              )
-                            }
-                          >
-                            deletePurchase
-                          </button>
-                        </div>
-                      </div>
-                    ) : null,
-                  );
-                })}
-
-              {/* =========================================== */}
-            </div>
-            <div className="view-container same-style-container">
-              <h3>SÉLECTIONS</h3>
-              <div className="info-buy-container">
-                <h4>3 mars 2026</h4>
-                <p>
-                  <span>Automne - Paris</span>
-                </p>
-                <p>articles {viewData.length}</p>
+              <div
+                className={`shop-view-cotnainer ${activeSectionShop === "view" ? "active-view" : ""}`}
+              >
+                <h4 onClick={() => setActiveSectionShop("view")}>Sélections</h4>
               </div>
-              {viewData.map((session) =>
-                session.products.map((item) =>
-                  item.product ? (
-                    <div
-                      key={item.product._id}
-                      className="product-card-user-container"
-                    >
-                      <div className="product-card-user">
-                        <div className="img-container">
-                          <img
-                            src={item.product.image}
-                            alt=""
-                            className="img-product"
-                          />
-                        </div>
-                        <div className="description-container">
-                          <div className="description-left">
-                            <p className="product-name">{item.product.title}</p>
-                            <span className="product-brand">
-                              {item.product.brand}
-                            </span>
-                            <span>{item.product.ref}</span>
-                            <p className="product-params">
-                              Couleur : {item.product.colors[0].name} - Taille :
-                              {item.product.sizes[2]
-                                ? item.product.sizes[2]
-                                : " N/A "}
-                            </p>
-                          </div>
-                          <div className="price-product">
-                            <p>{item.product.price} €</p>
-                          </div>
-                        </div>
-                      </div>
-                      <button
-                        id=""
-                        onClick={() => deleteView(item.product._id, userId)}
-                      >
-                        Deleteview
-                      </button>
-                    </div>
-                  ) : null,
-                ),
-              )}
             </div>
+            {activeSectionShop === "shop" && (
+              <div className="buy-container same-style-container">
+                {/* =========================================== */}
+
+                <div className="info-buy-container">
+                  <h4>9 mars 2026</h4>
+                  <p>
+                    <span>Automne - Paris</span>
+                  </p>
+                  <p>articles {purchaseData.length}</p>
+                </div>
+
+                {purchaseData
+                  .filter((session) => session.type === "buyShop")
+                  .map((session) => {
+                    return session.products.map((item) =>
+                      item.product ? (
+                        <UsersProductCardShop
+                          key={item.product}
+                          item={item}
+                          typeSection={session.type}
+                          userId={userId}
+                        />
+                      ) : null,
+                    );
+                  })}
+
+                {purchaseData
+                  .filter((session) => session.type === "buyNet")
+                  .map((session) => {
+                    return session.products.map((item) =>
+                      item.product ? (
+                        <UsersProductCardShop
+                          key={item.product}
+                          item={item}
+                          typeSection={session.type}
+                          userId={userId}
+                        />
+                      ) : null,
+                    );
+                  })}
+
+                {purchaseData
+                  .filter((session) => session.type === "refund")
+                  .map((session) => {
+                    return session.products.map((item) =>
+                      item.product ? (
+                        <UsersProductCardShop
+                          key={item.product}
+                          item={item}
+                          typeSection={session.type}
+                          userId={userId}
+                        />
+                      ) : null,
+                    );
+                  })}
+
+                {/* =========================================== */}
+              </div>
+            )}
+            {activeSectionShop === "view" && (
+              <div className="view-container same-style-container">
+                <div className="info-buy-container">
+                  <h4>3 mars 2026</h4>
+                  <p>
+                    <span>Automne - Paris</span>
+                  </p>
+                  <p>articles {viewData.length}</p>
+                </div>
+                {viewData.map((session) =>
+                  session.products.map((item) =>
+                    item.product ? (
+                      <div
+                        key={item.product._id}
+                        className="product-card-user-container"
+                      >
+                        <div className="product-card-user">
+                          <div className="img-container">
+                            <img
+                              src={item.product.image}
+                              alt=""
+                              className="img-product"
+                            />
+                          </div>
+                          <div className="description-container">
+                            <div className="description-left">
+                              <p className="product-name">
+                                {item.product.title}
+                              </p>
+                              <span className="product-brand">
+                                {item.product.brand}
+                              </span>
+                              <span>{item.product.ref}</span>
+                              <p className="product-params">
+                                Couleur : {item.product.colors[0].name} - Taille
+                                :
+                                {item.product.sizes[2]
+                                  ? item.product.sizes[2]
+                                  : " N/A "}
+                              </p>
+                            </div>
+                            <div className="price-product">
+                              <p>{item.product.price} €</p>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          className="delete-view"
+                          onClick={() => deleteView(item.product._id, userId)}
+                        >
+                          Deleteview
+                        </button>
+                      </div>
+                    ) : null,
+                  ),
+                )}
+              </div>
+            )}
           </div>
           <ul className="container-book">
             {productsData.length > 0 &&
               productsData
-                // .sort((a, b) => a.brand.localeCompare(b.brand))
+                .sort((a, b) => a.brand.localeCompare(b.brand))
                 .map((product) => (
                   <div
                     key={product._id}
@@ -595,51 +353,11 @@ const ProfilUser = () => {
                         <p>{product.price} €</p>
                       </div>
                     </div>
-                    <div className="set-btn">
-                      <label htmlFor={`buyShop-${product._id}`}>buyShop</label>
-                      <input
-                        type="radio"
-                        name={`type-${product._id}`}
-                        id={`buyShop-${product._id}`}
-                        value="buyShop"
-                        checked={valueType === "buyShop"}
-                        onChange={() => setValueType("buyShop")}
-                      />
-
-                      <label htmlFor={`buyNet-${product._id}`}>buyNet</label>
-                      <input
-                        type="radio"
-                        name={`type-${product._id}`}
-                        id={`buyNet-${product._id}`}
-                        value="buyNet"
-                        checked={valueType === "buyNet"}
-                        onChange={() => setValueType("buyNet")}
-                      />
-
-                      <label htmlFor={`refund-${product._id}`}>refund</label>
-                      <input
-                        type="radio"
-                        name={`type-${product._id}`}
-                        id={`refund-${product._id}`}
-                        value="refund"
-                        checked={valueType === "refund"}
-                        onChange={() => setValueType("refund")}
-                      />
-                      <button
-                        id=""
-                        onClick={() =>
-                          addPurchase(product._id, userId, valueType)
-                        }
-                      >
-                        purchase
-                      </button>
-                      <button
-                        id=""
-                        onClick={() => addview(product._id, userId)}
-                      >
-                        view
-                      </button>
-                    </div>
+                    <ViewBtnBook
+                      key={product._id}
+                      product={product}
+                      userId={userId}
+                    />
                   </div>
                 ))}
           </ul>

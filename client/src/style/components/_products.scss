@@ -77,8 +77,9 @@
             padding: 8px;
             display: grid;
             place-content: center;
-
-            .styleLikeBtn {
+          }
+          .styleLikeBtn {
+            path {
               fill: #f58625;
             }
           }

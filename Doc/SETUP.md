@@ -8,7 +8,8 @@ Récapitulatif complet de toutes les étapes réalisées depuis le début du pro
 
 - [PARTIE 1 — Backend (Express + MongoDB)](#partie-1--backend-express--mongodb)
 - [PARTIE 2 — Client (React)](#partie-2--client-react)
-- [PARTIE 3 — Démarrage & erreurs rencontrées](#partie-3--démarrage--erreurs-rencontrées)
+- [PARTIE 3 — Évolutions & Refactoring](#partie-3--évolutions--refactoring)
+- [PARTIE 4 — Démarrage & erreurs rencontrées](#partie-4--démarrage--erreurs-rencontrées)
 
 ---
 
@@ -165,7 +166,7 @@ app.listen(port, () =>
 
 ## 7. Modèle — `model/schema.users.js`
 
-Schéma au format **randomuser.me** avec trois tableaux de sessions référençant des produits via `ObjectId` :
+Schéma au format **randomuser.me** avec **deux** tableaux de sessions référençant des produits via `ObjectId`. Le tableau `purchaseSessions` couvre les trois types de transactions grâce à un champ `type` :
 
 ```js
 import mongoose from "mongoose";
@@ -218,24 +219,18 @@ const userSchema = new Schema(
     },
     nat: { type: String, uppercase: true, trim: true },
 
-    // Sessions — chaque session contient une date et une liste de produits référencés
+    // Sessions d'achat — le champ `type` distingue les trois sous-types
     purchaseSessions: [
       {
+        type: { type: String, enum: ["buyShop", "buyNet", "refund"] },
         date: { type: Date, default: Date.now },
         products: [
           { product: { type: Schema.Types.ObjectId, ref: "Product" } },
         ],
       },
     ],
+    // Sessions de sélection/consultation
     viewSessions: [
-      {
-        date: { type: Date, default: Date.now },
-        products: [
-          { product: { type: Schema.Types.ObjectId, ref: "Product" } },
-        ],
-      },
-    ],
-    refundSessions: [
       {
         date: { type: Date, default: Date.now },
         products: [
@@ -253,6 +248,7 @@ export default User;
 
 > **Points clés :**
 >
+> - `purchaseSessions.type` → enum `"buyShop"` (achat en magasin), `"buyNet"` (achat en ligne), `"refund"` (remboursement) — remplace l'ancien `refundSessions` séparé
 > - `ref: "Product"` → permet le `.populate()` pour récupérer les documents produits complets
 > - `timestamps: true` → ajoute automatiquement `createdAt` et `updatedAt`
 > - `email`, `login.uuid`, `login.username` → champs `unique`
@@ -294,7 +290,7 @@ export default Product;
 
 ---
 
-## 9. Script de seeding — `seed.js`
+## 9. Script de seeding produits — `seed.js`
 
 Importe les produits depuis le fichier JSON. Utilise `findOneAndUpdate` avec `upsert: true` pour éviter les doublons si le script est relancé :
 
@@ -332,9 +328,47 @@ node seed.js
 
 ---
 
-## 10. Service — `service/users.service.js`
+## 10. Script de seeding utilisateurs — `seedUsers.js`
 
-La projection `champs` limite les données retournées. `.populate()` récupère les documents produits liés dans chaque session :
+Identique à `seed.js` mais dédié aux utilisateurs. La clé d'unicité utilisée est `email` :
+
+```js
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import Users from "./model/schema.users.js";
+import { readFile } from "fs/promises";
+
+dotenv.config();
+
+const users = JSON.parse(await readFile("./jsonFile/users.json"));
+
+await mongoose.connect(process.env.MONGO_URI);
+
+for (const user of users) {
+  await Users.findOneAndUpdate(
+    { email: user.email }, // recherche par email unique
+    { $set: user },
+    { upsert: true, new: true },
+  );
+}
+
+console.log("Utilisateurs importés!");
+await mongoose.disconnect();
+```
+
+Lancement :
+
+```bash
+node seedUsers.js
+```
+
+> **Pourquoi deux scripts séparés ?** Les données produits et utilisateurs proviennent de sources différentes (`products.json` et `users.json`) et ont des clés d'unicité différentes (`ref` pour les produits, `email` pour les utilisateurs).
+
+---
+
+## 11. Service — `service/users.service.js`
+
+La projection `champs` est étendue pour inclure tous les champs login et les données de localisation complètes. Les fonctions `addPurchasedProduct` et `deletePurchasedProduct` acceptent désormais un `sessionType` en troisième paramètre. Les anciennes fonctions `addRefundProduct` et `deleteRefundProduct` ont été supprimées (les remboursements passent maintenant par `purchaseSessions` avec `type: "refund"`) :
 
 ```js
 import User from "../model/schema.users.js";
@@ -352,22 +386,31 @@ const champs = {
     city: true,
     state: true,
     country: true,
+    postcode: true,
+    coordinates: { latitude: true, longitude: true },
+    timezone: { offset: true, description: true },
   },
-  login: { uuid: true, username: true },
+  login: {
+    uuid: true,
+    username: true,
+    password: true,
+    salt: true,
+    md5: true,
+    sha1: true,
+    sha256: true,
+  },
   dob: { date: true, age: true },
   registered: { date: true, age: true },
   picture: { large: true, medium: true, thumbnail: true },
   purchaseSessions: true,
   viewSessions: true,
-  refundSessions: true,
 };
 
 // READ
 export async function findUserByLastName(lastName) {
   return User.find({ "name.last": { $regex: lastName, $options: "i" } }, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product")
-    .populate("refundSessions.products.product");
+    .populate("viewSessions.products.product");
 }
 
 export async function findAllUser() {
@@ -377,17 +420,17 @@ export async function findAllUser() {
 export async function findUserById(_id) {
   return User.findById(_id, champs)
     .populate("purchaseSessions.products.product")
-    .populate("viewSessions.products.product")
-    .populate("refundSessions.products.product");
+    .populate("viewSessions.products.product");
 }
 
 // PATCH — Ajout d'une session
-export async function addPurchasedProduct(userId, productId) {
+export async function addPurchasedProduct(userId, productId, sessionType) {
   return User.findByIdAndUpdate(
     userId,
     {
       $push: {
         purchaseSessions: {
+          type: sessionType, // "buyShop" | "buyNet" | "refund"
           date: new Date(),
           products: [{ product: productId }],
         },
@@ -409,26 +452,15 @@ export async function addViewedProduct(userId, productId) {
   );
 }
 
-export async function addRefundProduct(userId, productId) {
+// DELETE — Suppression d'une session
+export async function deletePurchasedProduct(userId, productId, sessionType) {
   return User.findByIdAndUpdate(
     userId,
     {
-      $push: {
-        refundSessions: {
-          date: new Date(),
-          products: [{ product: productId }],
-        },
+      $pull: {
+        purchaseSessions: { type: sessionType, "products.product": productId },
       },
     },
-    { returnDocument: "after" },
-  );
-}
-
-// DELETE — Suppression d'une session
-export async function deletePurchasedProduct(userId, productId) {
-  return User.findByIdAndUpdate(
-    userId,
-    { $pull: { purchaseSessions: { "products.product": productId } } },
     { returnDocument: "after" },
   );
 }
@@ -440,26 +472,20 @@ export async function deleteViewedProduct(userId, productId) {
     { returnDocument: "after" },
   );
 }
-
-export async function deleteRefundProduct(userId, productId) {
-  return User.findByIdAndUpdate(
-    userId,
-    { $pull: { refundSessions: { "products.product": productId } } },
-    { returnDocument: "after" },
-  );
-}
 ```
 
 > **Points clés :**
 >
-> - `$regex` + `$options: "i"` → recherche insensible à la casse
-> - `$push` → ajoute un sous-document sans écraser les sessions existantes
-> - `$pull` → supprime les sessions dont le produit correspond à l'`ObjectId`
-> - `returnDocument: "after"` → retourne le document après modification (= `new: true` Mongoose 7+)
+> - `sessionType` → troisième paramètre de `addPurchasedProduct` et `deletePurchasedProduct`, transmis depuis l'URL via `req.params`
+> - `$pull` avec `type: sessionType` → supprime uniquement la session du bon type (évite de supprimer une session `buyNet` en ciblant une session `buyShop`)
+> - `refundSessions` retiré de la projection — les remboursements sont des `purchaseSessions` filtrées par `type: "refund"`
+> - `returnDocument: "after"` → retourne le document après modification
 
 ---
 
-## 11. Service — `service/products.service.js`
+## 12. Service — `service/products.service.js`
+
+La recherche par marque utilise désormais `$regex` pour être insensible à la casse (comme pour la recherche par nom d'utilisateur) :
 
 ```js
 import Products from "../model/schema.products.js";
@@ -485,15 +511,17 @@ export async function listProducts() {
 }
 
 export async function getProductByBrand(brand) {
-  return Products.find({ brand: brand }, champs);
+  return Products.find({ brand: { $regex: brand, $options: "i" } }, champs);
 }
 ```
 
+> `$regex` + `$options: "i"` → `?brand=gucci` retrouvera les produits `Gucci`, `GUCCI`, etc.
+
 ---
 
-## 12. Controller — `controller/users.controller.js`
+## 13. Controller — `controller/users.controller.js`
 
-Pattern systématique dans chaque handler : extraire → valider → appeler le service → vérifier → répondre.
+Les handlers `handlePatchRefundProducts` et `handleDeleteRefundProducts` ont été supprimés. Les handlers d'achat extraient désormais `sessionType` depuis `req.params` (transmis depuis l'URL) :
 
 ```js
 import {
@@ -502,8 +530,6 @@ import {
   findUserById,
   addPurchasedProduct,
   addViewedProduct,
-  addRefundProduct,
-  deleteRefundProduct,
   deletePurchasedProduct,
   deleteViewedProduct,
 } from "../service/users.service.js";
@@ -546,10 +572,10 @@ export async function handleGetUserById(req, res) {
 // PATCH
 export async function handlePatchBuyProducts(req, res) {
   try {
-    const { productId } = req.params;
+    const { sessionType, productId } = req.params;
     const { userId } = req.body;
     if (!userId) return res.status(400).json({ message: "Missing userId" });
-    const updated = await addPurchasedProduct(userId, productId);
+    const updated = await addPurchasedProduct(userId, productId, sessionType);
     if (!updated) return res.status(404).json({ message: "User not found !" });
     return res.status(200).json({ purchaseSessions: updated.purchaseSessions });
   } catch (error) {
@@ -570,26 +596,17 @@ export async function handlePatchViewProducts(req, res) {
   }
 }
 
-export async function handlePatchRefundProducts(req, res) {
-  try {
-    const { productId } = req.params;
-    const { userId } = req.body;
-    if (!userId) return res.status(400).json({ message: "Missing userId" });
-    const updated = await addRefundProduct(userId, productId);
-    if (!updated) return res.status(404).json({ message: "User not found !" });
-    return res.status(200).json({ refundSessions: updated.refundSessions });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-}
-
 // DELETE
 export async function handleDeletePurchaseProducts(req, res) {
   try {
-    const { productId } = req.params;
+    const { sessionType, productId } = req.params;
     const { userId } = req.body;
     if (!userId) return res.status(400).json({ message: "Missing userId" });
-    const updated = await deletePurchasedProduct(userId, productId);
+    const updated = await deletePurchasedProduct(
+      userId,
+      productId,
+      sessionType,
+    );
     if (!updated) return res.status(404).json({ message: "User not found !" });
     return res.status(200).json({ purchaseSessions: updated.purchaseSessions });
   } catch (error) {
@@ -609,24 +626,19 @@ export async function handleDeleteViewProducts(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-export async function handleDeleteRefundProducts(req, res) {
-  try {
-    const { productId } = req.params;
-    const { userId } = req.body;
-    if (!userId) return res.status(400).json({ message: "Missing userId" });
-    const updated = await deleteRefundProduct(userId, productId);
-    if (!updated) return res.status(404).json({ message: "User not found !" });
-    return res.status(200).json({ refundSessions: updated.refundSessions });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
-}
 ```
+
+> **Points clés :**
+>
+> - `sessionType` provient de `req.params`, transmis dans l'URL (`/:sessionType/:productId/purchase`)
+> - `userId` provient de `req.body` pour les PATCH et DELETE
+> - Pattern systématique dans chaque handler : extraire → valider → appeler le service → vérifier → répondre
 
 ---
 
-## 13. Controller — `controller/products.controller.js`
+## 14. Controller — `controller/products.controller.js`
+
+La vérification "not found" contrôle désormais `products.length === 0` (un tableau vide n'est pas `null`), et la réponse retourne `{ products }` de manière cohérente :
 
 ```js
 import {
@@ -648,10 +660,10 @@ export async function handleGetProductsByBrand(req, res) {
     const { brand } = req.query; // paramètre d'URL : ?brand=Gucci
     if (!brand)
       return res.status(400).json({ message: "Missing product Brand" });
-    const product = await getProductByBrand(brand);
-    if (!product)
+    const products = await getProductByBrand(brand);
+    if (!products || products.length === 0)
       return res.status(404).json({ message: "Product not found !" });
-    return res.status(200).json(product);
+    return res.status(200).json({ products });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -662,7 +674,9 @@ export async function handleGetProductsByBrand(req, res) {
 
 ---
 
-## 14. Router — `router/users.route.js`
+## 15. Router — `router/users.route.js`
+
+Les routes PATCH et DELETE intègrent désormais `:sessionType` dans l'URL. Les routes `/refund` dédiées ont été supprimées — les remboursements passent par `/:sessionType/:productId/purchase` avec `sessionType = "refund"` :
 
 ```js
 import { Router } from "express";
@@ -672,8 +686,6 @@ import {
   handleGetUserById,
   handlePatchBuyProducts,
   handlePatchViewProducts,
-  handlePatchRefundProducts,
-  handleDeleteRefundProducts,
   handleDeletePurchaseProducts,
   handleDeleteViewProducts,
 } from "../controller/users.controller.js";
@@ -686,23 +698,27 @@ router.get("/search/:lastname", handleGetUser); // avant /:id !
 router.get("/:id", handleGetUserById);
 
 // PATCH
-router.patch("/:productId/purchase", handlePatchBuyProducts);
+router.patch("/:sessionType/:productId/purchase", handlePatchBuyProducts);
 router.patch("/:productId/viewed", handlePatchViewProducts);
-router.patch("/:productId/refund", handlePatchRefundProducts);
 
 // DELETE
-router.delete("/:productId/purchase", handleDeletePurchaseProducts);
+router.delete(
+  "/:sessionType/:productId/purchase",
+  handleDeletePurchaseProducts,
+);
 router.delete("/:productId/viewed", handleDeleteViewProducts);
-router.delete("/:productId/refund", handleDeleteRefundProducts);
 
 export default router;
 ```
 
-> `/search/:lastname` doit être déclaré **avant** `/:id`, sinon Express capturerait `"search"` comme un `id`.
+> **Points clés :**
+>
+> - `/search/:lastname` doit être déclaré **avant** `/:id`, sinon Express capturerait `"search"` comme un `id`
+> - `/:sessionType/:productId/purchase` → le type de session (`buyShop`, `buyNet`, `refund`) fait partie de l'URL, ce qui permet de gérer les trois cas avec un seul handler
 
 ---
 
-## 15. Router — `router/products.route.js`
+## 16. Router — `router/products.route.js`
 
 ```js
 import { Router } from "express";
@@ -721,27 +737,25 @@ export default routerProducts;
 
 ---
 
-## 16. Endpoints API — Récapitulatif
+## 17. Endpoints API — Récapitulatif
 
-| Méthode  | URL                               | Body (JSON)  | Description                               |
-| -------- | --------------------------------- | ------------ | ----------------------------------------- |
-| `GET`    | `/api/users`                      | —            | Liste tous les utilisateurs               |
-| `GET`    | `/api/users/search/:lastname`     | —            | Recherche par nom (regex insensible)      |
-| `GET`    | `/api/users/:id`                  | —            | Utilisateur par `_id` + sessions peuplées |
-| `PATCH`  | `/api/users/:productId/purchase`  | `{ userId }` | Ajoute une session d'achat                |
-| `PATCH`  | `/api/users/:productId/viewed`    | `{ userId }` | Ajoute une session de vue                 |
-| `PATCH`  | `/api/users/:productId/refund`    | `{ userId }` | Ajoute une session de remboursement       |
-| `DELETE` | `/api/users/:productId/purchase`  | `{ userId }` | Supprime une session d'achat              |
-| `DELETE` | `/api/users/:productId/viewed`    | `{ userId }` | Supprime une session de vue               |
-| `DELETE` | `/api/users/:productId/refund`    | `{ userId }` | Supprime une session de remboursement     |
-| `GET`    | `/api/product`                    | —            | Liste tous les produits                   |
-| `GET`    | `/api/product/search?brand=Gucci` | —            | Produits filtrés par marque               |
+| Méthode  | URL                                           | Body (JSON)  | Description                                          |
+| -------- | --------------------------------------------- | ------------ | ---------------------------------------------------- |
+| `GET`    | `/api/users`                                  | —            | Liste tous les utilisateurs                          |
+| `GET`    | `/api/users/search/:lastname`                 | —            | Recherche par nom (regex insensible)                 |
+| `GET`    | `/api/users/:id`                              | —            | Utilisateur par `_id` + sessions peuplées            |
+| `PATCH`  | `/api/users/:sessionType/:productId/purchase` | `{ userId }` | Ajoute une session (`buyShop`, `buyNet` ou `refund`) |
+| `PATCH`  | `/api/users/:productId/viewed`                | `{ userId }` | Ajoute une session de sélection                      |
+| `DELETE` | `/api/users/:sessionType/:productId/purchase` | `{ userId }` | Supprime une session du type indiqué                 |
+| `DELETE` | `/api/users/:productId/viewed`                | `{ userId }` | Supprime une session de sélection                    |
+| `GET`    | `/api/product`                                | —            | Liste tous les produits                              |
+| `GET`    | `/api/product/search?brand=Gucci`             | —            | Produits filtrés par marque (insensible à la casse)  |
 
 ---
 
 # PARTIE 2 — Client (React)
 
-## 17. Initialisation du client React
+## 18. Initialisation du client React
 
 Dans le dossier racine du projet :
 
@@ -758,7 +772,7 @@ npm install axios react-router-dom
 
 ---
 
-## 18. Structure `client/src/`
+## 19. Structure `client/src/`
 
 ```
 src/
@@ -770,6 +784,7 @@ src/
 │   ├── UsersCard.js
 │   ├── Products.js
 │   ├── ProductCard.js
+│   ├── settingsBtn.js      ← fonctions API PATCH/DELETE centralisées
 │   └── ProfilUser.js
 ├── pages/
 │   ├── Home.js
@@ -790,7 +805,7 @@ src/
 
 ---
 
-## 19. Routing — `src/App.js`
+## 20. Routing — `src/App.js`
 
 ```js
 import React from "react";
@@ -825,7 +840,7 @@ export default App;
 
 ---
 
-## 20. Composant `Navigation.js`
+## 21. Composant `Navigation.js`
 
 Barre de navigation commune à toutes les pages. `NavLink` applique automatiquement une classe `active` sur le lien courant :
 
@@ -852,7 +867,7 @@ export default Navigation;
 
 ---
 
-## 21. Pages — `Home`, `Profil`, `Book`
+## 22. Pages — `Home`, `Profil`, `Book`
 
 Chaque page intègre `<Navigation />` et le composant métier correspondant :
 
@@ -883,7 +898,7 @@ const Book = () => (
 
 ---
 
-## 22. Composant `Users.js`
+## 23. Composant `Users.js`
 
 Récupère les utilisateurs via Axios. Le `useEffect` se relance à chaque frappe dans le champ de recherche :
 
@@ -923,7 +938,7 @@ export default Users;
 
 ---
 
-## 23. Composant `UsersCard.js`
+## 24. Composant `UsersCard.js`
 
 Carte cliquable vers le profil de l'utilisateur :
 
@@ -948,7 +963,7 @@ export default UsersCard;
 
 ---
 
-## 24. Composant `Products.js`
+## 25. Composant `Products.js`
 
 ```js
 import axios from "axios";
@@ -979,7 +994,7 @@ export default Products;
 
 ---
 
-## 25. Composant `ProductCard.js`
+## 26. Composant `ProductCard.js`
 
 ```js
 import React from "react";
@@ -1001,94 +1016,169 @@ export default ProductCard;
 
 ---
 
-## 26. Composant `ProfilUser.js`
+## 27. Composant `settingsBtn.js`
 
-Page accessible via `/users/:id`. Charge le profil + les sessions, et permet d'ajouter ou supprimer des sessions via PATCH/DELETE :
+Centralise toutes les fonctions Axios PATCH/DELETE liées aux sessions utilisateur. Ce fichier extrait la logique des appels API du composant `ProfilUser.js` pour le garder lisible :
+
+```js
+import axios from "axios";
+
+// Ajoute une session d'achat (type = "buyShop" | "buyNet" | "refund")
+export function addPurchase(addId, userId, typeSes) {
+  axios
+    .patch(`http://localhost:8000/api/users/${typeSes}/${addId}/purchase`, {
+      userId: userId,
+    })
+    .then((res) => console.log(res.data));
+}
+
+// Ajoute une session de sélection/vue
+export function addview(addId, userId) {
+  axios
+    .patch(`http://localhost:8000/api/users/${addId}/viewed`, {
+      userId: userId,
+    })
+    .then((res) => console.log(res.data));
+}
+
+// Supprime une session d'achat par type
+export function deletePurchase(productId, userId, typeSes) {
+  axios
+    .delete(
+      `http://localhost:8000/api/users/${typeSes}/${productId}/purchase`,
+      { data: { userId: userId } },
+    )
+    .then((res) => console.log(res.data));
+}
+
+// Supprime une session de sélection/vue
+export function deleteView(productId, userId) {
+  axios
+    .delete(`http://localhost:8000/api/users/${productId}/viewed`, {
+      data: { userId: userId },
+    })
+    .then((res) => console.log(res.data));
+}
+```
+
+> **Points clés :**
+>
+> - `typeSes` est injecté dans l'URL → correspond exactement au `:sessionType` de la route Express
+> - Pour les DELETE avec body en Axios, il faut `{ data: { ... } }` comme second argument — comportement spécifique d'Axios
+
+---
+
+## 28. Composant `ProfilUser.js`
+
+Page accessible via `/users/:id`. Entièrement refactorisé avec une **navigation par onglets** (`GÉNÉRAL` / `HISTORIQUE`).
+
+**State et chargement des données :**
 
 ```js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navigation from "./Navigation";
+import {
+  addPurchase,
+  deletePurchase,
+  addview,
+  deleteView,
+} from "./settingsBtn.js";
 
 const ProfilUser = () => {
   const { id } = useParams();
-  const [userData, setUserData] = useState(null);
   const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [userRegistered, setUserRegistered] = useState(null);
+  const [userBorn, setUserBorn] = useState(null);
   const [viewData, setViewData] = useState([]);
   const [purchaseData, setPurchaseData] = useState([]);
-  const [refundData, setRefundData] = useState([]);
-  const [productsData, setProdctsData] = useState([]);
+  const [productsData, setProductsData] = useState([]);
+  const [valueType, setValueType] = useState(""); // type radio sélectionné
+  const [activeSection, setActiveSection] = useState("general"); // onglet actif
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
 
   // Chargement de tous les produits disponibles
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/product`)
-      .then((res) => setProdctsData(res.data.products));
+      .then((res) => setProductsData(res.data.products));
   }, []);
 
-  // Chargement du profil utilisateur — se relance si l'id dans l'URL change
+  // Chargement du profil — se relance si l'id dans l'URL change
   useEffect(() => {
     axios.get(`http://localhost:8000/api/users/${id}`).then((res) => {
+      const date = new Date(res.data.user.registered.date);
+      const born = new Date(res.data.user.dob.date);
       setUserData(res.data.user);
       setUserId(res.data.user._id);
       setViewData(res.data.user.viewSessions);
       setPurchaseData(res.data.user.purchaseSessions);
-      setRefundData(res.data.user.refundSessions);
+      setUserRegistered(date);
+      setUserBorn(born);
     });
   }, [id]);
-
-  // PATCH — ajout de sessions
-  function addPurchase(productId) {
-    axios.patch(`http://localhost:8000/api/users/${productId}/purchase`, {
-      userId,
-    });
-  }
-  function addView(productId) {
-    axios.patch(`http://localhost:8000/api/users/${productId}/viewed`, {
-      userId,
-    });
-  }
-  function addRefund(productId) {
-    axios.patch(`http://localhost:8000/api/users/${productId}/refund`, {
-      userId,
-    });
-  }
-
-  // DELETE — suppression de sessions
-  // Pour les DELETE avec body en Axios, il faut { data: { ... } }
-  function deletePurchase(productId) {
-    axios.delete(`http://localhost:8000/api/users/${productId}/purchase`, {
-      data: { userId },
-    });
-  }
-  function deleteView(productId) {
-    axios.delete(`http://localhost:8000/api/users/${productId}/viewed`, {
-      data: { userId },
-    });
-  }
-  function deleteRefund(productId) {
-    axios.delete(`http://localhost:8000/api/users/${productId}/refund`, {
-      data: { userId },
-    });
-  }
-
-  return (
-    <div className="body-user">
-      <Navigation />
-      {/* Affichage du profil, des sessions et des actions */}
-    </div>
-  );
+  // ...
 };
-
-export default ProfilUser;
 ```
 
-> **Point Axios** : pour envoyer un body dans une requête `DELETE`, il faut passer `{ data: { userId } }` comme second argument — comportement spécifique d'Axios.
+**Structure JSX — onglets et sections :**
+
+```
+body-user
+├── <Navigation />
+├── profil-container          ← carte identité (photo, nom, KPIs CA)
+└── main-container
+    ├── main-title             ← boutons onglets GÉNÉRAL / HISTORIQUE
+    ├── [activeSection === "general"]
+    │   ├── card-user-main    ← infos : date d'inscription, tél, email, dob, pays…
+    │   └── like-container    ← graphiques préférences marques / marchés (statiques)
+    └── [activeSection === "histo"]
+        ├── buy-container     ← purchaseData filtrés par type "buyShop" puis "buyNet" puis "refund"
+        ├── view-container    ← viewData (sélections)
+        └── container-book    ← catalogue complet pour assigner de nouvelles sessions
+```
+
+**Filtrage des sessions par type dans l'onglet Historique :**
+
+```js
+// Affiche uniquement les achats en magasin
+purchaseData
+  .filter((session) => session.type === "buyShop")
+  .map((session) =>
+    session.products.map((item) =>
+      item.product ? <ProductCardUser ... /> : null
+    )
+  )
+
+// Même logique pour "buyNet" et "refund"
+```
+
+**Ajout / suppression depuis le catalogue intégré :**
+
+```js
+// Boutons dans le catalogue :
+<button onClick={() => addPurchase(product._id, userId, valueType)}>purchase</button>
+<button onClick={() => addview(product._id, userId)}>view</button>
+
+// Bouton suppression sur chaque carte (radio pour choisir le type) :
+<button onClick={() => deletePurchase(item.product._id, userId, valueType)}>deletePurchase</button>
+<button onClick={() => deleteView(item.product._id, userId)}>Deleteview</button>
+```
+
+> **Points clés :**
+>
+> - `activeSection` → state string qui contrôle quel bloc JSX est rendu
+> - `valueType` → state radio partagé entre le catalogue et les cartes, détermine le `sessionType` envoyé à l'API
+> - `userRegistered` et `userBorn` → dates formatées avec `toLocaleDateString("fr-FR", options)`
+> - `purchaseData` remplace l'ancien triplet `purchaseData` + `viewData` + `refundData` — les remboursements sont isolés via `.filter(session => session.type === "refund")`
+> - Les fonctions API sont importées depuis `settingsBtn.js` pour garder le composant lisible
 
 ---
 
-## 27. Styles SCSS
+## 29. Styles SCSS
 
 `src/style/index.scss` importe tous les partials dans l'ordre :
 
@@ -1106,9 +1196,63 @@ export default ProfilUser;
 
 ---
 
-# PARTIE 3 — Démarrage & erreurs rencontrées
+# PARTIE 3 — Évolutions & Refactoring
 
-## 28. Lancement du projet complet
+## 30. Refactoring du modèle de sessions
+
+**Problème initial :** trois tableaux de sessions distincts (`purchaseSessions`, `viewSessions`, `refundSessions`) obligeaient à dupliquer les routes, les services, les handlers et la logique front-end.
+
+**Solution adoptée :** fusionner les trois types de transactions dans `purchaseSessions` via un champ `type` :
+
+| Avant              | Après                                  |
+| ------------------ | -------------------------------------- |
+| `purchaseSessions` | `purchaseSessions` (type: `"buyShop"`) |
+| `refundSessions`   | `purchaseSessions` (type: `"refund"`)  |
+| `viewSessions`     | `viewSessions` (inchangé)              |
+
+**Impact :**
+
+- Schéma Mongoose : suppression de `refundSessions`, ajout de `type: { enum: ["buyShop", "buyNet", "refund"] }` dans `purchaseSessions`
+- Service : `addPurchasedProduct` et `deletePurchasedProduct` prennent un 3ème argument `sessionType`
+- Routes : `/:productId/purchase`, `/:productId/refund` → `/:sessionType/:productId/purchase`
+- Front-end : filtrage par `session.type` pour distinguer achats / remboursements dans l'affichage
+
+---
+
+## 31. Ajout du script `seedUsers.js`
+
+Besoin de peupler la base avec des utilisateurs de test. Créé sur le même modèle que `seed.js` (top-level await, `findOneAndUpdate` + upsert) en utilisant `email` comme clé d'unicité.
+
+```bash
+node seedUsers.js
+```
+
+---
+
+## 32. Refactoring de `ProfilUser.js` — navigation par onglets
+
+**Avant :** page unique affichant toutes les informations à la suite.
+
+**Après :** deux onglets contrôlés par le state `activeSection` :
+
+- **GÉNÉRAL** — informations personnelles du client (inscription, contact, date de naissance, nationalité, identifiants internes) + bloc préférences (graphiques marques / marchés, statiques pour l'instant)
+- **HISTORIQUE** — sessions d'achat filtrées par type (`buyShop`, `buyNet`, `refund`) + sélections (`viewSessions`) + catalogue produits intégré pour assigner de nouvelles sessions
+
+**Extraction de `settingsBtn.js`** : les fonctions Axios PATCH/DELETE ont été extraites dans un fichier dédié importé par `ProfilUser.js`, séparant la logique d'appel API du rendu JSX.
+
+---
+
+## 33. Correction `products.controller.js` — cohérence de la réponse
+
+- Ancienne réponse : `res.status(200).json(product)` (sans enveloppe, clé `product` au singulier)
+- Nouvelle réponse : `res.status(200).json({ products })` (enveloppe cohérente avec `handleListProducts`)
+- Vérification "not found" : `products.length === 0` au lieu de `!product` (un tableau vide n'est jamais `null`)
+
+---
+
+# PARTIE 4 — Démarrage & erreurs rencontrées
+
+## 34. Lancement du projet complet
 
 **Terminal 1 — Démarrer MongoDB :**
 
@@ -1129,7 +1273,8 @@ npm start         # node (sans redémarrage)
 
 ```bash
 cd server
-node seed.js
+node seed.js        # importe les produits
+node seedUsers.js   # importe les utilisateurs
 ```
 
 **Terminal 4 — Client React :**
@@ -1148,17 +1293,20 @@ Server is running http://localhost:8000
 
 ---
 
-## 29. Erreurs rencontrées et solutions
+## 35. Erreurs rencontrées et solutions
 
-| Erreur                                     | Cause                                     | Solution                                               |
-| ------------------------------------------ | ----------------------------------------- | ------------------------------------------------------ |
-| `connect ECONNREFUSED 127.0.0.1:27017`     | MongoDB non démarré                       | `net start MongoDB`                                    |
-| `Invalid scheme, expected "mongodb://"`    | `.env` mal formé (clé dupliquée)          | Corriger `MONGO_URI=mongodb://localhost:27017/crm`     |
-| `findMany() is not a function`             | Confusion avec Prisma                     | Utiliser `find()` / `findOne()` (Mongoose)             |
-| `.polulate()` non reconnu                  | Faute de frappe                           | Corriger en `.populate()`                              |
-| `req.params.brand` retourne `undefined`    | Route sans segment dynamique              | Utiliser `req.query.brand` pour `?brand=Gucci`         |
-| Express capture `"search"` comme un `id`   | Mauvais ordre de déclaration des routes   | Déclarer `/search/:lastname` **avant** `/:id`          |
-| `DELETE` Axios n'envoie pas le body        | Comportement spécifique d'Axios           | Passer `{ data: { userId } }` comme second argument    |
-| `method: "PATH"` dans fetch                | Typo                                      | Corriger en `method: "PATCH"`                          |
-| `data.Products` retourne `undefined`       | Majuscule incorrecte                      | Corriger en `data.products`                            |
-| `handleGetAllUser` retournait toujours 400 | Lisait `req.params._id` sur une route `/` | Supprimer le paramètre, appeler `User.find({})` direct |
+| Erreur                                      | Cause                                        | Solution                                               |
+| ------------------------------------------- | -------------------------------------------- | ------------------------------------------------------ |
+| `connect ECONNREFUSED 127.0.0.1:27017`      | MongoDB non démarré                          | `net start MongoDB`                                    |
+| `Invalid scheme, expected "mongodb://"`     | `.env` mal formé (clé dupliquée)             | Corriger `MONGO_URI=mongodb://localhost:27017/crm`     |
+| `findMany() is not a function`              | Confusion avec Prisma                        | Utiliser `find()` / `findOne()` (Mongoose)             |
+| `.polulate()` non reconnu                   | Faute de frappe                              | Corriger en `.populate()`                              |
+| `req.params.brand` retourne `undefined`     | Route sans segment dynamique                 | Utiliser `req.query.brand` pour `?brand=Gucci`         |
+| Express capture `"search"` comme un `id`    | Mauvais ordre de déclaration des routes      | Déclarer `/search/:lastname` **avant** `/:id`          |
+| `DELETE` Axios n'envoie pas le body         | Comportement spécifique d'Axios              | Passer `{ data: { userId } }` comme second argument    |
+| `method: "PATH"` dans fetch                 | Typo                                         | Corriger en `method: "PATCH"`                          |
+| `data.Products` retourne `undefined`        | Majuscule incorrecte                         | Corriger en `data.products`                            |
+| `handleGetAllUser` retournait toujours 400  | Lisait `req.params._id` sur une route `/`    | Supprimer le paramètre, appeler `User.find({})` direct |
+| `deletePurchase` supprimait le mauvais type | `$pull` sans filtre sur `type`               | Ajouter `type: sessionType` dans le `$pull`            |
+| Recherche marque insensible à la casse      | Comparaison exacte de chaîne                 | Utiliser `{ $regex: brand, $options: "i" }`            |
+| `data.products` undefined côté React        | Réponse sans enveloppe (`res.json(product)`) | Normaliser en `res.json({ products })`                 |

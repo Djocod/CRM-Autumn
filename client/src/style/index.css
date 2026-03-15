@@ -6,6 +6,8 @@
           box-sizing: border-box;
   font-family: "Inter", sans-serif;
   font-size: 18px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 body {
@@ -513,30 +515,40 @@ span {
   gap: 24px;
 }
 .body-user .main-container .main-title {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
   text-align: center;
-  border-right: 1px solid #25272c;
-  border-bottom: 1px solid #25272c;
+  gap: 1px;
+  border: 1px solid #25272c;
+  background: #25272c;
 }
 .body-user .main-container .main-title .btn-container {
-  padding: 14px;
   width: 100%;
   border: 1px solid transparent;
+  background: #25272c;
 }
 .body-user .main-container .main-title .btn-container .btn-h4 {
   cursor: pointer;
+  padding: 14px;
   text-decoration: underline;
-  margin: 0 auto;
-}
-.body-user .main-container .main-title .btn-container:hover {
-  border: 1px solid white;
-  background: #25272c;
-}
-.body-user .main-container .main-title .btn-container:hover .btn-h4 {
+  width: 100%;
   color: white;
+}
+.body-user .main-container .main-title .active-general {
+  border: 1px solid #25272c;
+  background: white;
+}
+.body-user .main-container .main-title .active-general .btn-h4 {
+  color: #25272c;
+}
+.body-user .main-container .main-title .active-histo {
+  border: 1px solid #25272c;
+  background: white;
+}
+.body-user .main-container .main-title .active-histo .btn-h4 {
+  color: #25272c;
 }
 .body-user .main-container .class-event-useref {
   display: -webkit-box;
@@ -674,7 +686,7 @@ span {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 16px 24px;
+  padding: 0px 24px;
 }
 .body-user .histo-container .product-interaction-container {
   display: -webkit-box;
@@ -685,13 +697,31 @@ span {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.body-user .histo-container .product-interaction-container .same-style-container h3 {
+.body-user .histo-container .product-interaction-container .shop-view-title-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.body-user .histo-container .product-interaction-container .shop-view-title-container .shop-view-cotnainer {
+  border-bottom: 1px solid transparent;
+}
+.body-user .histo-container .product-interaction-container .shop-view-title-container .shop-view-cotnainer h4 {
+  cursor: pointer;
+  padding: 8px 0px 8px;
+  width: 100%;
+}
+.body-user .histo-container .product-interaction-container .shop-view-title-container .active-shop {
+  border-bottom: 1px solid #25272c;
+}
+.body-user .histo-container .product-interaction-container .shop-view-title-container .active-view {
+  border-bottom: 1px solid #25272c;
 }
 .body-user .histo-container .product-interaction-container .same-style-container .info-buy-container h4 {
   padding: 4px 0px;
@@ -758,6 +788,7 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
 }
 .body-user .histo-container .product-interaction-container .same-style-container .product-card-user-container .product-card-user .description-container .description-left .span-snr .shop {
   color: #318510;
@@ -812,6 +843,10 @@ span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.delete-view {
+  display: none;
 }
 
 .set-btn {
@@ -949,7 +984,7 @@ span {
   display: grid;
   place-content: center;
 }
-.body-book .card-product-container .card-product .product-card-book .img-container .add-wishlist .styleLikeBtn {
+.body-book .card-product-container .card-product .product-card-book .img-container .styleLikeBtn path {
   fill: #f58625;
 }
 .body-book .card-product-container .card-product .product-card-book .description-container {

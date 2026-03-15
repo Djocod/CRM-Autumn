@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# CRM Autumn — Client React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend du projet CRM-Autumn, développé avec **Create React App**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Fonctionnalités principales
 
-### `npm start`
+- Navigation SPA (React Router)
+- Recherche dynamique des utilisateurs
+- Affichage du profil détaillé d'un utilisateur (sessions d'achat, vue, remboursement)
+- Catalogue produits
+- Ajout / suppression de sessions via boutons (intégration API Express)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Structure du dossier `src/`
 
-### `npm test`
+```
+src/
+├── App.js           # Routing principal (BrowserRouter + Routes)
+├── index.js         # Point d'entrée React
+├── components/
+│   ├── Navigation.js    # Barre de navigation
+│   ├── Users.js         # Liste des utilisateurs + recherche
+│   ├── UsersCard.js     # Carte cliquable d'un utilisateur
+│   ├── Products.js      # Liste des produits
+│   ├── ProductCard.js   # Carte d'un produit
+│   ├── settingsBtn.js   # Fonctions API PATCH/DELETE centralisées
+│   └── ProfilUser.js    # Profil complet d'un utilisateur + gestion des sessions
+├── pages/
+│   ├── Home.js      # Page d'accueil
+│   ├── Profil.js    # Page liste des utilisateurs
+│   └── Book.js      # Page catalogue produits
+└── style/
+    ├── _settings.scss
+    ├── index.scss
+    ├── components/
+    │   ├── _navigation.scss
+    │   ├── _profilUser.scss
+    │   ├── _users.scss
+    │   └── _products.scss
+    └── pages/
+        ├── _home.scss
+        └── _profil.scss
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Démarrage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Installer les dépendances :
+   ```bash
+   npm install
+   ```
+2. Lancer le serveur React :
+   ```bash
+   npm start
+   ```
+   Accès sur [http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Points d'intégration backend
 
-### `npm run eject`
+- Toutes les requêtes API sont faites sur `http://localhost:8000/api/...`
+- Les endpoints sont détaillés dans le README du backend
+- Les fonctions d'ajout/suppression de sessions sont centralisées dans `settingsBtn.js`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Navigation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Route        | Composant    | Description                           |
+| ------------ | ------------ | ------------------------------------- |
+| `/`          | `Home`       | Page d'accueil                        |
+| `/Profil`    | `Profil`     | Liste des utilisateurs avec recherche |
+| `/Book`      | `Book`       | Catalogue des produits                |
+| `/users/:id` | `ProfilUser` | Profil détaillé d'un utilisateur      |
+| `*`          | `Home`       | Fallback — toute URL inconnue         |
