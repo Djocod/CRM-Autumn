@@ -19,5 +19,6 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "description": ""
+  "description": "Projet scolaire — CRM léger orienté historique client, construit sur la stack **MERN** (MongoDB, Express, React, Node.js).",
+  "devDependencies": {}
 }

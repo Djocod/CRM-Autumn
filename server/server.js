@@ -25,9 +25,9 @@ mongoose
   .then(() => console.log("MongoDB successfull"))
   .catch((err) => console.error("Error connection :", err.message));
 
-app.get("/", (req, res) => {
-  res.send("Hell world!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hell world!");
+// });
 
 const port = process.env.PORT || 8000;
 
