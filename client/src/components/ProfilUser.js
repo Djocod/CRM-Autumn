@@ -144,6 +144,10 @@ const ProfilUser = () => {
                     <p>ID client</p>
                     <p>{userData.login.salt}</p>
                   </li>
+                  <li className="item-main">
+                    <p>Mensuration </p>
+                    <p>{userData.login.salt}</p>
+                  </li>
                 </ul>
               </div>
             )}
