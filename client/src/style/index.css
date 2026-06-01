@@ -11,7 +11,7 @@
 }
 
 body {
-  max-width: 1300px;
+  max-width: 375px;
   margin: 0 auto;
 }
 
@@ -381,6 +381,7 @@ span {
       -ms-flex-align: center;
           align-items: center;
   list-style: none;
+  max-width: 375px;
   width: 100%;
   text-decoration: none;
   background: #ffffff;

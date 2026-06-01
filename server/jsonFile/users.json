@@ -460,8 +460,331 @@
       "thumbnail": "https://ui-avatars.com/api/?name=AA\u0026background=A93A36\u0026color=FFFFFF\u0026size=128"
     },
     "nat": "MX",
-    "purchaseSessions": [],
-    "viewSessions": []
+    "purchaseSessions": [
+      {
+        "type": "buyShop",
+        "date": "2026-06-01T11:39:09.525Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b43b",
+              "ref": "AP-1550",
+              "__v": 0,
+              "brand": "Audemars Piguet",
+              "category": "montres",
+              "colors": [
+                {
+                  "name": "Bleu (cadran)",
+                  "hex": "#2A4A8A",
+                  "_id": "6a1d57d0219515eb897d048d"
+                },
+                {
+                  "name": "Gris (cadran)",
+                  "hex": "#6E7E8C",
+                  "_id": "6a1d57d0219515eb897d048e"
+                },
+                {
+                  "name": "Acier (boîtier)",
+                  "hex": "#C0C0C0",
+                  "_id": "6a1d57d0219515eb897d048f"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.081Z",
+              "currency": "EUR",
+              "description": "Montre iconique en acier avec cadran 'Grande Tapisserie', lunette octogonale à vis.",
+              "image": "/assets/audemars-piguet-montre-royal-oak-15500.webp",
+              "price": 42000,
+              "sizes": ["41mm"],
+              "stock": 2,
+              "tags": ["montre", "acier", "iconique"],
+              "title": "Montre Royal Oak 15500",
+              "updatedAt": "2026-06-01T09:58:40.160Z"
+            },
+            "_id": "6a1d6f5d5fcebfb20c560dc5"
+          }
+        ],
+        "_id": "6a1d6f5d5fcebfb20c560dc4"
+      },
+      {
+        "type": "buyNet",
+        "date": "2026-06-01T11:39:14.498Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b420",
+              "ref": "BAL-TS",
+              "__v": 0,
+              "brand": "Balenciaga",
+              "category": "chaussures",
+              "colors": [
+                {
+                  "name": "Blanc cassé",
+                  "hex": "#F5F0EB",
+                  "_id": "6a1d57d0219515eb897d03ca"
+                },
+                {
+                  "name": "Gris clair",
+                  "hex": "#C8C4C0",
+                  "_id": "6a1d57d0219515eb897d03cb"
+                },
+                {
+                  "name": "Rouge",
+                  "hex": "#C1001F",
+                  "_id": "6a1d57d0219515eb897d03cc"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.003Z",
+              "currency": "EUR",
+              "description": "Sneakers oversized emblématiques en mesh et cuir.",
+              "image": "/assets/balenciaga-sneakers-triple-s.webp",
+              "price": 850,
+              "sizes": [
+                "36",
+                "37",
+                "38",
+                "39",
+                "40",
+                "41",
+                "42",
+                "43",
+                "44",
+                "45"
+              ],
+              "stock": 15,
+              "tags": ["sneakers", "streetwear", "chunky"],
+              "title": "Sneakers Triple S",
+              "updatedAt": "2026-06-01T09:58:40.075Z"
+            },
+            "_id": "6a1d6f625fcebfb20c560dca"
+          }
+        ],
+        "_id": "6a1d6f625fcebfb20c560dc9"
+      },
+      {
+        "type": "refund",
+        "date": "2026-06-01T11:39:16.985Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b434",
+              "ref": "BAL-BLZ",
+              "__v": 0,
+              "brand": "Balenciaga",
+              "category": "vetements",
+              "colors": [
+                {
+                  "name": "Noir",
+                  "hex": "#0D0D0D",
+                  "_id": "6a1d57d0219515eb897d0458"
+                },
+                {
+                  "name": "Gris anthracite",
+                  "hex": "#3A3A3A",
+                  "_id": "6a1d57d0219515eb897d0459"
+                },
+                {
+                  "name": "Blanc",
+                  "hex": "#F5F5F5",
+                  "_id": "6a1d57d0219515eb897d045a"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.063Z",
+              "currency": "EUR",
+              "description": "Blazer oversize en laine vierge noire avec épaules structurées.",
+              "image": "/assets/balenciaga-blazer-oversize.webp",
+              "price": 1980,
+              "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+              "stock": 8,
+              "tags": ["blazer", "oversize", "laine"],
+              "title": "Blazer Oversize",
+              "updatedAt": "2026-06-01T09:58:40.140Z"
+            },
+            "_id": "6a1d6f645fcebfb20c560dd1"
+          }
+        ],
+        "_id": "6a1d6f645fcebfb20c560dd0"
+      },
+      {
+        "type": "buyShop",
+        "date": "2026-06-01T11:39:19.891Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b443",
+              "ref": "BOR-PAN",
+              "__v": 0,
+              "brand": "Borsalino",
+              "category": "accessoires",
+              "colors": [
+                {
+                  "name": "Paille naturelle",
+                  "hex": "#E8D5A3",
+                  "_id": "6a1d57d0219515eb897d04c5"
+                },
+                {
+                  "name": "Marine (bandeau)",
+                  "hex": "#1B2A4A",
+                  "_id": "6a1d57d0219515eb897d04c6"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.099Z",
+              "currency": "EUR",
+              "description": "Chapeau Panama tressé à la main en paille de toquilla, bandeau marine.",
+              "image": "/assets/borsalino-chapeau-panama-classique.webp",
+              "price": 480,
+              "sizes": ["56", "57", "58", "59", "60", "61", "62"],
+              "stock": 8,
+              "tags": ["chapeau", "panama", "paille"],
+              "title": "Chapeau Panama Classique",
+              "updatedAt": "2026-06-01T09:58:40.180Z"
+            },
+            "_id": "6a1d6f675fcebfb20c560dda"
+          }
+        ],
+        "_id": "6a1d6f675fcebfb20c560dd9"
+      }
+    ],
+    "viewSessions": [
+      {
+        "date": "2026-06-01T11:39:21.885Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b426",
+              "ref": "BV-CHEL",
+              "__v": 0,
+              "brand": "Bottega Veneta",
+              "category": "chaussures",
+              "colors": [
+                {
+                  "name": "Vert bouteille",
+                  "hex": "#2D4A3E",
+                  "_id": "6a1d57d0219515eb897d03f0"
+                },
+                {
+                  "name": "Noir",
+                  "hex": "#1A1A1A",
+                  "_id": "6a1d57d0219515eb897d03f1"
+                },
+                {
+                  "name": "Caramel",
+                  "hex": "#C68B59",
+                  "_id": "6a1d57d0219515eb897d03f2"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.023Z",
+              "currency": "EUR",
+              "description": "Bottines Chelsea en cuir intrecciato vert bouteille.",
+              "image": "/assets/bottega-veneta-bottines-chelsea.webp",
+              "price": 1150,
+              "sizes": ["36", "37", "38", "39", "40", "41"],
+              "stock": 9,
+              "tags": ["bottines", "intrecciato", "cuir"],
+              "title": "Bottines Chelsea",
+              "updatedAt": "2026-06-01T09:58:40.095Z"
+            },
+            "_id": "6a1d6f695fcebfb20c560de5"
+          }
+        ],
+        "_id": "6a1d6f695fcebfb20c560de4"
+      },
+      {
+        "date": "2026-06-01T11:39:22.914Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b42d",
+              "ref": "BV-CASS",
+              "__v": 0,
+              "brand": "Bottega Veneta",
+              "category": "sacs",
+              "colors": [
+                {
+                  "name": "Caramel",
+                  "hex": "#C68B59",
+                  "_id": "6a1d57d0219515eb897d0427"
+                },
+                {
+                  "name": "Noir",
+                  "hex": "#1A1A1A",
+                  "_id": "6a1d57d0219515eb897d0428"
+                },
+                {
+                  "name": "Vert bouteille",
+                  "hex": "#2D4A3E",
+                  "_id": "6a1d57d0219515eb897d0429"
+                },
+                {
+                  "name": "Blanc cassé",
+                  "hex": "#F5F0EB",
+                  "_id": "6a1d57d0219515eb897d042a"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.046Z",
+              "currency": "EUR",
+              "description": "Mini sac en cuir intrecciato caramel avec bandoulière réglable.",
+              "image": "/assets/bottega-venetta-mini-bag-cassette.webp",
+              "price": 2400,
+              "sizes": [],
+              "stock": 7,
+              "tags": ["sac", "intrecciato", "mini"],
+              "title": "Mini Bag Cassette",
+              "updatedAt": "2026-06-01T09:58:40.121Z"
+            },
+            "_id": "6a1d6f6a5fcebfb20c560df2"
+          }
+        ],
+        "_id": "6a1d6f6a5fcebfb20c560df1"
+      },
+      {
+        "date": "2026-06-01T11:39:24.404Z",
+        "products": [
+          {
+            "product": {
+              "_id": "69b68bb14f2a190bac60b427",
+              "ref": "BB-ECHA",
+              "__v": 0,
+              "brand": "Burberry",
+              "category": "accessoires",
+              "colors": [
+                {
+                  "name": "Camel",
+                  "hex": "#C19A6B",
+                  "_id": "6a1d57d0219515eb897d03f7"
+                },
+                {
+                  "name": "Rouge bordeaux",
+                  "hex": "#722F37",
+                  "_id": "6a1d57d0219515eb897d03f8"
+                },
+                {
+                  "name": "Noir",
+                  "hex": "#1A1A1A",
+                  "_id": "6a1d57d0219515eb897d03f9"
+                },
+                {
+                  "name": "Beige",
+                  "hex": "#E8D5B5",
+                  "_id": "6a1d57d0219515eb897d03fa"
+                }
+              ],
+              "createdAt": "2026-03-15T10:36:33.027Z",
+              "currency": "EUR",
+              "description": "Écharpe en cachemire pur avec motif check iconique.",
+              "image": "/assets/burberry-echarpe-cachemire-classic.webp",
+              "price": 650,
+              "sizes": [],
+              "stock": 25,
+              "tags": ["echarpe", "cachemire", "check"],
+              "title": "Écharpe Cachemire Classic",
+              "updatedAt": "2026-06-01T09:58:40.099Z"
+            },
+            "_id": "6a1d6f6c5fcebfb20c560e01"
+          }
+        ],
+        "_id": "6a1d6f6c5fcebfb20c560e00"
+      }
+    ]
   },
   {
     "gender": "male",
