@@ -22,7 +22,7 @@ L'objectif est de permettre la consultation rapide de l'historique client : prod
 
 ---
 
-## Architecture
+## Architecture Modif
 
 Le projet suit une architecture **MVC avec couche service** :
 
