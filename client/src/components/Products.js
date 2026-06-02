@@ -7,13 +7,15 @@ const Products = () => {
   const [brandName, setBrandName] = useState("");
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
     if (brandName) {
       axios
-        .get(`http://localhost:8000/api/product/search?brand=${brandName}`)
+        .get(`${API_URL}/api/product/search?brand=${brandName}`)
         .then((res) => setProductsData(res.data.products));
     } else {
       axios
-        .get(`http://localhost:8000/api/product`)
+        .get(`${API_URL}/api/product`)
         .then((res) => setProductsData(res.data.products));
     }
   }, [brandName]);

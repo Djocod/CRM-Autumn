@@ -25,12 +25,13 @@ const ProfilUser = () => {
 
   useEffect(() => {
     //CALLBACK : le code à exécuter
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
     axios
-      .get(`http://localhost:8000/api/product`)
+      .get(`${API_URL}/api/product`)
       .then((res) => setProductsData(res.data.products));
 
-    axios.get(`http://localhost:8000/api/users/${id}`).then((res) => {
+    axios.get(`${API_URL}/api/users/${id}`).then((res) => {
       const date = new Date(res.data.user.registered.date);
       const born = new Date(res.data.user.dob.date);
       setUserData(res.data.user);

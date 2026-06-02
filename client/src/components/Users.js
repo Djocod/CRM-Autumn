@@ -5,13 +5,15 @@ const Users = () => {
   const [usersData, setUsersData] = useState([]);
   const [userName, setUserName] = useState("");
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
     if (userName.length > 0) {
       axios
-        .get(`http://localhost:8000/api/users/search/${userName}`)
+        .get(`${API_URL}/api/users/search/${userName}`)
         .then((res) => setUsersData(res.data.user));
     } else {
       axios
-        .get(`http://localhost:8000/api/users`)
+        .get(`${API_URL}/api/users`)
         .then((res) => setUsersData(res.data.user));
     }
   }, [userName]);

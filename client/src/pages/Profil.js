@@ -6,8 +6,10 @@ import axios from "axios";
 const Profil = () => {
   const [usersCount, setUsersCount] = useState([]);
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
     axios
-      .get(`http://localhost:8000/api/users`)
+      .get(`${API_URL}/api/users`)
       .then((res) => setUsersCount(res.data.user));
   }, []);
   return (
