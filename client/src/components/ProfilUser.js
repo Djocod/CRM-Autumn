@@ -25,7 +25,7 @@ const ProfilUser = () => {
 
   useEffect(() => {
     //CALLBACK : le code à exécuter
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
     axios
       .get(`${API_URL}/api/product`)

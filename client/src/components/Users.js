@@ -5,7 +5,7 @@ const Users = () => {
   const [usersData, setUsersData] = useState([]);
   const [userName, setUserName] = useState("");
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
     console.log("API_URL", process.env.REACT_APP_API_URL);
 
     if (userName.length > 0) {

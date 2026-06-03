@@ -7,7 +7,7 @@ const Products = () => {
   const [brandName, setBrandName] = useState("");
 
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
     if (brandName) {
       axios
