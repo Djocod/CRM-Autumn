@@ -6,7 +6,7 @@ import axios from "axios";
 const Profil = () => {
   const [usersCount, setUsersCount] = useState([]);
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+    const API_URL = process.env.REACT_APP_API_URL;
 
     axios
       .get(`${API_URL}/api/users`)
