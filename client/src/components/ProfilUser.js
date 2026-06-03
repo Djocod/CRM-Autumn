@@ -31,16 +31,23 @@ const ProfilUser = () => {
       .get(`${API_URL}/api/product`)
       .then((res) => setProductsData(res.data.products));
 
-    axios.get(`${API_URL}/api/users/${id}`).then((res) => {
-      const date = new Date(res.data.user.registered.date);
-      const born = new Date(res.data.user.dob.date);
-      setUserData(res.data.user);
-      setUserId(res.data.user._id);
-      setViewData(res.data.user.viewSessions);
-      setPurchaseData(res.data.user.purchaseSessions);
-      setUserRegistered(date);
-      setUserBorn(born);
-    });
+    axios
+      .get(`${API_URL}/api/users/${id}`)
+      .then((res) => {
+        const date = new Date(res.data.user.registered.date);
+        const born = new Date(res.data.user.dob.date);
+        setUserData(res.data.user);
+        setUserId(res.data.user._id);
+        setViewData(res.data.user.viewSessions || []);
+        setPurchaseData(res.data.user.purchaseSessions || []);
+        setUserRegistered(date);
+        setUserBorn(born);
+      })
+      .catch((err) => {
+        console.error("Erreur API users:", err);
+        setViewData([]);
+        setPurchaseData([]);
+      });
   }, [id]); //DÉPENDANCES : "surveille id, et relance le callback si id change"
 
   return (

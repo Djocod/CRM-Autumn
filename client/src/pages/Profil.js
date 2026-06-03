@@ -10,7 +10,11 @@ const Profil = () => {
 
     axios
       .get(`${API_URL}/api/users`)
-      .then((res) => setUsersCount(res.data.user));
+      .then((res) => setUsersCount(res.data.user || []))
+      .catch((err) => {
+        console.error("Erreur API users:", err);
+        setUsersCount([]);
+      });
   }, []);
   return (
     <div className="body-profil">
