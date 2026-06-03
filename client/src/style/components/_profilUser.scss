@@ -302,17 +302,17 @@
       }
     }
     .container-book {
-      display: flex;
+      display: none;
       flex-direction: column;
     }
   }
 }
 .delete-view {
-  display: block;
+  display: none;
 }
 .set-btn {
-  display: block;
+  display: none;
   button {
-    display: block;
+    display: none;
   }
 }

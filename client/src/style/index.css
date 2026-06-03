@@ -400,7 +400,7 @@ span {
       -ms-flex-align: center;
           align-items: center;
   gap: 2px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   font-size: 0.5rem;
   color: #717680;
 }
@@ -418,7 +418,7 @@ span {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   text-decoration: none;
   color: #717680;
 }
@@ -837,9 +837,7 @@ span {
           flex-direction: column;
 }
 .body-user .histo-container .container-book {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -847,14 +845,14 @@ span {
 }
 
 .delete-view {
-  display: block;
+  display: none;
 }
 
 .set-btn {
-  display: block;
+  display: none;
 }
 .set-btn button {
-  display: block;
+  display: none;
 }
 
 .body-book {

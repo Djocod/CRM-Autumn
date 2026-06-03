@@ -85,7 +85,7 @@ const Navigation = () => {
             fill="#717680"
           />
         </svg>
-        Tendez-vous
+        Rendez-vous
       </li>
       <li className="nav-item">
         <svg
